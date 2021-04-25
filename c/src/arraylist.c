@@ -6,15 +6,16 @@
 
 #include <stdlib.h>
 
-int arraylist_init(ArrayList_t *list, int length)
+int arraylist_init(ArrayList_t *list, int length, size_t element_size)
 {
   if (list == NULL)
     return -1;
 
   list->capacity = length;
   list->size = 0;
+  list->elem_size = element_size;
 
-  list->data = malloc(length * sizeof(void *));
+  list->data = malloc(length * element_size);
 
   if (list->data == NULL)
     return -1;
@@ -33,13 +34,14 @@ int arraylist_deinit(ArrayList_t *list)
   free(list->data);
   list->capacity = 0;
   list->size = 0;
+  list->elem_size = 0;
   list->first = NULL;
   list->last = NULL;
 
   return 0;
 }
 
-int arraylist_add(ArrayList_t *list, void *val)
+int arraylist_add(ArrayList_t *list, void *element)
 {
   if (list == NULL || list->data == NULL)
     return -1;
@@ -50,11 +52,11 @@ int arraylist_add(ArrayList_t *list, void *val)
       return -1;
   }
 
-  list->data[++(list->size)] = val;
+  memcpy(list->data[++list->size], element, list->elem_size);
   return 0;
 }
 
-int arraylist_insert(ArrayList_t *list, int i, void *val)
+int arraylist_insert(ArrayList_t *list, int i, void *element)
 {
   if (list == NULL || list->data == NULL)
     return -1;
@@ -75,39 +77,39 @@ int arraylist_insert(ArrayList_t *list, int i, void *val)
       list->data[j] = list->data[j - 1];
   }
 
-  list->data[i] = val;
+  memcpy(list->data[i], element, list->elem_size);
   list->size++;
   return 0;
 }
 
-void *arraylist_set(ArrayList_t *list, int i, void *val)
+int arraylist_set(ArrayList_t *list, int i, void *element, void *out)
 {
-  if (list == NULL || list->data == NULL)
-    return NULL;
+  if (list == NULL || list->data == NULL || out == NULL)
+    return -1;
 
   if (i < 0 || i > list->size)
-    return NULL;
+    return -1;
 
   if (list->size >= list->capacity)
   {
     if (arraylist_resize(list) < 0)
-      return NULL;
+      return -1;
   }
 
-  void *retval = list->data[i];
-  list->data[i] = val;
-  return retval;
+  memcpy(out, list->data[i], list->elem_size);
+  memcpy(list->data[i], element, list->elem_size);
+  return 0
 }
 
-void *arraylist_remove(ArrayList_t *list, int i)
+int arraylist_remove(ArrayList_t *list, int i, void *out)
 {
-  if (list == NULL || list->data == NULL)
-    return NULL;
+  if (list == NULL || list->data == NULL || out == NULL)
+    return -1;
 
   if (i < 0 || i >= list->size)
-    return NULL;
+    return -1;
 
-  void *retval = list->data[i];
+  memcpy(out, list->data[i], list->elem_size);
 
   int j;
   for (j = i; j < list->size - 1; j++)
@@ -115,12 +117,12 @@ void *arraylist_remove(ArrayList_t *list, int i)
     list->data[j] = list->data[j + 1];
   }
 
-  return retval;
+  return 0;
 }
 
 static int arraylist_resize(ArrayList_t *list)
 {
-  void **tmp = realloc(list->data, 2 * list->capacity * sizeof(void *));
+  void **tmp = realloc(list->data, 2 * list->capacity * list->elem_size);
   if (tmp == NULL)
     return -1;
 

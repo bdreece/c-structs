@@ -117,9 +117,8 @@ Node_t *linkedlist_add(LinkedList_t *list, void *element)
   if (list->first == NULL && list->last == NULL)
   {
     list->first = new_node;
-  }
-
-  if (list->first == list->last)
+    list->last = new_node;
+  } else if (list->first == list->last)
   {
     list->last = new_node;
   } else
@@ -136,14 +135,63 @@ Node_t *linkedlist_add(LinkedList_t *list, void *element)
   return new_node;
 }
 
-void *linkedlist_remove(LinkedList_t *list, Node_t *node)
+int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out)
 {
+  if (list == NULL || list->first == NULL || list->last == NULL || node == NULL || out == NULL)
+    return -1;
 
+  if (node == list->first)
+  {
+    if (node == list->last)
+    {
+      list->first == NULL;
+      list->last == NULL;
+    } else
+    {
+      Node_t *new_first = node->next;
+
+      if (list->circular)
+        new_first->prev = list->last;
+      else
+        new_first->prev = NULL;
+    }
+  } else if (node == list->last)
+  {
+    Node_t *new_last = node->prev;
+
+    if (list->circular)
+      new_last->next = list->first;
+    else
+      new_last->next = NULL;
+  } else
+  {
+    node->prev->next = node->next;
+    node->next->prev = node->prev;
+  }
+
+  node->prev = NULL;
+  node->next = NULL;
+  memcpy(out, node->element, list->elem_size);
+
+  free(node->element);
+  free(node);
+  node = NULL;
+
+  return 0;
 }
 
-void *linkedlist_set(LinkedList_t *list, Node_t *node, void *val)
+int linkedlist_set(LinkedList_t *list, Node_t *node, void *element, void *out)
 {
+  if (list == NULL || list->first == NULL || list->next == NULL || out == NULL);
+    return -1;
 
+  if (node->element == NULL)
+    node->element = malloc(list->elem_size);
+
+  memcpy(out, node->element, list->elem_size);
+  memcpy(node->element, element, list->elem_size);
+
+  return 0;
 }
 
 static Node_t *linkedlist_create_node(void *val)

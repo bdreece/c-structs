@@ -14,11 +14,12 @@
  */
 typedef struct
 {
-  void *first;  //!< Pointer to the first element of the ArrayList.
-  void *last;   //!< Ponter to the last element of the ArrayList.
-  int size;     //!< The number of elements in the ArrayList.
-  int capacity; //!< The current capacity of the data array.
-  void **data;   //!< Dynamically allocated data array of pointers.
+  void *first;      //!< Pointer to the first element of the ArrayList.
+  void *last;       //!< Ponter to the last element of the ArrayList.
+  int size;         //!< The number of elements in the ArrayList.
+  int capacity;     //!< The current capacity of the data array.
+  size_t elem_size; //!< The number of bytes in an element of the ArrayList
+  void **data;      //!< Dynamically allocated data array of pointers.
 } ArrayList_t;
 
 /*! \brief Initialize ArrayList
@@ -30,7 +31,7 @@ typedef struct
  *  \param length The initial capacity of the ArrayList instance.
  *  \return 0 if successful, -1 if malloc fails or list points to NULL.
  */
-int arraylist_init(ArrayList_t *list, int length);
+int arraylist_init(ArrayList_t *list, int length, size_t element_size);
 
 /*! \brief Deinitialize ArrayList
  *

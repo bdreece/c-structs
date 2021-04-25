@@ -95,9 +95,10 @@ Node_t *linkedlist_add(LinkedList_t *list, void *element);
  *
  *  \param list The relevant LinkedList instance
  *  \param node The node to be removed
- *  \return The element of the node being removed from the LinkedList
+ *  \param out The pointer to the output of the element of the node being removed
+ *  \return 0 if successful, -1 if uninitialized parameters
  */
-void *linkedlist_remove(LinkedList_t *list, Node_t *node);
+int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out);
 
 /*! \brief Sets the value of a node in a LinkedList
  *
@@ -107,9 +108,10 @@ void *linkedlist_remove(LinkedList_t *list, Node_t *node);
  *  \param list The relevant LinkedList instance
  *  \param node The node whose element is to be set
  *  \param val The new element of the node
- *  \return The previous element of the node
+ *  \param out The pointer to the output of the previous element of the node
+ *  \return 0 if successful, -1 if uninitialized parameters
  */
-void *linkedlist_set(LinkedList_t *list, Node_t *node, void *val);
+int linkedlist_set(LinkedList_t *list, Node_t *node, void *val, void *out);
 
 static Node_t *linkedlist_create_node(LinkedList_t *list, void *val);
 
