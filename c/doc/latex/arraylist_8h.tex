@@ -1,0 +1,169 @@
+\hypertarget{arraylist_8h}{}\doxysection{arraylist.\+h File Reference}
+\label{arraylist_8h}\index{arraylist.h@{arraylist.h}}
+
+
+Array\+List Header File.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Array\+List object structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{arraylist_8h_a16d5e3977f59f71de899d844415bb122}{arraylist\+\_\+init}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list, int length)
+\begin{DoxyCompactList}\small\item\em Initialize Array\+List. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{arraylist_8h_a07744ef44f2c2da51ddf7e2f8620a5b3}{arraylist\+\_\+deinit}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Deinitialize Array\+List. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{arraylist_8h_acf082ad3cc811118de744428ca4a5ad2}{arraylist\+\_\+add}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list, void $\ast$val)
+\begin{DoxyCompactList}\small\item\em Add an element to an Array\+List instance. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{arraylist_8h_a142a204a3a178112a33b5914cae85723}{arraylist\+\_\+insert}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list, int i, void $\ast$val)
+\begin{DoxyCompactList}\small\item\em Insert an element in an Array\+List instance. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{arraylist_8h_aab716425ec73d55b136bb226c37e213b}{arraylist\+\_\+remove}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list, int i)
+\begin{DoxyCompactList}\small\item\em Remove an element from an Array\+List instance. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{arraylist_8h_a01fb4d41c2a8924c66f4ff0ce97fb2dc}{arraylist\+\_\+set}} (\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$list, int i, void $\ast$val)
+\begin{DoxyCompactList}\small\item\em Sets the value of a given element in the Array\+List instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Array\+List Header File. 
+
+Header file for the Array\+List data structure. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{arraylist_8h_acf082ad3cc811118de744428ca4a5ad2}\label{arraylist_8h_acf082ad3cc811118de744428ca4a5ad2}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_add@{arraylist\_add}}
+\index{arraylist\_add@{arraylist\_add}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_add()}{arraylist\_add()}}
+{\footnotesize\ttfamily int arraylist\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list,  }\item[{void $\ast$}]{val }\end{DoxyParamCaption})}
+
+
+
+Add an element to an Array\+List instance. 
+
+Adds an element to the end of the Array\+List. If capacity is to be exceeded, the data array will be resized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance in which the element will be added \\
+\hline
+{\em val} & The value to add to the Array\+List \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if list is uninitialized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arraylist_8h_a07744ef44f2c2da51ddf7e2f8620a5b3}\label{arraylist_8h_a07744ef44f2c2da51ddf7e2f8620a5b3}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_deinit@{arraylist\_deinit}}
+\index{arraylist\_deinit@{arraylist\_deinit}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_deinit()}{arraylist\_deinit()}}
+{\footnotesize\ttfamily int arraylist\+\_\+deinit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Deinitialize Array\+List. 
+
+Frees all heap memory associated with Array\+List instance
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance to deinitialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if data array is uninitialized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arraylist_8h_a16d5e3977f59f71de899d844415bb122}\label{arraylist_8h_a16d5e3977f59f71de899d844415bb122}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_init@{arraylist\_init}}
+\index{arraylist\_init@{arraylist\_init}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_init()}{arraylist\_init()}}
+{\footnotesize\ttfamily int arraylist\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+
+Initialize Array\+List. 
+
+Allocates heap memory for data array, initializes capacity, and defines first and last element pointers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance to initialize. \\
+\hline
+{\em length} & The initial capacity of the Array\+List instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if malloc fails or list points to NULL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arraylist_8h_a142a204a3a178112a33b5914cae85723}\label{arraylist_8h_a142a204a3a178112a33b5914cae85723}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_insert@{arraylist\_insert}}
+\index{arraylist\_insert@{arraylist\_insert}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_insert()}{arraylist\_insert()}}
+{\footnotesize\ttfamily int arraylist\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list,  }\item[{int}]{i,  }\item[{void $\ast$}]{val }\end{DoxyParamCaption})}
+
+
+
+Insert an element in an Array\+List instance. 
+
+Inserts a value at a given index of the Array\+List. If there is a value at the specified index, this value and its successors will be shifted right by one index. If capacity is to be exceeded, the data array will be resized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance in which the element will be inserted. \\
+\hline
+{\em i} & The index at which the element will be inserted. \\
+\hline
+{\em val} & The value to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, -\/1 if list is uninitialized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arraylist_8h_aab716425ec73d55b136bb226c37e213b}\label{arraylist_8h_aab716425ec73d55b136bb226c37e213b}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_remove@{arraylist\_remove}}
+\index{arraylist\_remove@{arraylist\_remove}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_remove()}{arraylist\_remove()}}
+{\footnotesize\ttfamily void$\ast$ arraylist\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Remove an element from an Array\+List instance. 
+
+Removes a value at a given index of the Array\+List. If there is no element at the specified index, the function will return NULL. Otherwise, the removed element will be returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance from which the element will be removed. \\
+\hline
+{\em i} & The index of the element to be removed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The removed element, or NULL if no element is present. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arraylist_8h_a01fb4d41c2a8924c66f4ff0ce97fb2dc}\label{arraylist_8h_a01fb4d41c2a8924c66f4ff0ce97fb2dc}} 
+\index{arraylist.h@{arraylist.h}!arraylist\_set@{arraylist\_set}}
+\index{arraylist\_set@{arraylist\_set}!arraylist.h@{arraylist.h}}
+\doxysubsubsection{\texorpdfstring{arraylist\_set()}{arraylist\_set()}}
+{\footnotesize\ttfamily void$\ast$ arraylist\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structArrayList__t}{Array\+List\+\_\+t}} $\ast$}]{list,  }\item[{int}]{i,  }\item[{void $\ast$}]{val }\end{DoxyParamCaption})}
+
+
+
+Sets the value of a given element in the Array\+List instance. 
+
+Sets the value of an element at the specified index in the Array\+List. If there is no element at the specified index, the function will return NULL. If capacity is to be exceeded, the data array will be resized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The Array\+List instance in which the element will be set. \\
+\hline
+{\em i} & The index of the element whose value will be set \\
+\hline
+{\em val} & The new value for the given element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The replaced element, or NULL if no element is present. 
+\end{DoxyReturn}
