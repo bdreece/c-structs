@@ -7,6 +7,8 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 
+#include <stddef.h>
+
 /*! \brief ArrayList object structure
  *
  *  This is where all the relevant pointers and parameters for an instance of
@@ -48,10 +50,10 @@ int arraylist_deinit(ArrayList_t *list);
  *  the data array will be resized.
  *
  *  \param list The ArrayList instance in which the element will be added
- *  \param val The value to add to the ArrayList
+ *  \param element The element to add to the ArrayList
  *  \return 0 if successful, -1 if list is uninitialized.
  */
-int arraylist_add(ArrayList_t *list, void *val);
+int arraylist_add(ArrayList_t *list, void *element);
 
 /*! \brief Insert an element in an ArrayList instance
  *
@@ -61,10 +63,10 @@ int arraylist_add(ArrayList_t *list, void *val);
  *
  *  \param list The ArrayList instance in which the element will be inserted.
  *  \param i The index at which the element will be inserted.
- *  \param val The value to be inserted.
+ *  \param element The element to be inserted.
  *  \return 0 if successful, -1 if list is uninitialized.
  */
-int arraylist_insert(ArrayList_t *list, int i, void *val);
+int arraylist_insert(ArrayList_t *list, int i, void *element);
 
 /*! \brief Remove an element from an ArrayList instance
  *
@@ -74,9 +76,10 @@ int arraylist_insert(ArrayList_t *list, int i, void *val);
  *
  *  \param list The ArrayList instance from which the element will be removed.
  *  \param i The index of the element to be removed.
- *  \return The removed element, or NULL if no element is present.
+ *  \param out The element that has been removed.
+ *  \return 0 if successful, -1 if pointers uninitialized or i out of bounds.
  */
-void *arraylist_remove(ArrayList_t *list, int i);
+int arraylist_remove(ArrayList_t *list, int i, void *out);
 
 /*! \brief Sets the value of a given element in the ArrayList instance
  *
@@ -86,10 +89,10 @@ void *arraylist_remove(ArrayList_t *list, int i);
  *
  *  \param list The ArrayList instance in which the element will be set.
  *  \param i The index of the element whose value will be set
- *  \param val The new value for the given element.
- *  \return The replaced element, or NULL if no element is present.
+ *  \param element The new value for the given element.
+ *  \return 0 if successful, -1 if pointers uninitialized or i out of bounds
  */
-void *arraylist_set(ArrayList_t *list, int i, void *val);
+int arraylist_set(ArrayList_t *list, int i, void *element, void *out);
 
 /*! \brief Resize the data array
  *

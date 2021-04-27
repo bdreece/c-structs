@@ -5,59 +5,92 @@
 
 #include "arraylist.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 int main(void)
 {
   ArrayList_t list;
 
-  int a[] = {1, 2, 3, 4, 5, 6, 7};
   int i;
 
   if (arraylist_init(&list, 5, sizeof(int)) < 0)
   {
     printf("ArrayList init failed\n");
     exit(1);
-  } else
+  } else {
     printf("ArrayList initialized\n");
+  }
+  fflush(stdout);
 
   for (i = 0; i < 6; i++)
   {
-    printf("ArrayList size = %d\n", list->size);
-    printf("ArrayList capacity = %d\n\n", list->capacity);
+    printf("ArrayList size = %d\n", list.size);
+    printf("ArrayList capacity = %d\n\n", list.capacity);
+    fflush(stdout);
 
-    if (arraylist_add(&list, (void *)a[i]) < 0)
+    if (arraylist_add(&list, (void *)(&i)) < 0)
+    {
       printf("ArrayList add failed\n");
-    else
+      exit(1);
+    } else
+    {
       printf("ArrayList added element %d at index %d\n\n", list.data[i], i);
+    }
+    fflush(stdout);
   }
 
-  if (arraylist_insert(&list, 3, (void *)a[6]) < 0)
+  i = 6;
+
+  if (arraylist_insert(&list, 3, (void *)(&i)) < 0)
+  {
     printf("ArrayList insert failed\n");
-  else
+    exit(1);
+  } else
+  {
     printf("ArrayList inserted element %d at index %d\n\n");
+  }
+  fflush(stdout);
 
   int dump;
-  int b = 20;
+  i = 20;
 
-  if (arraylist_set(&list, 4, (void *)&b, (void *)&dump) < 0)
+  if (arraylist_set(&list, 4, (void *)&i, (void *)&dump) < 0)
+  {
     printf("ArrayList set failed\n");
-  else
-    printf("ArrayList set element %d at index &d to %d\n\n", dump, 4, b);
+    exit(1);
+  } else
+  {
+    printf("ArrayList set element %d at index &d to %d\n\n", dump, 4, i);
+  }
+  fflush(stdout);
 
   for (i = 0; i < 7; i++)
   {
-    printf("ArrayList size = %d\n", list->size);
-    printf("ArrayList capacity = %d\n\n", list->capacity);
+    printf("ArrayList size = %d\n", list.size);
+    printf("ArrayList capacity = %d\n\n", list.capacity);
+    fflush(stdout);
 
-    if (arraylist_remove(list, &i, (void *)&dump) < 0)
+    if (arraylist_remove(&list, i, (void *)&dump) < 0)
+    {
       printf("ArrayList remove failed\n");
-    else
+      exit(1);
+    } else
+    {
       printf("ArrayList removed %d from index %d\n\n", dump, i);
+    }
+    fflush(stdout);
   }
 
   if (arraylist_deinit(&list) < 0)
+  {
     printf("ArrayList deinit failed\n");
-  else
+    exit(1);
+  } else
+  {
     printf("ArrayList deinitialized\n");
+  }
+  fflush(stdout);
 
   return 0;
 }

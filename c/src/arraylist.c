@@ -5,6 +5,7 @@
 #include "arraylist.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 int arraylist_init(ArrayList_t *list, int length, size_t element_size)
 {
@@ -52,7 +53,7 @@ int arraylist_add(ArrayList_t *list, void *element)
       return -1;
   }
 
-  memcpy(list->data[++list->size], element, list->elem_size);
+  memcpy(list->data[list->size++], element, list->elem_size);
   return 0;
 }
 
@@ -98,7 +99,7 @@ int arraylist_set(ArrayList_t *list, int i, void *element, void *out)
 
   memcpy(out, list->data[i], list->elem_size);
   memcpy(list->data[i], element, list->elem_size);
-  return 0
+  return 0;
 }
 
 int arraylist_remove(ArrayList_t *list, int i, void *out)
