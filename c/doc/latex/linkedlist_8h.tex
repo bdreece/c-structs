@@ -31,10 +31,12 @@ int \mbox{\hyperlink{linkedlist_8h_ada236aeeea0ce4da33bf09958a2d2b2e}{linkedlist
 \begin{DoxyCompactList}\small\item\em Insert a new node after a specified node in the Linked\+List. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$ \mbox{\hyperlink{linkedlist_8h_a4d7d20b30b8f7bbd15a5532a6a1ff4b9}{linkedlist\+\_\+add}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, void $\ast$element)
 \begin{DoxyCompactList}\small\item\em Add a new node to a Linked\+List. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{linkedlist_8h_acde0cf68107ef07fd4f5d3fac1e2573b}{linkedlist\+\_\+remove}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$node)
+int \mbox{\hyperlink{linkedlist_8h_ad4eed6d6b01346acb7871ddea43d88a0}{linkedlist\+\_\+remove}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$node, void $\ast$out)
 \begin{DoxyCompactList}\small\item\em Removes a node from a Linked\+List. \end{DoxyCompactList}\item 
-void $\ast$ \mbox{\hyperlink{linkedlist_8h_ae74dab366175ee2434a419a4d1f1c043}{linkedlist\+\_\+set}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$node, void $\ast$val)
-\begin{DoxyCompactList}\small\item\em Sets the value of a node in a Linked\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{linkedlist_8h_a5febd3712840e405ecbf8202182e846f}{linkedlist\+\_\+set}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$node, void $\ast$val, void $\ast$out)
+\begin{DoxyCompactList}\small\item\em Sets the value of a node in a Linked\+List. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$ \mbox{\hyperlink{linkedlist_8h_a9b21dd2331b6cf68fde7cc02bf3c3003}{linkedlist\+\_\+create\+\_\+node}} (\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$list, void $\ast$val)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -78,6 +80,12 @@ Adds a new node to the end of a Linked\+List instance. \mbox{\hyperlink{structNo
 \begin{DoxyReturn}{Returns}
 The newly created node, or NULL if malloc fails 
 \end{DoxyReturn}
+\mbox{\Hypertarget{linkedlist_8h_a9b21dd2331b6cf68fde7cc02bf3c3003}\label{linkedlist_8h_a9b21dd2331b6cf68fde7cc02bf3c3003}} 
+\index{linkedlist.h@{linkedlist.h}!linkedlist\_create\_node@{linkedlist\_create\_node}}
+\index{linkedlist\_create\_node@{linkedlist\_create\_node}!linkedlist.h@{linkedlist.h}}
+\doxysubsubsection{\texorpdfstring{linkedlist\_create\_node()}{linkedlist\_create\_node()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}}$\ast$ linkedlist\+\_\+create\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$}]{list,  }\item[{void $\ast$}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
 \mbox{\Hypertarget{linkedlist_8h_ada236aeeea0ce4da33bf09958a2d2b2e}\label{linkedlist_8h_ada236aeeea0ce4da33bf09958a2d2b2e}} 
 \index{linkedlist.h@{linkedlist.h}!linkedlist\_deinit@{linkedlist\_deinit}}
 \index{linkedlist\_deinit@{linkedlist\_deinit}!linkedlist.h@{linkedlist.h}}
@@ -168,11 +176,11 @@ Adds a new node after the specified node in the Linked\+List. \mbox{\hyperlink{s
 \begin{DoxyReturn}{Returns}
 The newly created node, or NULL if malloc fails 
 \end{DoxyReturn}
-\mbox{\Hypertarget{linkedlist_8h_acde0cf68107ef07fd4f5d3fac1e2573b}\label{linkedlist_8h_acde0cf68107ef07fd4f5d3fac1e2573b}} 
+\mbox{\Hypertarget{linkedlist_8h_ad4eed6d6b01346acb7871ddea43d88a0}\label{linkedlist_8h_ad4eed6d6b01346acb7871ddea43d88a0}} 
 \index{linkedlist.h@{linkedlist.h}!linkedlist\_remove@{linkedlist\_remove}}
 \index{linkedlist\_remove@{linkedlist\_remove}!linkedlist.h@{linkedlist.h}}
 \doxysubsubsection{\texorpdfstring{linkedlist\_remove()}{linkedlist\_remove()}}
-{\footnotesize\ttfamily void$\ast$ linkedlist\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$}]{node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int linkedlist\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$}]{node,  }\item[{void $\ast$}]{out }\end{DoxyParamCaption})}
 
 
 
@@ -186,15 +194,17 @@ Removes a given node from a Linked\+List instance. Returns the element of the no
 \hline
 {\em node} & The node to be removed \\
 \hline
+{\em out} & The pointer to the output of the element of the node being removed \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The element of the node being removed from the Linked\+List 
+0 if successful, -\/1 if uninitialized parameters 
 \end{DoxyReturn}
-\mbox{\Hypertarget{linkedlist_8h_ae74dab366175ee2434a419a4d1f1c043}\label{linkedlist_8h_ae74dab366175ee2434a419a4d1f1c043}} 
+\mbox{\Hypertarget{linkedlist_8h_a5febd3712840e405ecbf8202182e846f}\label{linkedlist_8h_a5febd3712840e405ecbf8202182e846f}} 
 \index{linkedlist.h@{linkedlist.h}!linkedlist\_set@{linkedlist\_set}}
 \index{linkedlist\_set@{linkedlist\_set}!linkedlist.h@{linkedlist.h}}
 \doxysubsubsection{\texorpdfstring{linkedlist\_set()}{linkedlist\_set()}}
-{\footnotesize\ttfamily void$\ast$ linkedlist\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$}]{node,  }\item[{void $\ast$}]{val }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int linkedlist\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structLinkedList__t}{Linked\+List\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{linkedlist_8h_a15c592b9993713c4f45091fb9b8c9e27}{Node\+\_\+t}} $\ast$}]{node,  }\item[{void $\ast$}]{val,  }\item[{void $\ast$}]{out }\end{DoxyParamCaption})}
 
 
 
@@ -210,7 +220,9 @@ Sets the value of a given node. Use of this function is to ensure proper memory 
 \hline
 {\em val} & The new element of the node \\
 \hline
+{\em out} & The pointer to the output of the previous element of the node \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The previous element of the node 
+0 if successful, -\/1 if uninitialized parameters 
 \end{DoxyReturn}

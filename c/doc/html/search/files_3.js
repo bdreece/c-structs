@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['stack_2ec_44',['stack.c',['../stack_8c.html',1,'']]],
-  ['stack_2eh_45',['stack.h',['../stack_8h.html',1,'']]]
+  ['queue_2ec_49',['queue.c',['../queue_8c.html',1,'']]],
+  ['queue_2eh_50',['queue.h',['../queue_8h.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['queue_2ec_30',['queue.c',['../queue_8c.html',1,'']]],
-  ['queue_2eh_31',['queue.h',['../queue_8h.html',1,'']]]
+  ['prev_34',['prev',['../structNode.html#a632ea91c6a13082308f7692649a68880',1,'Node']]]
 ];

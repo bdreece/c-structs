@@ -5,8 +5,10 @@ CFLAGS	=
 INC_PATH = ../inc
 SRC_PATH = ../src
 
-%.o : %.c
+
+
+$(SRC_PATH)/%.o : $(SRC_PATH)/%.c
 	$(CC) $(FLAGS) $(CFLAGS) -I$(INC_PATH) -c -o $@ $^
 
-example_arraylist : $(SRC_PATH)/arraylist.o example_arraylist.o
-	$(CC) $(FLAGS) $(CFLAGS) -o $@ $^
+arraylist : $(SRC_PATH)/arraylist.o example_arraylist.c
+	$(CC) $(FLAGS) $(CFLAGS) -I$(INC_PATH) -o $@ $^

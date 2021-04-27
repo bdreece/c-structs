@@ -77,33 +77,36 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="arraylist_8h_source.html">arraylist.h</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a16d5e3977f59f71de899d844415bb122"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a16d5e3977f59f71de899d844415bb122">arraylist_init</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int length)</td></tr>
-<tr class="memdesc:a16d5e3977f59f71de899d844415bb122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize ArrayList.  <a href="arraylist_8c.html#a16d5e3977f59f71de899d844415bb122">More...</a><br /></td></tr>
-<tr class="separator:a16d5e3977f59f71de899d844415bb122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac41f45772b2f69da2f896aa623b0cec3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#ac41f45772b2f69da2f896aa623b0cec3">arraylist_init</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int length, size_t element_size)</td></tr>
+<tr class="memdesc:ac41f45772b2f69da2f896aa623b0cec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize ArrayList.  <a href="arraylist_8c.html#ac41f45772b2f69da2f896aa623b0cec3">More...</a><br /></td></tr>
+<tr class="separator:ac41f45772b2f69da2f896aa623b0cec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07744ef44f2c2da51ddf7e2f8620a5b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a07744ef44f2c2da51ddf7e2f8620a5b3">arraylist_deinit</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list)</td></tr>
 <tr class="memdesc:a07744ef44f2c2da51ddf7e2f8620a5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize ArrayList.  <a href="arraylist_8c.html#a07744ef44f2c2da51ddf7e2f8620a5b3">More...</a><br /></td></tr>
 <tr class="separator:a07744ef44f2c2da51ddf7e2f8620a5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf082ad3cc811118de744428ca4a5ad2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#acf082ad3cc811118de744428ca4a5ad2">arraylist_add</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, void *val)</td></tr>
-<tr class="memdesc:acf082ad3cc811118de744428ca4a5ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element to an ArrayList instance.  <a href="arraylist_8c.html#acf082ad3cc811118de744428ca4a5ad2">More...</a><br /></td></tr>
-<tr class="separator:acf082ad3cc811118de744428ca4a5ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a142a204a3a178112a33b5914cae85723"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a142a204a3a178112a33b5914cae85723">arraylist_insert</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i, void *val)</td></tr>
-<tr class="memdesc:a142a204a3a178112a33b5914cae85723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element in an ArrayList instance.  <a href="arraylist_8c.html#a142a204a3a178112a33b5914cae85723">More...</a><br /></td></tr>
-<tr class="separator:a142a204a3a178112a33b5914cae85723"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01fb4d41c2a8924c66f4ff0ce97fb2dc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a01fb4d41c2a8924c66f4ff0ce97fb2dc">arraylist_set</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i, void *val)</td></tr>
-<tr class="memdesc:a01fb4d41c2a8924c66f4ff0ce97fb2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of a given element in the ArrayList instance.  <a href="arraylist_8c.html#a01fb4d41c2a8924c66f4ff0ce97fb2dc">More...</a><br /></td></tr>
-<tr class="separator:a01fb4d41c2a8924c66f4ff0ce97fb2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab716425ec73d55b136bb226c37e213b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#aab716425ec73d55b136bb226c37e213b">arraylist_remove</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i)</td></tr>
-<tr class="memdesc:aab716425ec73d55b136bb226c37e213b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an element from an ArrayList instance.  <a href="arraylist_8c.html#aab716425ec73d55b136bb226c37e213b">More...</a><br /></td></tr>
-<tr class="separator:aab716425ec73d55b136bb226c37e213b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d15ead9e53cb22658dd91658a050f25"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a4d15ead9e53cb22658dd91658a050f25">arraylist_add</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, void *element)</td></tr>
+<tr class="memdesc:a4d15ead9e53cb22658dd91658a050f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element to an ArrayList instance.  <a href="arraylist_8c.html#a4d15ead9e53cb22658dd91658a050f25">More...</a><br /></td></tr>
+<tr class="separator:a4d15ead9e53cb22658dd91658a050f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55b3d16baa133d8ba336c65e02d3e286"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a55b3d16baa133d8ba336c65e02d3e286">arraylist_insert</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i, void *element)</td></tr>
+<tr class="memdesc:a55b3d16baa133d8ba336c65e02d3e286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element in an ArrayList instance.  <a href="arraylist_8c.html#a55b3d16baa133d8ba336c65e02d3e286">More...</a><br /></td></tr>
+<tr class="separator:a55b3d16baa133d8ba336c65e02d3e286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179ddaedd0b9dcb3d423ecfd4119f4d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a179ddaedd0b9dcb3d423ecfd4119f4d6">arraylist_set</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i, void *element, void *out)</td></tr>
+<tr class="memdesc:a179ddaedd0b9dcb3d423ecfd4119f4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of a given element in the ArrayList instance.  <a href="arraylist_8c.html#a179ddaedd0b9dcb3d423ecfd4119f4d6">More...</a><br /></td></tr>
+<tr class="separator:a179ddaedd0b9dcb3d423ecfd4119f4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8f828037f8ffba52a53e600a1f3e234"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#ac8f828037f8ffba52a53e600a1f3e234">arraylist_remove</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list, int i, void *out)</td></tr>
+<tr class="memdesc:ac8f828037f8ffba52a53e600a1f3e234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an element from an ArrayList instance.  <a href="arraylist_8c.html#ac8f828037f8ffba52a53e600a1f3e234">More...</a><br /></td></tr>
+<tr class="separator:ac8f828037f8ffba52a53e600a1f3e234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a415e1d5623d9b739b1a58163272c83"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8c.html#a4a415e1d5623d9b739b1a58163272c83">arraylist_resize</a> (<a class="el" href="structArrayList__t.html">ArrayList_t</a> *list)</td></tr>
+<tr class="separator:a4a415e1d5623d9b739b1a58163272c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p class="">ArrayList Implementation. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="acf082ad3cc811118de744428ca4a5ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf082ad3cc811118de744428ca4a5ad2">&#9670;&nbsp;</a></span>arraylist_add()</h2>
+<a id="a4d15ead9e53cb22658dd91658a050f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d15ead9e53cb22658dd91658a050f25">&#9670;&nbsp;</a></span>arraylist_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,7 +121,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramname"><em>element</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -133,7 +136,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The ArrayList instance in which the element will be added </td></tr>
-    <tr><td class="paramname">val</td><td>The value to add to the ArrayList </td></tr>
+    <tr><td class="paramname">element</td><td>The element to add to the ArrayList </td></tr>
   </table>
   </dd>
 </dl>
@@ -169,8 +172,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a16d5e3977f59f71de899d844415bb122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16d5e3977f59f71de899d844415bb122">&#9670;&nbsp;</a></span>arraylist_init()</h2>
+<a id="ac41f45772b2f69da2f896aa623b0cec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac41f45772b2f69da2f896aa623b0cec3">&#9670;&nbsp;</a></span>arraylist_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,7 +188,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>length</em>&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,8 +217,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a142a204a3a178112a33b5914cae85723"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a142a204a3a178112a33b5914cae85723">&#9670;&nbsp;</a></span>arraylist_insert()</h2>
+<a id="a55b3d16baa133d8ba336c65e02d3e286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55b3d16baa133d8ba336c65e02d3e286">&#9670;&nbsp;</a></span>arraylist_insert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +239,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramname"><em>element</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -246,7 +255,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">list</td><td>The ArrayList instance in which the element will be inserted. </td></tr>
     <tr><td class="paramname">i</td><td>The index at which the element will be inserted. </td></tr>
-    <tr><td class="paramname">val</td><td>The value to be inserted. </td></tr>
+    <tr><td class="paramname">element</td><td>The element to be inserted. </td></tr>
   </table>
   </dd>
 </dl>
@@ -254,14 +263,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aab716425ec73d55b136bb226c37e213b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab716425ec73d55b136bb226c37e213b">&#9670;&nbsp;</a></span>arraylist_remove()</h2>
+<a id="ac8f828037f8ffba52a53e600a1f3e234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f828037f8ffba52a53e600a1f3e234">&#9670;&nbsp;</a></span>arraylist_remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* arraylist_remove </td>
+          <td class="memname">int arraylist_remove </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structArrayList__t.html">ArrayList_t</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
@@ -270,7 +279,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>i</em>&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -286,21 +301,48 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">list</td><td>The ArrayList instance from which the element will be removed. </td></tr>
     <tr><td class="paramname">i</td><td>The index of the element to be removed. </td></tr>
+    <tr><td class="paramname">out</td><td>The element that has been removed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The removed element, or NULL if no element is present. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if pointers uninitialized or i out of bounds. </dd></dl>
 
 </div>
 </div>
-<a id="a01fb4d41c2a8924c66f4ff0ce97fb2dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01fb4d41c2a8924c66f4ff0ce97fb2dc">&#9670;&nbsp;</a></span>arraylist_set()</h2>
+<a id="a4a415e1d5623d9b739b1a58163272c83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a415e1d5623d9b739b1a58163272c83">&#9670;&nbsp;</a></span>arraylist_resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int arraylist_resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structArrayList__t.html">ArrayList_t</a> *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a179ddaedd0b9dcb3d423ecfd4119f4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179ddaedd0b9dcb3d423ecfd4119f4d6">&#9670;&nbsp;</a></span>arraylist_set()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* arraylist_set </td>
+          <td class="memname">int arraylist_set </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structArrayList__t.html">ArrayList_t</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
@@ -315,7 +357,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramname"><em>element</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -331,11 +379,11 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">list</td><td>The ArrayList instance in which the element will be set. </td></tr>
     <tr><td class="paramname">i</td><td>The index of the element whose value will be set </td></tr>
-    <tr><td class="paramname">val</td><td>The new value for the given element. </td></tr>
+    <tr><td class="paramname">element</td><td>The new value for the given element. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The replaced element, or NULL if no element is present. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if pointers uninitialized or i out of bounds </dd></dl>
 
 </div>
 </div>
