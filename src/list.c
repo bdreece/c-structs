@@ -1,13 +1,13 @@
-/*! \file arraylist.c
- *  \brief ArrayList Implementation
+/*! \file List.c
+ *  \brief List Implementation
  */
 
-#include "arraylist.h"
+#include "List.h"
 
 #include <stdlib.h>
 #include <string.h>
 
-int arraylist_init(ArrayList_t *list, int length, size_t element_size)
+int list_init(List_t *list, int length, size_t element_size)
 {
   if (list == NULL)
     return -1;
@@ -27,7 +27,7 @@ int arraylist_init(ArrayList_t *list, int length, size_t element_size)
   return 0;
 }
 
-int arraylist_deinit(ArrayList_t *list)
+int list_deinit(List_t *list)
 {
   if (list == NULL || list->data == NULL)
     return -1;
@@ -42,22 +42,7 @@ int arraylist_deinit(ArrayList_t *list)
   return 0;
 }
 
-int arraylist_add(ArrayList_t *list, void *element)
-{
-  if (list == NULL || list->data == NULL)
-    return -1;
-
-  if (list->size >= list->capacity)
-  {
-    if (arraylist_resize(list) < 0)
-      return -1;
-  }
-
-  memcpy(list->data[list->size++], element, list->elem_size);
-  return 0;
-}
-
-int arraylist_insert(ArrayList_t *list, int i, void *element)
+int list_add(List_t *list, int i, void *element)
 {
   if (list == NULL || list->data == NULL)
     return -1;
@@ -67,7 +52,7 @@ int arraylist_insert(ArrayList_t *list, int i, void *element)
 
   if (list->size >= list->capacity)
   {
-    if (arraylist_resize(list) < 0)
+    if (list_resize(list) < 0)
       return -1;
   }
 
@@ -83,7 +68,7 @@ int arraylist_insert(ArrayList_t *list, int i, void *element)
   return 0;
 }
 
-int arraylist_set(ArrayList_t *list, int i, void *element, void *out)
+int list_set(List_t *list, int i, void *element, void *out)
 {
   if (list == NULL || list->data == NULL || out == NULL)
     return -1;
@@ -93,7 +78,7 @@ int arraylist_set(ArrayList_t *list, int i, void *element, void *out)
 
   if (list->size >= list->capacity)
   {
-    if (arraylist_resize(list) < 0)
+    if (list_resize(list) < 0)
       return -1;
   }
 
@@ -102,7 +87,7 @@ int arraylist_set(ArrayList_t *list, int i, void *element, void *out)
   return 0;
 }
 
-int arraylist_remove(ArrayList_t *list, int i, void *out)
+int list_remove(List_t *list, int i, void *out)
 {
   if (list == NULL || list->data == NULL || out == NULL)
     return -1;
@@ -121,7 +106,7 @@ int arraylist_remove(ArrayList_t *list, int i, void *out)
   return 0;
 }
 
-static int arraylist_resize(ArrayList_t *list)
+static int list_resize(List_t *list)
 {
   void **tmp = realloc(list->data, 2 * list->capacity * list->elem_size);
   if (tmp == NULL)
