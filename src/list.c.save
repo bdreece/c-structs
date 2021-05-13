@@ -2,7 +2,7 @@
  *  \brief List Implementation
  */
 
-#include "List.h"
+#include "list.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -69,14 +69,6 @@ int list_add(List_t *list, int i, void *element)
 }
 
 int list_addfirst(List_t *list, void *element)
-{
-  return list_add(list, 0, element);
-}
-
-int list_addlast(List_t *list, void *element)
-{
-  return list_add(list, list->size - 1, element);
-}
 
 int list_set(List_t *list, int i, void *element, void *out)
 {
@@ -114,16 +106,6 @@ int list_remove(List_t *list, int i, void *out)
   }
 
   return 0;
-}
-
-int list_removefirst(List_t *list, void *out)
-{
-  return list_remove(list, 0, out);
-}
-
-int list_removelast(List_t *list, void *out)
-{
-  return list_remove(list, list->size - 1, out);
 }
 
 static int list_resize(List_t *list)

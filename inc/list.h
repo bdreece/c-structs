@@ -57,6 +57,8 @@ int list_deinit(List_t *list);
  */
 int list_add(List_t *list, int i, void *element);
 
+int list_addfirst(List_t *list, void *element);
+int list_addlast(List_t *list, void *element);
 /*! \brief Remove an element from an List instance
  *
  *  Removes a value at a given index of the List. If there is no element
@@ -70,6 +72,8 @@ int list_add(List_t *list, int i, void *element);
  */
 int list_remove(List_t *list, int i, void *out);
 
+int list_removefirst(List_t *list, void *out);
+int list_removelast(List_t *list, void *out);
 /*! \brief Sets the value of a given element in the List instance
  *
  *  Sets the value of an element at the specified index in the List. If
