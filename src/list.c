@@ -2,7 +2,7 @@
  *  \brief List Implementation
  */
 
-#include "List.h"
+#include "list.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -75,7 +75,7 @@ int list_addfirst(List_t *list, void *element)
 
 int list_addlast(List_t *list, void *element)
 {
-  return list_add(list, list->size - 1, element);
+  return list_add(list, list->size, element);
 }
 
 int list_set(List_t *list, int i, void *element, void *out)

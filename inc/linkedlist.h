@@ -14,11 +14,14 @@
  *  Structure for a node in the LinkedList data structure. Nodes contain an
  *  element, and pointers to the previous and next nodes.
  */
-typedef struct Node {
+
+typedef struct Node Node_t;
+
+struct Node {
   void *element; //!< The element stored in the node
-  Node *next;    //!< A pointer to the next node
-  Node *prev;    //!< A pointer to the previous node
-} Node_t;
+  Node_t *next;    //!< A pointer to the next node
+  Node_t *prev;    //!< A pointer to the previous node
+};
 
 /*! \brief LinkedList structure object
  *

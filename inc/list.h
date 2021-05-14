@@ -57,8 +57,29 @@ int list_deinit(List_t *list);
  */
 int list_add(List_t *list, int i, void *element);
 
+/*! \brief Add an element to the beginning of a List instance
+ *
+ *	Adds a value at the beginning of the List. If there exists a value in the
+ *	List, all values will be shifted right by one index. If capacity is to be
+ *	exceeded, the data array will be resized.
+ *
+ *	\param list The List instance in which the element will be added.
+ *	\param element The element to be added.
+ *	\return 0 if successful, -1 if list is uninitialized.
+ */
 int list_addfirst(List_t *list, void *element);
+
+/*! \brief Add an element to the end of a List instance
+ *
+ *	Adds a value at the end of the List. If capacity is to be	exceeded, the
+ *  data array will be resized.
+ *
+ *	\param list The List instance in which the element will be added.
+ *	\param element The element to be added.
+ *	\return 0 if successful, -1 if list is uninitialized.
+ */
 int list_addlast(List_t *list, void *element);
+
 /*! \brief Remove an element from an List instance
  *
  *  Removes a value at a given index of the List. If there is no element
@@ -72,8 +93,30 @@ int list_addlast(List_t *list, void *element);
  */
 int list_remove(List_t *list, int i, void *out);
 
+/*!	\brief Remove an element from the beginning of a List instance
+ *
+ *	Removes a value from the beginning of the List. If there exists no elements
+ *	in the list, the function will return NULL. Otherwise, the removed element
+ *	will be returned.
+ *
+ *	\param list The List instance from which the element will be removed.
+ *	\param out The element that has been removed.
+ *	\return 0 if successful, -1 if pointers uninitialized or i out of bounds.
+ */
 int list_removefirst(List_t *list, void *out);
+
+/*!	\brief Remove an element from the end of a List instance
+ *
+ *	Removes a value from the end of the List. If there exists no elements
+ *	in the list, the function will return NULL. Otherwise, the removed element
+ *	will be returned.
+ *
+ *	\param list The List instance from which the element will be removed.
+ *	\param out The element that has been removed.
+ *	\return 0 if successful, -1 if pointers uninitialized or i out of bounds.
+ */
 int list_removelast(List_t *list, void *out);
+
 /*! \brief Sets the value of a given element in the List instance
  *
  *  Sets the value of an element at the specified index in the List. If
