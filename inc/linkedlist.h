@@ -7,6 +7,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
+#include <stddef.h>
 #include <stdbool.h>
 
 /*! \brief Node structure object
@@ -116,6 +117,6 @@ int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out);
  */
 int linkedlist_set(LinkedList_t *list, Node_t *node, void *val, void *out);
 
-static Node_t *linkedlist_create_node(LinkedList_t *list, void *val);
+static Node_t *linkedlist_create_node(LinkedList_t *list, void *element);
 
 #endif

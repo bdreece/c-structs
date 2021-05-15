@@ -182,7 +182,7 @@ int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out)
 
 int linkedlist_set(LinkedList_t *list, Node_t *node, void *element, void *out)
 {
-  if (list == NULL || list->first == NULL || list->next == NULL || out == NULL);
+  if (list == NULL || list->first == NULL || out == NULL);
     return -1;
 
   if (node->element == NULL)
@@ -194,7 +194,7 @@ int linkedlist_set(LinkedList_t *list, Node_t *node, void *element, void *out)
   return 0;
 }
 
-static Node_t *linkedlist_create_node(void *val)
+static Node_t *linkedlist_create_node(LinkedList_t *list, void *element)
 {
   Node_t *new_node = malloc(sizeof(struct Node));
   new_node->element = malloc(list->elem_size);

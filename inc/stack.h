@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-#include "arraylist.h"
+#include "list.h"
 #include <stdint.h>
 
 typedef struct
@@ -25,7 +25,7 @@ int stack_size(Stack_t *stack);
 
 int stack_push(Stack_t *stack, void *element);
 int stack_pop(Stack_t *stack, void *element);
-int stack_peep(Stack_t *stack, void *element); 
+int stack_peep(Stack_t *stack, void *element);
 
 #ifdef __cplusplus
 }
