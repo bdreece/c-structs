@@ -15,7 +15,7 @@ extern "C" {
 
 typedef struct
 {
-  ArrayList_t data;
+  List_t data;
 } Stack_t;
 
 int stack_init(Stack_t *stack, int initialCapacity);

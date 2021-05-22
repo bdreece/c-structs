@@ -34,3 +34,7 @@ default: $(OBJS) lib clean
 .PHONY: clean
 clean:
 	rm -rf *.o
+
+.PHONY: remove
+remove: clean
+	rm -f $(BIN_DIR)/* $(LIB_DIR)/* list_demo linkedlist_demo
