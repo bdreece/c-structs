@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['stack_5fdeinit',['stack_deinit',['../stack_8h.html#a253bc223c6d0db4096faeea541048f75',1,'stack_deinit(Stack_t *stack):&#160;stack.c'],['../stack_8c.html#a253bc223c6d0db4096faeea541048f75',1,'stack_deinit(Stack_t *stack):&#160;stack.c']]],
-  ['stack_5finit',['stack_init',['../stack_8h.html#a88861845a6d4c71b375a33ac75a825d6',1,'stack_init(Stack_t *stack, size_t size):&#160;stack.c'],['../stack_8c.html#a88861845a6d4c71b375a33ac75a825d6',1,'stack_init(Stack_t *stack, size_t size):&#160;stack.c']]],
-  ['stack_5fpeep',['stack_peep',['../stack_8h.html#a014ba72d169937d11ba64cc7ec66ef7a',1,'stack_peep(Stack_t *stack, void *element):&#160;stack.c'],['../stack_8c.html#a014ba72d169937d11ba64cc7ec66ef7a',1,'stack_peep(Stack_t *stack, void *element):&#160;stack.c']]],
-  ['stack_5fpop',['stack_pop',['../stack_8h.html#ac3b67c953cb918cb29ce44c0ed699e85',1,'stack_pop(Stack_t *stack, void *element):&#160;stack.c'],['../stack_8c.html#ac3b67c953cb918cb29ce44c0ed699e85',1,'stack_pop(Stack_t *stack, void *element):&#160;stack.c']]],
-  ['stack_5fpush',['stack_push',['../stack_8h.html#ae499b85ea38eb17abcdc8367653e0503',1,'stack_push(Stack_t *stack, void *element):&#160;stack.c'],['../stack_8c.html#ae499b85ea38eb17abcdc8367653e0503',1,'stack_push(Stack_t *stack, void *element):&#160;stack.c']]]
+  ['main',['main',['../linkedlist__demo_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;linkedlist_demo.c'],['../list__demo_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;list_demo.c']]],
+  ['map_5fadd',['map_add',['../map_8h.html#aa03dd1b148db95fe98ca92cec5d3a156',1,'map.h']]],
+  ['map_5fdeinit',['map_deinit',['../map_8h.html#ae172708378e883e21475f194a09c06ad',1,'map.h']]],
+  ['map_5fget',['map_get',['../map_8h.html#abe49fd5d1f47028d4f6275180ab26557',1,'map.h']]],
+  ['map_5finit',['map_init',['../map_8h.html#ac3bfe6bf5755576725c04a06e55e51f0',1,'map.h']]],
+  ['map_5fredist',['map_redist',['../map_8h.html#a392a060eeff2421d4e6131d882581cf3',1,'map.h']]],
+  ['map_5frem',['map_rem',['../map_8h.html#a36b2d403ba7f67d44ecb00d0d9cf069c',1,'map.h']]]
 ];

@@ -63,12 +63,207 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">heap.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Header file for the Heap data structure implementation.  
+<a href="#details">More...</a></p>
+
 <p><a href="heap_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHeap__t.html">Heap_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ab25d79f143a7f0898775cd6fd72f35b5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5">HeapType_t</a> { <a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5a95fc3d0f981062d7ecd28654e3d6efb2">MINHEAP</a> = 0, 
+<a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5a49a999f4420be9184aa6346006b4e066">MAXHEAP</a> = 1
+ }</td></tr>
+<tr class="separator:ab25d79f143a7f0898775cd6fd72f35b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac807d1ac5f588e9f2371a4e74a046de6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ac807d1ac5f588e9f2371a4e74a046de6">heap_init</a> (<a class="el" href="structHeap__t.html">Heap_t</a> *heap, size_t size, <a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5">HeapType_t</a> type, int(*cmp)(void *, void *))</td></tr>
+<tr class="separator:ac807d1ac5f588e9f2371a4e74a046de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973ff35903782b56e04dbe810bbd013e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a973ff35903782b56e04dbe810bbd013e">heap_deinit</a> (<a class="el" href="structHeap__t.html">Heap_t</a> *heap)</td></tr>
+<tr class="separator:a973ff35903782b56e04dbe810bbd013e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec40128196cdaa8de45f7fdcb82131d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a9ec40128196cdaa8de45f7fdcb82131d">heap_add</a> (<a class="el" href="structHeap__t.html">Heap_t</a> *heap, void *element)</td></tr>
+<tr class="separator:a9ec40128196cdaa8de45f7fdcb82131d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205afa41ced3e28fac474a298e488588"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a205afa41ced3e28fac474a298e488588">heap_remove</a> (<a class="el" href="structHeap__t.html">Heap_t</a> *heap, void *element)</td></tr>
+<tr class="separator:a205afa41ced3e28fac474a298e488588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c9763565bae1839bf774fe15e5a639"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ac7c9763565bae1839bf774fe15e5a639">heapify</a> (<a class="el" href="structHeap__t.html">Heap_t</a> *heap)</td></tr>
+<tr class="separator:ac7c9763565bae1839bf774fe15e5a639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Header file for the Heap data structure implementation. </p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ab25d79f143a7f0898775cd6fd72f35b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25d79f143a7f0898775cd6fd72f35b5">&#9670;&nbsp;</a></span>HeapType_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5">HeapType_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab25d79f143a7f0898775cd6fd72f35b5a95fc3d0f981062d7ecd28654e3d6efb2"></a>MINHEAP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab25d79f143a7f0898775cd6fd72f35b5a49a999f4420be9184aa6346006b4e066"></a>MAXHEAP&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a9ec40128196cdaa8de45f7fdcb82131d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ec40128196cdaa8de45f7fdcb82131d">&#9670;&nbsp;</a></span>heap_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int heap_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHeap__t.html">Heap_t</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>element</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a973ff35903782b56e04dbe810bbd013e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a973ff35903782b56e04dbe810bbd013e">&#9670;&nbsp;</a></span>heap_deinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int heap_deinit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHeap__t.html">Heap_t</a> *&#160;</td>
+          <td class="paramname"><em>heap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac807d1ac5f588e9f2371a4e74a046de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac807d1ac5f588e9f2371a4e74a046de6">&#9670;&nbsp;</a></span>heap_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int heap_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHeap__t.html">Heap_t</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="heap_8h.html#ab25d79f143a7f0898775cd6fd72f35b5">HeapType_t</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(void *, void *)&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a205afa41ced3e28fac474a298e488588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205afa41ced3e28fac474a298e488588">&#9670;&nbsp;</a></span>heap_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int heap_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHeap__t.html">Heap_t</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>element</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7c9763565bae1839bf774fe15e5a639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c9763565bae1839bf774fe15e5a639">&#9670;&nbsp;</a></span>heapify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int heapify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHeap__t.html">Heap_t</a> *&#160;</td>
+          <td class="paramname"><em>heap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

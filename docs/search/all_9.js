@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['queue_2ec',['queue.c',['../queue_8c.html',1,'']]],
-  ['queue_2eh',['queue.h',['../queue_8h.html',1,'']]],
-  ['queue_5fdemo_2ec',['queue_demo.c',['../queue__demo_8c.html',1,'']]]
+  ['pair_5ft',['Pair_t',['../structPair__t.html',1,'']]],
+  ['prev',['prev',['../structNode.html#ab4f2c07ed2f2ec8fdaf4f5481cb9f73b',1,'Node']]]
 ];

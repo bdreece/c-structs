@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stack_5ft',['Stack_t',['../structStack__t.html',1,'']]]
+  ['map_5ft',['Map_t',['../structMap__t.html',1,'']]]
 ];
