@@ -1,7 +1,7 @@
 CC		:= gcc
 FLAGS		:= -g -O2 -fPIC
 CFLAGS		:= -std=c99 -Wall
-IFLAGS		:= -I./inc/
+IFLAGS		:= -I./inc
 
 AR		:= ar rcs
 
@@ -11,7 +11,7 @@ LIB_DIR		:= ./lib
 DEMO_DIR	:= $(SRC_DIR)/demo
 
 OBJS		= $(patsubst %.c, %.o, $(notdir $(wildcard $(SRC_DIR)/*.c)))
-DEMO		= $(patsubst %_demo, %.c, $(wildcard $(DEMO_DIR)/*.c))
+DEMO		= $(patsubst %_demo.c, ./bin/%_demo, $(notdir $(wildcard $(DEMO_DIR)/*.c)))
 
 SHARED_LIB	:= $(LIB_DIR)/lib_datastructures.so
 STATIC_LIB	:= $(LIB_DIR)/lib_datastructures.a
@@ -21,6 +21,8 @@ QUEUE_LIB	:= $(LIB_DIR)/lib_queue.a
 HEAP_LIB	:= $(LIB_DIR)/lib_heap.a
 MAP_LIB		:= $(LIB_DIR)/lib_map.a
 HASHMAP_LIB	:= $(LIB_DIR)/lib_hashmap.a
+
+default: lib clean
 
 %.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -c -o $@ $^
@@ -32,7 +34,7 @@ $(STATIC_LIB): $(OBJS)
 	$(AR) $@ $^
 
 $(SHARED_LIB): $(OBJS)
-	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) --shared  $@ $^
+	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) --shared -o $@ $^
 
 $(STACK_LIB): stack.o list.o
 	$(AR) $@ $^
@@ -53,12 +55,10 @@ lib: $(STATIC_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_
 
 all: lib $(DEMO) clean
 
-default: $(OBJS) lib clean
-
 .PHONY: clean
 clean:
 	rm -rf *.o
 
 .PHONY: remove
 remove: clean
-	rm -f $(BIN_DIR)/* $(LIB_DIR)/* list_demo linkedlist_demo
+	rm -f $(BIN_DIR)/* $(LIB_DIR)/*

@@ -10,18 +10,18 @@
 extern "C" {
 #endif
 
-#include "list.h"
-#include <stdint.h>
+#include "linkedlist.h"
+#include <stddef.h>
 
 typedef struct
 {
-  List_t data;
+  LinkedList_t *data;
+  size_t size;
+  size_t len;
 } Stack_t;
 
-int stack_init(Stack_t *stack, int initialCapacity);
+int stack_init(Stack_t *stack, size_t size);
 int stack_deinit(Stack_t *stack);
-
-int stack_size(Stack_t *stack);
 
 int stack_push(Stack_t *stack, void *element);
 int stack_pop(Stack_t *stack, void *element);
