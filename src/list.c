@@ -126,7 +126,7 @@ int list_removelast(List_t *list, void *out)
   return list_remove(list, list->size - 1, out);
 }
 
-static int list_resize(List_t *list)
+int list_resize(List_t *list)
 {
   void **tmp = realloc(list->data, 2 * list->capacity * list->elem_size);
   if (tmp == NULL)

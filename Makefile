@@ -1,17 +1,26 @@
-CC				:= gcc
-FLAGS			:= -g -O2 -fPIC
+CC		:= gcc
+FLAGS		:= -g -O2 -fPIC
 CFLAGS		:= -std=c99 -Wall
 IFLAGS		:= -I./inc/
 
-AR				:= ar rcs
+AR		:= ar rcs
 
 BIN_DIR		:= ./bin
 SRC_DIR		:= ./src
 LIB_DIR		:= ./lib
-DEMO_DIR	= $(SRC_DIR)/demo
+DEMO_DIR	:= $(SRC_DIR)/demo
 
-OBJS			= $(patsubst %.c, %.o, $(notdir $(wildcard $(SRC_DIR)/*.c)))
-DEMO			= $(patsubst %_demo, %.c, $(wildcard $(DEMO_DIR)/*.c))
+OBJS		= $(patsubst %.c, %.o, $(notdir $(wildcard $(SRC_DIR)/*.c)))
+DEMO		= $(patsubst %_demo, %.c, $(wildcard $(DEMO_DIR)/*.c))
+
+SHARED_LIB	:= $(LIB_DIR)/lib_datastructures.so
+STATIC_LIB	:= $(LIB_DIR)/lib_datastructures.a
+
+STACK_LIB	:= $(LIB_DIR)/lib_stack.a
+QUEUE_LIB	:= $(LIB_DIR)/lib_queue.a
+HEAP_LIB	:= $(LIB_DIR)/lib_heap.a
+MAP_LIB		:= $(LIB_DIR)/lib_map.a
+HASHMAP_LIB	:= $(LIB_DIR)/lib_hashmap.a
 
 %.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -c -o $@ $^
@@ -19,13 +28,28 @@ DEMO			= $(patsubst %_demo, %.c, $(wildcard $(DEMO_DIR)/*.c))
 $(BIN_DIR)/%_demo: $(DEMO_DIR)/%_demo.c %.o
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -o $@ $^
 
-$(LIB_DIR)/lib_datastructures.a: $(OBJS)
+$(STATIC_LIB): $(OBJS)
 	$(AR) $@ $^
 
-$(LIB_DIR)/lib_datastructures.so: $(OBJS)
-	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) --shared $@ $^
+$(SHARED_LIB): $(OBJS)
+	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) --shared  $@ $^
 
-lib: $(LIB_DIR)/lib_datastructures.a $(LIB_DIR)/lib_datastructures.so
+$(STACK_LIB): stack.o list.o
+	$(AR) $@ $^
+
+$(QUEUE_LIB): queue.o linkedlist.o
+	$(AR) $@ $^
+
+$(HEAP_LIB): heap.o list.o
+	$(AR) $@ $^
+
+$(MAP_LIB): map.o list.o
+	$(AR) $@ $^
+
+$(HASHMAP_LIB): hashmap.o map.o list.o
+	$(AR) $@ $^
+
+lib: $(STATIC_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_LIB)
 
 all: lib $(DEMO) clean
 

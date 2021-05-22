@@ -18,6 +18,8 @@ int linkedlist_init(LinkedList_t *list, size_t element_size, bool circular)
   list->elem_size = element_size;
   list->first = NULL;
   list->last = NULL;
+
+  return 0;
 }
 
 int linkedlist_deinit(LinkedList_t *list)
@@ -144,8 +146,8 @@ int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out)
   {
     if (node == list->last)
     {
-      list->first == NULL;
-      list->last == NULL;
+      list->first = NULL;
+      list->last = NULL;
     } else
     {
       Node_t *new_first = node->next;
@@ -182,7 +184,7 @@ int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out)
 
 int linkedlist_set(LinkedList_t *list, Node_t *node, void *element, void *out)
 {
-  if (list == NULL || list->first == NULL || out == NULL);
+  if (list == NULL || list->first == NULL || out == NULL)
     return -1;
 
   if (node->element == NULL)
