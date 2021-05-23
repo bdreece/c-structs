@@ -59,10 +59,6 @@ $(MAP_LIB): map.o list.o
 $(HASHMAP_LIB): hashmap.o map.o list.o
 	$(AR) $@ $^
 
-lib: $(STATIC_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_LIB)
-
-demo: $(DEMO)
-
 all: lib demo clean
 
 .PHONY: clean
@@ -72,3 +68,13 @@ clean:
 .PHONY: remove
 remove: clean
 	rm -f $(BIN_DIR)/* $(LIB_DIR)/*
+
+.PHONY: lib
+lib: $(STATIC_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_LIB)
+
+.PHONY: demo
+demo: $(DEMO)
+
+.PHONY: docs
+docs:
+	doxygen
