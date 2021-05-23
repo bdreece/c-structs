@@ -8,6 +8,7 @@ AR							:= ar rcs
 BIN_DIR					:= ./bin
 SRC_DIR					:= ./src
 LIB_DIR					:= ./lib
+DOCS_DIR				:= ./docs
 DEMO_DIR				:= $(SRC_DIR)/demo
 
 OBJS						= $(patsubst %.c, %.o, $(notdir $(wildcard $(SRC_DIR)/*.c)))
@@ -59,7 +60,7 @@ $(MAP_LIB): map.o list.o
 $(HASHMAP_LIB): hashmap.o map.o list.o
 	$(AR) $@ $^
 
-all: lib demo clean
+all: lib demo docs clean
 
 .PHONY: clean
 clean:
@@ -67,7 +68,7 @@ clean:
 
 .PHONY: remove
 remove: clean
-	rm -f $(BIN_DIR)/* $(LIB_DIR)/*
+	rm -rf $(BIN_DIR)/* $(LIB_DIR)/* $(DOCS_DIR)/*
 
 .PHONY: lib
 lib: $(STATIC_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_LIB)
