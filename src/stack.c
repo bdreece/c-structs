@@ -13,53 +13,39 @@ extern "C" {
 
 int stack_init(Stack_t *stack, size_t size)
 {
-  stack = (Stack_t *) malloc(sizeof(Stack_t));
   if (stack == NULL) return -1;
 
   stack->data = (LinkedList_t *) malloc(sizeof(LinkedList_t));
   if (stack->data == NULL) return -1;
 
-  stack->size = size;
-
-  if (linkedlist_init(stack->data, size, false) < 0) return -1;
-
-  return 0;
+  return linkedlist_init(stack->data, size, false);
 }
 
 int stack_deinit(Stack_t *stack)
 {
-  if (linkedlist_deinit(stack->data) < 0)
-    return -1;
+  int ret = linkedlist_deinit(stack->data);
 
   free(stack->data);
-  free(stack);
 
-  return 0;
-}
-
-int stack_push(Stack_t *stack, void *element)
-{
-  Node_t *ret = linkedlist_insert_before(stack->data, stack->data->first, element);
-  if (ret != NULL) stack->len++;
-  return (ret == NULL) ? -1 : 0;
-}
-
-int stack_pop(Stack_t *stack, void *element)
-{
-  int ret = linkedlist_remove(stack->data, stack->data->first, element);
-  if (ret) stack->len--;
   return ret;
 }
 
-int stack_peep(Stack_t *stack, void *element)
+int stack_push(Stack_t *stack, void *elem)
 {
-  if (memcpy(element, stack->data->first->element, stack->size) < 0)
-    return -1;
+  Node_t *ret = linkedlist_insert_before(stack->data, stack->data->first, elem);
+  return (ret != NULL) ? 0 : -1;
+}
 
-  return 0;
+int stack_pop(Stack_t *stack, void *elem)
+{
+  return linkedlist_remove(stack->data, stack->data->first, elem);
+}
+
+int stack_peep(Stack_t *stack, void *elem)
+{
+  return linkedlist_get(stack->data, stack->data->first, elem);
 }
 
 #ifdef __cplusplus
 }
 #endif
-

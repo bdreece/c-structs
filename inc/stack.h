@@ -16,16 +16,14 @@ extern "C" {
 typedef struct
 {
   LinkedList_t *data;
-  size_t size;
-  size_t len;
 } Stack_t;
 
 int stack_init(Stack_t *stack, size_t size);
 int stack_deinit(Stack_t *stack);
 
-int stack_push(Stack_t *stack, void *element);
-int stack_pop(Stack_t *stack, void *element);
-int stack_peep(Stack_t *stack, void *element);
+int stack_push(Stack_t *stack, void *elem);
+int stack_pop(Stack_t *stack, void *elem);
+int stack_peep(Stack_t *stack, void *elem);
 
 #ifdef __cplusplus
 }

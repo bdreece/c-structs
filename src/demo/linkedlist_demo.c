@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 	if (linkedlist_insert_before(&list, list.first, "ABC") < 0)
 		error(1, 0, "linkedlist_insert_before failed\n");
 
-	printf("Inserted %s at the beginning of the LinkedList!\n");
+	printf("Inserted %s at the beginning of the LinkedList!\n", "ABC");
 
 	if (linkedlist_deinit(&list) < 0)
 		error(1, 0, "linkedlist_deinit failed\n");

@@ -7,16 +7,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-int list_init(List_t *list, int length, size_t element_size)
+static int list_resize(List_t *list);
+
+int list_init(List_t *list, size_t size, size_t cap)
 {
   if (list == NULL)
     return -1;
 
-  list->capacity = length;
-  list->size = 0;
-  list->elem_size = element_size;
+  list->cap = cap;
+  list->size = size;
+  list->len = 0;
 
-  list->data = malloc(length * element_size);
+  list->data = malloc(cap * size);
 
   if (list->data == NULL)
     return -1;
@@ -33,24 +35,24 @@ int list_deinit(List_t *list)
     return -1;
 
   free(list->data);
-  list->capacity = 0;
+  list->cap = 0;
   list->size = 0;
-  list->elem_size = 0;
+  list->len = 0;
   list->first = NULL;
   list->last = NULL;
 
   return 0;
 }
 
-int list_add(List_t *list, int i, void *element)
+int list_add(List_t *list, int i, void *elem)
 {
   if (list == NULL || list->data == NULL)
     return -1;
 
-  if (i < 0 || i > list->size)
+  if (i < 0 || i > list->len)
     return -1;
 
-  if (list->size >= list->capacity)
+  if (list->len >= list->cap)
   {
     if (list_resize(list) < 0)
       return -1;
@@ -59,56 +61,37 @@ int list_add(List_t *list, int i, void *element)
   if (list->data[i] != NULL)
   {
     int j;
-    for (j = list->size; j > i; j--)
+    for (j = list->len; j > i; j--)
       list->data[j] = list->data[j - 1];
   }
 
-  memcpy(list->data[i], element, list->elem_size);
-  list->size++;
+  memcpy(list->data[i], elem, list->size);
+  list->len++;
   return 0;
 }
 
-int list_addfirst(List_t *list, void *element)
+int list_addfirst(List_t *list, void *elem)
 {
-  return list_add(list, 0, element);
+  return list_add(list, 0, elem);
 }
 
-int list_addlast(List_t *list, void *element)
+int list_addlast(List_t *list, void *elem)
 {
-  return list_add(list, list->size, element);
+  return list_add(list, list->len, elem);
 }
 
-int list_set(List_t *list, int i, void *element, void *out)
+int list_remove(List_t *list, int i, void *elem)
 {
-  if (list == NULL || list->data == NULL || out == NULL)
+  if (list == NULL || list->data == NULL || elem == NULL)
     return -1;
 
-  if (i < 0 || i > list->size)
+  if (i < 0 || i >= list->len)
     return -1;
 
-  if (list->size >= list->capacity)
-  {
-    if (list_resize(list) < 0)
-      return -1;
-  }
-
-  memcpy(out, list->data[i], list->elem_size);
-  memcpy(list->data[i], element, list->elem_size);
-  return 0;
-}
-
-int list_remove(List_t *list, int i, void *out)
-{
-  if (list == NULL || list->data == NULL || out == NULL)
-    return -1;
-
-  if (i < 0 || i >= list->size)
-    return -1;
-
-  memcpy(out, list->data[i], list->elem_size);
+  memcpy(elem, list->data[i], list->size);
 
   int j;
-  for (j = i; j < list->size - 1; j++)
+  for (j = i; j < list->len - 1; j++)
   {
     list->data[j] = list->data[j + 1];
   }
@@ -116,19 +99,49 @@ int list_remove(List_t *list, int i, void *out)
   return 0;
 }
 
-int list_removefirst(List_t *list, void *out)
+int list_removefirst(List_t *list, void *elem)
 {
-  return list_remove(list, 0, out);
+  return list_remove(list, 0, elem);
 }
 
-int list_removelast(List_t *list, void *out)
+int list_removelast(List_t *list, void *elem)
 {
-  return list_remove(list, list->size - 1, out);
+  return list_remove(list, list->len - 1, elem);
 }
 
-int list_resize(List_t *list)
+int list_set(List_t *list, int i, void *elem)
 {
-  void **tmp = realloc(list->data, 2 * list->capacity * list->elem_size);
+  if (list == NULL || list->data == NULL || elem == NULL)
+    return -1;
+
+  if (i < 0 || i > list->len)
+    return -1;
+
+  if (list->len >= list->cap)
+  {
+    if (list_resize(list) < 0)
+      return -1;
+  }
+
+  memcpy(list->data[i], elem, list->size);
+  return 0;
+}
+
+int list_get(List_t *list, int i, void *elem)
+{
+	if (list == NULL || list->data == NULL || elem == NULL)
+		return -1;
+
+	if (i < 0 || i > list->len)
+		return -1;
+
+	memcpy(elem, list->data[i], list->size);
+	return 0;
+}
+
+static int list_resize(List_t *list)
+{
+  void **tmp = realloc(list->data, 2 * list->cap * list->size);
   if (tmp == NULL)
     return -1;
 

@@ -1,7 +1,7 @@
 /*! \file linkedlist.h
  *  \brief LinkedList Header File
  *
- *  Header file for the LinkedList data structure
+ *  Header file for the LinkedList data structure implementation.
  */
 
 #ifndef LINKEDLIST_H
@@ -19,9 +19,9 @@
 typedef struct Node Node_t;
 
 struct Node {
-  void *element; //!< The element stored in the node
-  Node_t *next;    //!< A pointer to the next node
-  Node_t *prev;    //!< A pointer to the previous node
+  void *elem; 	//!< The element stored in the node
+  Node_t *next; //!< A pointer to the next node
+  Node_t *prev; //!< A pointer to the previous node
 };
 
 /*! \brief LinkedList structure object
@@ -30,11 +30,10 @@ struct Node {
  *  and last nodes, as well as the size of the LinkedList.
  */
 typedef struct {
-  Node_t *first;    //!< The first node in the LinkedList
-  Node_t *last;     //!< The last node in the LinkedList
-  int size;         //!< The size of the LinkedList
-  size_t elem_size; //!< The number of bytes per element
-  bool circular;    //!< Whether the list is to be circular
+  Node_t *first, *last; //!< The first and last nodes in the LinkedList
+  size_t size;					//!< The number of bytes per element
+	size_t len;     			//!< The length of the LinkedList
+  bool circ;      			//!< Whether the list is to be circular
 } LinkedList_t;
 
 /*! \brief Initialize a LinkedList instance
@@ -42,10 +41,11 @@ typedef struct {
  *  Initializes the LinkedList with no nodes and a size of zero
  *
  *  \param list The LinkedList to initialize
- *  \param circular Whether the LinkedList is to be initialized as circular
+ *	\param size The number of bytes per element
+ *  \param circ Whether the LinkedList is to be initialized as circular
  *  \return 0 if successful, -1 if malloc fails
  */
-int linkedlist_init(LinkedList_t *list, size_t element_size, bool circular);
+int linkedlist_init(LinkedList_t *list, size_t size, bool circ);
 
 /*! \brief Deinitialize a LinkedList instance
  *
@@ -64,10 +64,10 @@ int linkedlist_deinit(LinkedList_t *list);
  *
  *  \param list The relevant LinkedList instance
  *  \param node The node after which the new node is to be inserted
- *  \param element The element of the new node
+ *  \param elem The element of the new node
  *  \return The newly created node, or NULL if malloc failed
  */
-Node_t *linkedlist_insert_after(LinkedList_t *list, Node_t *node, void *element);
+Node_t *linkedlist_insert_after(LinkedList_t *list, Node_t *node, void *elem);
 
 /*! \brief Insert a new node after a specified node in the LinkedList
  *
@@ -76,10 +76,10 @@ Node_t *linkedlist_insert_after(LinkedList_t *list, Node_t *node, void *element)
  *
  *  \param list The relevant LinkedList instance
  *  \param node The node after which the new node is to be inserted
- *  \param element The element of the new node
+ *  \param elem The element of the new node
  *  \return The newly created node, or NULL if malloc fails
  */
-Node_t *linkedlist_insert_before(LinkedList_t *list, Node_t *node, void *element);
+Node_t *linkedlist_insert_before(LinkedList_t *list, Node_t *node, void *elem);
 
 /*! \brief Add a new node to a LinkedList
  *
@@ -87,10 +87,10 @@ Node_t *linkedlist_insert_before(LinkedList_t *list, Node_t *node, void *element
  *  dynamically allocated at runtime.
  *
  *  \param list The relevant LinkedList instance
- *  \param element The element of the new node to be added to the LinkedList
+ *  \param elem The element of the new node to be added to the LinkedList
  *  \return The newly created node, or NULL if malloc fails
  */
-Node_t *linkedlist_add(LinkedList_t *list, void *element);
+Node_t *linkedlist_add(LinkedList_t *list, void *elem);
 
 /*! \brief Removes a node from a LinkedList
  *
@@ -99,10 +99,10 @@ Node_t *linkedlist_add(LinkedList_t *list, void *element);
  *
  *  \param list The relevant LinkedList instance
  *  \param node The node to be removed
- *  \param out The pointer to the output of the element of the node being removed
+ *  \param elem The pointer to the output of the element of the node being removed
  *  \return 0 if successful, -1 if uninitialized parameters
  */
-int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out);
+int linkedlist_remove(LinkedList_t *list, Node_t *node, void *elem);
 
 /*! \brief Sets the value of a node in a LinkedList
  *
@@ -111,12 +111,21 @@ int linkedlist_remove(LinkedList_t *list, Node_t *node, void *out);
  *
  *  \param list The relevant LinkedList instance
  *  \param node The node whose element is to be set
- *  \param val The new element of the node
- *  \param out The pointer to the output of the previous element of the node
+ *  \param elem The new element of the node
  *  \return 0 if successful, -1 if uninitialized parameters
  */
-int linkedlist_set(LinkedList_t *list, Node_t *node, void *val, void *out);
+int linkedlist_set(LinkedList_t *list, Node_t *node, void *elem);
 
-static Node_t *linkedlist_create_node(LinkedList_t *list, void *element);
+/*! \brief Gets the value of a node in a LinkedList
+ *
+ *	Gets the value of a given node. Use of this function is to ensure proper
+ *	memory copying of the element data.
+ *
+ *	\param list The relevant LinkedList instance
+ *	\param node The node whose element is to be returned
+ *	\param elem The pointer to the element being returned
+ *	\return 0 if successful, -1 if uninitialized parameters
+ */
+int linkedlist_get(LinkedList_t *list, Node_t *node, void *elem);
 
 #endif

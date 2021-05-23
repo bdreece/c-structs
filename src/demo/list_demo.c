@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	const char tmp = 'A';
 	if (list_addfirst(&list, (void *)&tmp) < 0)
 		error(1, 0, "list_addfirst failed\n");
-	printf("List size: %d\nList capacity: %d\n", list.size, list.capacity);
+	printf("List size: %ld\nList capacity: %ld\n", list.size, list.cap);
 
 	if (list_deinit(&list) < 0)
 		error(1, 0, "list_deinit failed\n");

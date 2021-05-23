@@ -15,10 +15,7 @@ extern "C" {
 #include <stddef.h>
 
 typedef struct {
-  LinkedList_t *data;
-  size_t size;
-  size_t len;
-  bool circ;
+  LinkedList_t *list;
 } Queue_t;
 
 int queue_init(Queue_t *queue, size_t size, bool circ);
