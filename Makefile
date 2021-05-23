@@ -31,9 +31,11 @@ default: lib clean
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -c -o $@ $^
 
 $(BIN_DIR)/%_demo: $(DEMO_DIR)/%_demo.c $(LIB_DIR)/lib_%.a
+	mkdir -p ./bin/
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -o $@ $^
 
 $(STATIC_LIB): $(OBJS)
+	mkdir -p ./lib/
 	$(AR) $@ $^
 
 $(SHARED_LIB): $(OBJS)
@@ -68,14 +70,15 @@ clean:
 
 .PHONY: remove
 remove: clean
-	rm -rf $(BIN_DIR)/* $(LIB_DIR)/* $(DOCS_DIR)/*
+	rm -rf $(BIN_DIR) $(LIB_DIR) $(DOCS_DIR)
 
 .PHONY: lib
-lib: $(STATIC_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB) $(SHARED_LIB)
+lib: $(STATIC_LIB) $(SHARED_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB)
 
 .PHONY: demo
 demo: $(DEMO)
 
 .PHONY: docs
 docs:
+	mkdir -p ./docs/
 	doxygen

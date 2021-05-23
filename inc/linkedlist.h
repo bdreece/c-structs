@@ -10,14 +10,14 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+typedef struct Node Node_t;
+typedef struct linkedlist LinkedList_t;
+
 /*! \brief Node structure object
  *
  *  Structure for a node in the LinkedList data structure. Nodes contain an
  *  element, and pointers to the previous and next nodes.
  */
-
-typedef struct Node Node_t;
-
 struct Node {
   void *elem; 	//!< The element stored in the node
   Node_t *next; //!< A pointer to the next node
@@ -29,12 +29,18 @@ struct Node {
  *  Structure for the LinkedList data structure. Contains pointer to the first
  *  and last nodes, as well as the size of the LinkedList.
  */
-typedef struct {
+struct linkedlist {
   Node_t *first, *last; //!< The first and last nodes in the LinkedList
   size_t size;					//!< The number of bytes per element
 	size_t len;     			//!< The length of the LinkedList
   bool circ;      			//!< Whether the list is to be circular
-} LinkedList_t;
+	Node_t *(*add)(LinkedList_t *, void *);
+	int (*rem)(LinkedList_t *, Node_t *, void *);
+	int (*get)(LinkedList_t *, Node_t *, void *);
+	int (*set)(LinkedList_t *, Node_t *, void *);
+	Node_t *(*insert_before)(LinkedList_t *, Node_t *, void *);
+	Node_t *(*insert_after)(LinkedList_t *, Node_t *, void *);
+};
 
 /*! \brief Initialize a LinkedList instance
  *
@@ -102,7 +108,7 @@ Node_t *linkedlist_add(LinkedList_t *list, void *elem);
  *  \param elem The pointer to the output of the element of the node being removed
  *  \return 0 if successful, -1 if uninitialized parameters
  */
-int linkedlist_remove(LinkedList_t *list, Node_t *node, void *elem);
+int linkedlist_rem(LinkedList_t *list, Node_t *node, void *elem);
 
 /*! \brief Sets the value of a node in a LinkedList
  *

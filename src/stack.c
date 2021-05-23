@@ -18,6 +18,10 @@ int stack_init(Stack_t *stack, size_t size)
   stack->data = (LinkedList_t *) malloc(sizeof(LinkedList_t));
   if (stack->data == NULL) return -1;
 
+	stack->push = stack_push;
+	stack->pop = stack_pop;
+	stack->peek = stack_peek;
+
   return linkedlist_init(stack->data, size, false);
 }
 
@@ -38,10 +42,10 @@ int stack_push(Stack_t *stack, void *elem)
 
 int stack_pop(Stack_t *stack, void *elem)
 {
-  return linkedlist_remove(stack->data, stack->data->first, elem);
+  return linkedlist_rem(stack->data, stack->data->first, elem);
 }
 
-int stack_peep(Stack_t *stack, void *elem)
+int stack_peek(Stack_t *stack, void *elem)
 {
   return linkedlist_get(stack->data, stack->data->first, elem);
 }

@@ -26,6 +26,11 @@ int list_init(List_t *list, size_t size, size_t cap)
   list->first = list->data;
   list->last = list->data;
 
+	list->add = list_add;
+	list->rem = list_rem;
+	list->get = list_get;
+	list->set = list_set;
+
   return 0;
 }
 
@@ -70,17 +75,7 @@ int list_add(List_t *list, int i, void *elem)
   return 0;
 }
 
-int list_addfirst(List_t *list, void *elem)
-{
-  return list_add(list, 0, elem);
-}
-
-int list_addlast(List_t *list, void *elem)
-{
-  return list_add(list, list->len, elem);
-}
-
-int list_remove(List_t *list, int i, void *elem)
+int list_rem(List_t *list, int i, void *elem)
 {
   if (list == NULL || list->data == NULL || elem == NULL)
     return -1;
@@ -97,16 +92,6 @@ int list_remove(List_t *list, int i, void *elem)
   }
 
   return 0;
-}
-
-int list_removefirst(List_t *list, void *elem)
-{
-  return list_remove(list, 0, elem);
-}
-
-int list_removelast(List_t *list, void *elem)
-{
-  return list_remove(list, list->len - 1, elem);
 }
 
 int list_set(List_t *list, int i, void *elem)

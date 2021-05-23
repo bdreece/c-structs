@@ -16,6 +16,10 @@ int queue_init(Queue_t *queue, size_t size, bool circ)
 	queue->list = (LinkedList_t *) malloc(sizeof(LinkedList_t));
 	if (queue->list == NULL) return -1;
 
+	queue->enq = queue_enq;
+	queue->deq = queue_deq;
+	queue->peek = queue_peek;
+
 	return linkedlist_init(queue->list, size, circ);
 }
 
@@ -25,6 +29,28 @@ int queue_deinit(Queue_t *queue)
 		return -1;
 
 	return linkedlist_deinit(queue->list);
+}
+
+int queue_peek(Queue_t *queue, void *elem)
+{
+	if (queue == NULL || elem == NULL) return -1;
+
+	return linkedlist_get(queue->list, queue->list->first, elem);
+}
+
+int queue_enq(Queue_t *queue, void *elem)
+{
+	if (queue == NULL || elem == NULL) return -1;
+
+	Node_t *node = linkedlist_add(queue->list, elem);
+	return (node != NULL) ? 0 : -1;
+}
+
+int queue_deq(Queue_t *queue, void *elem)
+{
+	if (queue == NULL || elem == NULL) return -1;
+
+	return linkedlist_rem(queue->list, queue->list->first, elem);
 }
 
 #ifdef __cplusplus

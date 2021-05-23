@@ -13,17 +13,22 @@ extern "C" {
 #include "linkedlist.h"
 #include <stddef.h>
 
-typedef struct
+typedef struct stack Stack_t;
+
+struct stack
 {
   LinkedList_t *data;
-} Stack_t;
+	int (*push)(Stack_t *, void *);
+	int (*pop)(Stack_t *, void *);
+	int (*peek)(Stack_t *, void *);
+};
 
 int stack_init(Stack_t *stack, size_t size);
 int stack_deinit(Stack_t *stack);
 
 int stack_push(Stack_t *stack, void *elem);
 int stack_pop(Stack_t *stack, void *elem);
-int stack_peep(Stack_t *stack, void *elem);
+int stack_peek(Stack_t *stack, void *elem);
 
 #ifdef __cplusplus
 }
