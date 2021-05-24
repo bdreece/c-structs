@@ -26,38 +26,29 @@ int hashmap_deinit(HashMap_t *map)
   return 0;
 }
 
-int hashmap_deinit(HashMap_t *map)
+int hashmap_add(HashMap_t *map, void *key, void *val)
 {
-  // TODO: Deinitialize HashMap
+  // TODO: Add pair to HashMap
   return 0;
 }
 
-int hashmap_deinit(HashMap_t *map)
+int hashmap_get(HashMap_t *map, void *key, void *val)
 {
-  // TODO: Deinitialize HashMap
+  // TODO: Get value corresponding to key from HashMap
   return 0;
 }
 
-
-int hashmap_deinit(HashMap_t *map)
+int hashmap_rem(HashMap_t *map, void *key, void *val)
 {
-  // TODO: Deinitialize HashMap
+  // TODO: Remove value corresponding to key from HashMap
   return 0;
 }
 
-int hashmap_deinit(HashMap_t *map)
+static int hashmap_rehash(HashMap_t *map)
 {
-  // TODO: Deinitialize HashMap
+  // TODO: Rehash HashMap
   return 0;
 }
-
-int hashmap_deinit(HashMap_t *map)
-{
-  // TODO: Deinitialize HashMap
-  return 0;
-}
-
-
 
 #ifdef __cplusplus
 }

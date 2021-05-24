@@ -14,11 +14,12 @@ extern "C" {
 
 typedef struct {
   List_t list;
+	size_t key_size, val_size;
   float load_fact;
   int (*cmp)(void *, void *);
 } HashMap_t;
 
-int hashmap_init(HashMap_t *map, size_t size, float load_fact, int (*cmp)(void *, void *));
+int hashmap_init(HashMap_t *map, size_t key_size, size_t val_size, float load_fact, int (*cmp)(void *, void *));
 int hashmap_deinit(HashMap_t *map);
 
 int hashmap_add(HashMap_t *map, void *key, void *val);
