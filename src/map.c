@@ -16,13 +16,22 @@ int map_init(Map_t *map, size_t key_size, size_t val_size, int (*cmp)(void *, vo
 {
   if (map == NULL || key_size <= 0 || val_size <=0 || cmp == NULL) return -1;
 
+  map->key_size = key_size;
+  map->val_size = val_size;
+  map->cmp = cmp;
+
   return list_init(&map->list, sizeof(Pair_t), 8);
 }
 
 int map_deinit(Map_t *map)
 {
-  // TODO: Deinitialize map
-  return 0;
+  if (map == NULL) return -1;
+
+  map->key_size = 0;
+  map->val_size = 0;
+  map->cmp = NULL;
+
+  return list_deinit(&map->list);
 }
 
 int map_add(Map_t *map, void *key, void *val)

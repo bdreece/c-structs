@@ -14,23 +14,23 @@ DEMO_DIR				:= $(SRC_DIR)/demo
 OBJS						= $(patsubst %.c, %.o, $(notdir $(wildcard $(SRC_DIR)/*.c)))
 DEMO						= $(patsubst $(DEMO_DIR)/%_demo.c, ./bin/%_demo, $(wildcard $(DEMO_DIR)/*.c))
 
-SHARED_LIB			:= $(LIB_DIR)/lib_datastructures.so
-STATIC_LIB			:= $(LIB_DIR)/lib_datastructures.a
+SHARED_LIB			:= $(LIB_DIR)/libstructures.so
+STATIC_LIB			:= $(LIB_DIR)/libstructures.a
 
-LIST_LIB				:= $(LIB_DIR)/lib_list.a
-LINKEDLIST_LIB  := $(LIB_DIR)/lib_linkedlist.a
-STACK_LIB				:= $(LIB_DIR)/lib_stack.a
-QUEUE_LIB				:= $(LIB_DIR)/lib_queue.a
-HEAP_LIB				:= $(LIB_DIR)/lib_heap.a
-MAP_LIB					:= $(LIB_DIR)/lib_map.a
-HASHMAP_LIB			:= $(LIB_DIR)/lib_hashmap.a
+LIST_LIB				:= $(LIB_DIR)/liblist.a
+LINKEDLIST_LIB  := $(LIB_DIR)/liblinkedlist.a
+STACK_LIB				:= $(LIB_DIR)/libstack.a
+QUEUE_LIB				:= $(LIB_DIR)/libqueue.a
+HEAP_LIB				:= $(LIB_DIR)/libheap.a
+MAP_LIB					:= $(LIB_DIR)/libmap.a
+HASHMAP_LIB			:= $(LIB_DIR)/libhashmap.a
 
 default: lib clean
 
 %.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -c -o $@ $^
 
-$(BIN_DIR)/%_demo: $(DEMO_DIR)/%_demo.c $(LIB_DIR)/lib_%.a
+$(BIN_DIR)/%_demo: $(DEMO_DIR)/%_demo.c $(LIB_DIR)/lib%.a
 	mkdir -p ./bin/
 	$(CC) $(FLAGS) $(CFLAGS) $(IFLAGS) -o $@ $^
 
