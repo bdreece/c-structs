@@ -4,23 +4,31 @@
 extern "C" {
 #endif
 
-#include "heap.h"
-#include "list.h"
 #include <string.h>
+
+#include "list.h"
+#include "heap.h"
 
 static int heap_bubble(Heap_t *heap, int i);
 static int heap_sink(Heap_t *heap, int i);
 
 int heap_init(Heap_t *heap, size_t size, enum heap_type type, int (*cmp)(void *, void *))
 {
-  // TODO: Initialize heap
-  return 0;
+  if (heap == NULL || size <= 0 || cmp == NULL) return -1;
+
+  heap->type = type;
+  heap->cmp = cmp;
+
+  return list_init(&heap->list, size, 8);
 }
 
 int heap_deinit(Heap_t *heap)
 {
-  // TODO: Deinitialize heap
-  return 0;
+  if (heap == NULL) return -1;
+
+  heap->type = -1;
+  heap->cmp = NULL;
+  return list_deinit(&heap->list);
 }
 
 int heap_add(Heap_t *heap, void *element)
