@@ -11,7 +11,7 @@ extern "C" {
 static int heap_bubble(Heap_t *heap, int i);
 static int heap_sink(Heap_t *heap, int i);
 
-int heap_init(Heap_t *heap, size_t size, HeapType_t type, int (*cmp)(void *, void *))
+int heap_init(Heap_t *heap, size_t size, enum heap_type type, int (*cmp)(void *, void *))
 {
   // TODO: Initialize heap
   return 0;
@@ -23,13 +23,13 @@ int heap_deinit(Heap_t *heap)
   return 0;
 }
 
-int heap_add(Heap_t *heap)
+int heap_add(Heap_t *heap, void *element)
 {
   // TODO: Add a value to the heap
   return 0;
 }
 
-int heap_rem(Heap_t *heap)
+int heap_rem(Heap_t *heap, void *element)
 {
   // TODO: Remove top value (min in minheap, vice versa)
   return 0;

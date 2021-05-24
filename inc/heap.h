@@ -11,6 +11,8 @@ extern "C" {
 
 #include <stddef.h>
 
+#include "list.h"
+
 enum heap_type {
   MINHEAP = 0,
   MAXHEAP = 1
