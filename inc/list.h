@@ -23,10 +23,6 @@ struct list
   size_t size; 				//!< The number of bytes per element
 	size_t len;         //!< The number of elements in the List.
 	size_t cap;     		//!< The current capacity of the data array.
-	int (*add)(List_t *, int, void *);
-	int (*rem)(List_t *, int, void *);
-	int (*get)(List_t *, int, void *);
-	int (*set)(List_t *, int, void *);
 };
 
 /*! \brief Initialize List

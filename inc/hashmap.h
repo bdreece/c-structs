@@ -9,12 +9,11 @@
 extern "C" {
 #endif
 
-#include "map.h"
 #include "list.h"
+#include "map.h"
 
 typedef struct {
-  List_t *data;
-  size_t size;
+  List_t list;
   float load_fact;
   int (*cmp)(void *, void *);
 } HashMap_t;

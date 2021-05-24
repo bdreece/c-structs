@@ -19,9 +19,7 @@ typedef struct {
 } Pair_t;
 
 typedef struct {
-  List_t *data;
-  size_t size;
-  size_t len;
+  List_t list;
   int (*cmp)(void *, void *);
 } Map_t;
 

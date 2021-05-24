@@ -15,9 +15,7 @@ typedef enum {
 } HeapType_t;
 
 typedef struct {
-  List_t *data;
-  size_t size;
-  size_t len;
+  List_t list;
   HeapType_t type;
   int (*cmp)(void *, void *);
 } Heap_t;

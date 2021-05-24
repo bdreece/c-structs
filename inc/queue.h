@@ -18,10 +18,7 @@ typedef struct queue Queue_t;
 
 struct queue
 {
-  LinkedList_t *list;
-	int (*enq)(Queue_t *, void *);
-	int (*deq)(Queue_t *, void *);
-	int (*peek)(Queue_t *, void *);
+  LinkedList_t list;
 };
 
 int queue_init(Queue_t *queue, size_t size, bool circ);

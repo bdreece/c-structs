@@ -26,11 +26,6 @@ int list_init(List_t *list, size_t size, size_t cap)
   list->first = list->data;
   list->last = list->data;
 
-	list->add = list_add;
-	list->rem = list_rem;
-	list->get = list_get;
-	list->set = list_set;
-
   return 0;
 }
 

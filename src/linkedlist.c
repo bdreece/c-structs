@@ -21,13 +21,6 @@ int linkedlist_init(LinkedList_t *list, size_t size, bool circ)
   list->first = NULL;
   list->last = NULL;
 
-	list->add = linkedlist_add;
-	list->rem = linkedlist_rem;
-	list->get = linkedlist_get;
-	list->set = linkedlist_set;
-	list->insert_before = linkedlist_insert_before;
-	list->insert_after = linkedlist_insert_after;
-
   return 0;
 }
 

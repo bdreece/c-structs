@@ -17,10 +17,7 @@ typedef struct stack Stack_t;
 
 struct stack
 {
-  LinkedList_t *data;
-	int (*push)(Stack_t *, void *);
-	int (*pop)(Stack_t *, void *);
-	int (*peek)(Stack_t *, void *);
+  LinkedList_t list;
 };
 
 int stack_init(Stack_t *stack, size_t size);

@@ -34,12 +34,6 @@ struct linkedlist {
   size_t size;					//!< The number of bytes per element
 	size_t len;     			//!< The length of the LinkedList
   bool circ;      			//!< Whether the list is to be circular
-	Node_t *(*add)(LinkedList_t *, void *);
-	int (*rem)(LinkedList_t *, Node_t *, void *);
-	int (*get)(LinkedList_t *, Node_t *, void *);
-	int (*set)(LinkedList_t *, Node_t *, void *);
-	Node_t *(*insert_before)(LinkedList_t *, Node_t *, void *);
-	Node_t *(*insert_after)(LinkedList_t *, Node_t *, void *);
 };
 
 /*! \brief Initialize a LinkedList instance
