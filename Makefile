@@ -19,6 +19,7 @@ STATIC_LIB			:= $(LIB_DIR)/libstructures.a
 
 LIST_LIB				:= $(LIB_DIR)/liblist.a
 LINKEDLIST_LIB  := $(LIB_DIR)/liblinkedlist.a
+BINTREE_LIB			:= $(LIB_DIR)/libbinarytree.a
 STACK_LIB				:= $(LIB_DIR)/libstack.a
 QUEUE_LIB				:= $(LIB_DIR)/libqueue.a
 HEAP_LIB				:= $(LIB_DIR)/libheap.a
@@ -47,6 +48,9 @@ $(LIST_LIB): list.o
 $(LINKEDLIST_LIB): linkedlist.o
 	$(AR) $@ $^
 
+$(BINTREE_LIB): bintree.o
+	$(AR) $@ $^
+
 $(STACK_LIB): stack.o list.o
 	$(AR) $@ $^
 
@@ -73,7 +77,7 @@ remove: clean
 	rm -rf $(BIN_DIR) $(LIB_DIR) $(DOCS_DIR)
 
 .PHONY: lib
-lib: $(STATIC_LIB) $(SHARED_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB)
+lib: $(STATIC_LIB) $(SHARED_LIB) $(LIST_LIB) $(LINKEDLIST_LIB) $(BINTREE_LIB) $(STACK_LIB) $(QUEUE_LIB) $(MAP_LIB) $(HASHMAP_LIB)
 
 .PHONY: demo
 demo: $(DEMO)

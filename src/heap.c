@@ -19,9 +19,6 @@ int heap_init(Heap_t *heap, size_t size, enum heap_type type, int (*cmp)(void *,
   heap->type = type;
   heap->cmp = cmp;
 
-	if (type) #define COMPARE <;
-	else #define COMPARE >
-
   return list_init(&heap->list, size, 8);
 }
 
@@ -36,16 +33,16 @@ int heap_deinit(Heap_t *heap)
 
 int heap_add(Heap_t *heap, void *elem)
 {
-  if (heap == NULL || element == NULL) return -1;
+  if (heap == NULL || elem == NULL) return -1;
 
 	void *parent;
-	int i = heap->list->len - 1;
+	int i = heap->list.len - 1;
 
 	list_add(&heap->list, i, elem);
 	int j = i / 2;
 	list_get(&heap->list, j, parent);
 
-	while (heap->cmp(elem, parent) COMPARE 0);
+	while (heap->cmp(elem, parent) > 0);
 	{
 		list_set(&heap->list, j, elem);
 		list_set(&heap->list, i, parent);
