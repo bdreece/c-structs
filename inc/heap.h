@@ -27,8 +27,8 @@ typedef struct {
 int heap_init(Heap_t *heap, size_t size, enum heap_type type, int (*cmp)(void *, void *));
 int heap_deinit(Heap_t *heap);
 
-int heap_add(Heap_t *heap, void *element);
-int heap_rem(Heap_t *heap, void *element);
+int heap_add(Heap_t *heap, void *elem);
+int heap_rem(Heap_t *heap, void *elem);
 
 #ifdef __cplusplus
 }
