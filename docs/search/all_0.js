@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_2dstructures_0',['data-structures',['../md_README.html',1,'']]]
+  ['c_2dstructures_0',['c-structures',['../md_README.html',1,'']]]
 ];
