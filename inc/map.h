@@ -18,7 +18,8 @@ extern "C" {
 #define MAP_SUCCESS 0
 #define MAP_FAILURE -1
 #define MAP_EMPTY -2
-#define MAP_UNKNOWN_KEY -3
+#define MAP_NULL -3
+#define MAP_UNKNOWN_KEY -4
 
 typedef struct pair
 {
@@ -32,13 +33,15 @@ typedef struct map
 	size_t key_size, val_size;
 } map_t;
 
-int map_init(map_t *map, size_t key_size, size_t val_size, unsigned long initial_capacity);
+int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity);
 
 int map_deinit(map_t *map);
 
 int map_set(map_t *map, void *key, void *val);
 
 int map_get(map_t *map, void *key, void *val);
+
+int map_delete(map_t *map, void *key);
 
 int map_clear(map_t *map);
 

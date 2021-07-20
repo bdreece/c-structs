@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['size_15',['size',['../structcbuf.html#aec9e206d6881ac0818672b35d227da6f',1,'cbuf::size()'],['../structvla.html#a9f74559239824c1f1c887a6cd766c1a2',1,'vla::size()']]]
+  ['map_15',['map',['../structmap.html',1,'']]],
+  ['map_2ec_16',['map.c',['../map_8c.html',1,'']]],
+  ['map_2eh_17',['map.h',['../map_8h.html',1,'']]]
 ];

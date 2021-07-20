@@ -14,6 +14,9 @@ int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)
     if(!cbuf)
         return CBUF_FAILURE;
 
+    if (size < 1)
+        return CBUF_EMPTY;
+
     cbuf->size = size;
     cbuf->element_size = element_size;
     cbuf->head = 0;
