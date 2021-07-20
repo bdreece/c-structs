@@ -12,8 +12,7 @@ extern "C" {
 
 #include <stddef.h>
 
-/*! \ref vla_errno
- *  \brief VLA error codes.
+/*! \brief VLA error codes.
  *  \details These are error codes returned by the VLA functions.
  */
 #define VLA_SUCCESS 0
@@ -24,14 +23,15 @@ extern "C" {
 #define VLA_ELEMENT_SIZE_ZERO -5 
 
 //! \brief VLA struct definition.
-typedef struct vla {
+typedef struct vla
+{
     unsigned long size; //!< VLA size.
     unsigned long capacity; //!< VLA capacity.
     size_t element_size; //!< VLA element size.
-    void **elements; //!< VLA elements.
+    void *elements; //!< VLA elements.
 } vla_t;
 
-/*! \brief VLA creation function.
+/*! \brief VLA construction function.
  *  \details This function creates a VLA of a given size and element size.
  *  \param[in] vla VLA to create.
  *  \param[in] size VLA size.
@@ -40,6 +40,13 @@ typedef struct vla {
  *  \return Zero on success, non-zero on failure.
  */
 int vla_init(struct vla *vla, size_t element_size, unsigned long initial_capacity);
+
+/*! \brief VLA destruction function.
+ *  \details This function destroys a VLA.
+ *  \param[in] vla VLA to destroy.
+ *  \return Zero on success, non-zero on failure.
+ */
+int vla_deinit(struct vla *vla);
 
 /*! \brief VLA push function.
  *  \details This function pushes an element onto the VLA.
@@ -56,6 +63,14 @@ int vla_push(struct vla *vla, void *element);
  *  \return Zero on success, non-zero on failure.
  */
 int vla_pop(struct vla *vla, void *element);
+
+/*! \brief VLA resize function.
+ *  \details This function resizes a VLA.
+ *  \param[in] vla VLA to resize.
+ *  \param[in] size New VLA size.
+ *  \return Zero on success, non-zero on failure.
+ */
+int vla_enq(struct vla *vla, void *element);
 
 /*! \brief VLA get function.
  *  \details This function gets an element from the VLA.
