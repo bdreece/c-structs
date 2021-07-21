@@ -142,7 +142,7 @@ int vla_set(vla_t *vla, unsigned long index, void *element)
     return ERR_NONE;
 }
 
-int vla_delete(vla_t *vla, unsigned long index)
+int vla_del(vla_t *vla, unsigned long index)
 {
     if (!vla)
         return ERR_NULL;
@@ -159,7 +159,7 @@ int vla_delete(vla_t *vla, unsigned long index)
     return ERR_NONE;
 }
 
-int vla_insert(vla_t *vla, void *element, unsigned long index)
+int vla_ins(vla_t *vla, unsigned long index, void *element)
 {
     if (!vla)
         return ERR_NULL;

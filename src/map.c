@@ -11,14 +11,19 @@
 #include "c-structs/map.h"
 #include "c-structs/vla.h"
 
-static unsigned long map_binary_search(map_t * map, void *key, unsigned long low, unsigned long high)
+static unsigned long map_binary_search(map_t * map, void *key, unsigned long low, unsigned long high, bool err)
 {
 	unsigned long mid;
 	unsigned long cmp;
 	pair_t pair;
 
 	if (low > high)
-		return ERR_FAILURE;
+	{
+		if (err) 
+			return ERR_NOT_FOUND;
+		else 
+			return low - 1;
+	}
 
 	mid = (low + high) / 2;
 	if (vla_get(&map->vla, mid, (void *)&pair) < 0)
@@ -29,14 +34,14 @@ static unsigned long map_binary_search(map_t * map, void *key, unsigned long low
 	if (cmp == 0)
 		return mid;
 	else if (cmp < 0)
-		return map_binary_search(map, key, low, mid - 1);
+		return map_binary_search(map, key, low, mid - 1, err);
 	else
-		return map_binary_search(map, key, mid + 1, high);
+		return map_binary_search(map, key, mid + 1, high, err);
 
 	return ERR_FAILURE;
 }
 
-static unsigned long map_linear_search(map_t *map, void *key)
+static unsigned long map_linear_search(map_t *map, void *key, bool err)
 {
 	unsigned long i;
 	pair_t pair;
@@ -49,7 +54,7 @@ static unsigned long map_linear_search(map_t *map, void *key)
 			return i;
 	}
 
-	return ERR_FAILURE;
+	return map->vla.size;
 }
 
 static pair_t *map_create_pair(map_t *map, void *key, void *val)
@@ -112,7 +117,7 @@ int map_get(map_t *map, void *key, void *val)
 	if (map->vla.size < 1)
 		return ERR_EMPTY;
 
-	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1) : map_linear_search(map, key);
+	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1, true) : map_linear_search(map, key, true);
 	pair_t p;
 
 	if (i < 0)
@@ -135,23 +140,20 @@ int map_set(map_t *map, void *key, void *val)
 	if (map->vla.size < 1)
 		return ERR_EMPTY;
 
-	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1) : map_linear_search(map, key);
+	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1, false) : map_linear_search(map, key, false);
+
+	if (i < 0)
+		return ERR_FAILURE;
 
 	pair_t *p = map_create_pair(map, key, val);
 
-	if (i < 0)
-	{
-		if (vla_enq(&map->vla, (void *)p) < 0)
-			return ERR_FAILURE;
-	}
-
-	if (vla_set(&map->vla, i, (void *)p) < 0)
+	if (vla_ins(&map->vla, i, (void *)p) < 0)
 			return ERR_FAILURE;
 
 	return ERR_NONE;	
 }
 
-int map_delete(map_t *map, void *key)
+int map_del(map_t *map, void *key)
 {
 	if (!map || !map->vla.elements)
 		return ERR_NULL;
@@ -159,7 +161,7 @@ int map_delete(map_t *map, void *key)
 	if (map->vla.size < 1)
 		return ERR_EMPTY;
 
-	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1) : map_linear_search(map, key);
+	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1, true) : map_linear_search(map, key, true);
 
 	if (i < 0)
 		return ERR_NOT_FOUND;
@@ -171,7 +173,7 @@ int map_delete(map_t *map, void *key)
 	if (map_destroy_pair(p) < 0)
 		return ERR_FAILURE;
 
-	if (vla_delete(&map->vla, i) < 0)
+	if (vla_del(&map->vla, i) < 0)
 		return ERR_FAILURE;
 
 	return ERR_NONE;

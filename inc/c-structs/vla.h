@@ -58,8 +58,9 @@ int vla_push(struct vla *vla, void *element);
  */
 int vla_pop(struct vla *vla, void *element);
 
-/*! \brief VLA resize function.
- *  \details This function resizes a VLA.
+/*! \func vla_enq
+ *  \brief VLA enqueue function.
+ *  \details This function enqueues an element onto the VLA.
  *  \param[in] vla VLA to resize.
  *  \param[in] size New VLA size.
  *  \return Zero on success, non-zero on failure.
@@ -91,7 +92,7 @@ int vla_set(struct vla *vla, unsigned long index, void *element);
  *  \param[in] element Element to insert.
  *  \return Zero on success, non-zero on failure.
  */
-int vla_insert(struct vla *vla, void *element, unsigned long index);
+int vla_ins(struct vla *vla, unsigned long index, void *element);
 
 /*! \brief VLA delete function.
  *  \details This function deletes an element from the VLA.
@@ -99,7 +100,7 @@ int vla_insert(struct vla *vla, void *element, unsigned long index);
  *  \param[in] index Index of element to delete.
  *  \return Zero on success, non-zero on failure.
  */
-int vla_delete(struct vla *vla, unsigned long i);
+int vla_del(struct vla *vla, unsigned long i);
 
 /*! \brief VLA clear function.
  *  \details This function clears the VLA.

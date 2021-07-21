@@ -12,8 +12,25 @@ extern "C" {
 #endif
 
 #include <stddef.h>
-#include "vla.h"
-#include "map.h"
+#include "c-structs/error.h"
+#include "c-structs/vla.h"
+#include "c-structs/map.h"
+
+typedef struct hashmap
+{
+    unsigned long size;
+    vla_t vla;
+} hashmap_t;
+
+int hashmap_init(hashmap_t *map, unsigned long size);
+
+int hashmap_deinit(hashmap_t *map);
+
+int hashmap_get(hashmap_t *map, void *key, void *value);
+
+int hashmap_set(hashmap_t *map, void *key, void *value);
+
+int hashmap_del(hashmap_t *map, void *key);
 
 #ifdef __cplusplus
 }

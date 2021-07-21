@@ -67,6 +67,10 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">hashmap.h File Reference</div>  </div>
 </div><!--header-->
@@ -75,10 +79,41 @@ $(function() {
 <p>Hash Map data structure.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="vla_8h_source.html">vla.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="map_8h_source.html">map.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="error_8h_source.html">c-structs/error.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vla_8h_source.html">c-structs/vla.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="map_8h_source.html">c-structs/map.h</a>&quot;</code><br />
 </div>
 <p><a href="hashmap_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashmap.html">hashmap</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:af5dd1a5b97346e35746536a25b1a706d"><td class="memItemLeft" align="right" valign="top"><a id="af5dd1a5b97346e35746536a25b1a706d"></a>
+typedef struct <a class="el" href="structhashmap.html">hashmap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_t</b></td></tr>
+<tr class="separator:af5dd1a5b97346e35746536a25b1a706d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a06e7aefa1a9235966ef93d7f6e25b272"><td class="memItemLeft" align="right" valign="top"><a id="a06e7aefa1a9235966ef93d7f6e25b272"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_init</b> (<a class="el" href="structhashmap.html">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, unsigned long size)</td></tr>
+<tr class="separator:a06e7aefa1a9235966ef93d7f6e25b272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a339af1965ea040b65ace092935146c2d"><td class="memItemLeft" align="right" valign="top"><a id="a339af1965ea040b65ace092935146c2d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_deinit</b> (<a class="el" href="structhashmap.html">hashmap_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
+<tr class="separator:a339af1965ea040b65ace092935146c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc9e1d45b8ad08acd7ab1a121868592"><td class="memItemLeft" align="right" valign="top"><a id="a1fc9e1d45b8ad08acd7ab1a121868592"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_get</b> (<a class="el" href="structhashmap.html">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, void *key, void *value)</td></tr>
+<tr class="separator:a1fc9e1d45b8ad08acd7ab1a121868592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25b9f3264a7ad03b95c483a4b6757bb5"><td class="memItemLeft" align="right" valign="top"><a id="a25b9f3264a7ad03b95c483a4b6757bb5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_set</b> (<a class="el" href="structhashmap.html">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, void *key, void *value)</td></tr>
+<tr class="separator:a25b9f3264a7ad03b95c483a4b6757bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4480a2b1dd99d1c33f5ad649c82372f6"><td class="memItemLeft" align="right" valign="top"><a id="a4480a2b1dd99d1c33f5ad649c82372f6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_del</b> (<a class="el" href="structhashmap.html">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, void *key)</td></tr>
+<tr class="separator:a4480a2b1dd99d1c33f5ad649c82372f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Hash Map data structure. </p>
 <dl class="section author"><dt>Author</dt><dd>Brian Reece <br  />

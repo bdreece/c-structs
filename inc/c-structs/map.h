@@ -35,7 +35,7 @@ int map_set(map_t *map, void *key, void *val);
 
 int map_get(map_t *map, void *key, void *val);
 
-int map_delete(map_t *map, void *key);
+int map_del(map_t *map, void *key);
 
 int map_clear(map_t *map);
 
