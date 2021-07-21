@@ -15,12 +15,6 @@ extern "C" {
 /*! \brief VLA error codes.
  *  \details These are error codes returned by the VLA functions.
  */
-#define VLA_SUCCESS 0
-#define VLA_FAILURE -1
-#define VLA_ARRAY_SIZE_MISMATCH -2
-#define VLA_ARRAY_SIZE_ZERO -3
-#define VLA_ELEMENT_SIZE_MISMATCH -4
-#define VLA_ELEMENT_SIZE_ZERO -5 
 
 //! \brief VLA struct definition.
 typedef struct vla

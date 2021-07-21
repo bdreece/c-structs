@@ -15,12 +15,6 @@ extern "C" {
 #include <stdbool.h>
 #include "vla.h"
 
-#define MAP_SUCCESS 0
-#define MAP_FAILURE -1
-#define MAP_EMPTY -2
-#define MAP_NULL -3
-#define MAP_UNKNOWN_KEY -4
-
 typedef struct pair
 {
 	void *key, *val;

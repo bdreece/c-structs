@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>bdreece/c-structures: inc/cbuf.h Source File</title>
+<title>bdreece/c-structures: inc/c-structs/cbuf.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a class="el" href="dir_8042c794febd6e76313b6901dadcccce.html">c-structs</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -81,47 +81,43 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="cbuf_8h.html#af997750090177f0e8bccc27717211c10">   17</a></span>&#160;<span class="preprocessor">#define CBUF_SUCCESS 0</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define CBUF_FAILURE -1</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define CBUF_EMPTY -2</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structcbuf.html">   24</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcbuf.html">cbuf</a></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">   26</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">head</a>; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">   27</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">tail</a>; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">   28</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">size</a>; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">   29</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">element_size</a>; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">   30</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">elements</a>; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <a class="code" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#af1c4d030227716d45d96acb8543339c8">cbuf_init</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">size_t</span> element_size, <span class="keywordtype">size_t</span> size);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">void</span> *element);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#ad21cf6f9f632f8139a577acd77267e60">cbuf_write</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">void</span> *element);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif // CBUF_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structcbuf.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcbuf.html">cbuf</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">   21</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">head</a>; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">   22</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">tail</a>; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">   23</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">size</a>; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">   24</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">element_size</a>; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">   25</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">elements</a>; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <a class="code" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#af1c4d030227716d45d96acb8543339c8">cbuf_init</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">size_t</span> element_size, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">void</span> *element);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#ad21cf6f9f632f8139a577acd77267e60">cbuf_write</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>, <span class="keywordtype">void</span> *element);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> <a class="code" href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a>(<a class="code" href="structcbuf.html">cbuf_t</a> *<a class="code" href="structcbuf.html">cbuf</a>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // CBUF_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructcbuf_html_ae3612656177d1ba7fc246ed8538cc19c"><div class="ttname"><a href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">cbuf::elements</a></div><div class="ttdeci">void * elements</div><div class="ttdoc">The buffer elements.</div><div class="ttdef"><b>Definition:</b> cbuf.h:30</div></div>
-<div class="ttc" id="acbuf_8h_html_aac0f3f7b3b03c157b05611a408da1332"><div class="ttname"><a href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a></div><div class="ttdeci">int cbuf_read(cbuf_t *cbuf, void *element)</div><div class="ttdoc">The circular buffer writer function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:40</div></div>
-<div class="ttc" id="astructcbuf_html_a29ef0b382e7c054183beba2c3d7c4d0a"><div class="ttname"><a href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">cbuf::head</a></div><div class="ttdeci">unsigned long head</div><div class="ttdoc">The head index of the buffer (read end)</div><div class="ttdef"><b>Definition:</b> cbuf.h:26</div></div>
-<div class="ttc" id="acbuf_8h_html_af1c4d030227716d45d96acb8543339c8"><div class="ttname"><a href="cbuf_8h.html#af1c4d030227716d45d96acb8543339c8">cbuf_init</a></div><div class="ttdeci">int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)</div><div class="ttdoc">The circular buffer constructor function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:12</div></div>
-<div class="ttc" id="acbuf_8h_html_a789ec912c9a72fa961c18d40affd8214"><div class="ttname"><a href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a></div><div class="ttdeci">int cbuf_deinit(cbuf_t *cbuf)</div><div class="ttdoc">The circular buffer destructor function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:31</div></div>
-<div class="ttc" id="astructcbuf_html_aec9e206d6881ac0818672b35d227da6f"><div class="ttname"><a href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">cbuf::size</a></div><div class="ttdeci">unsigned long size</div><div class="ttdoc">The size of the buffer.</div><div class="ttdef"><b>Definition:</b> cbuf.h:28</div></div>
-<div class="ttc" id="astructcbuf_html"><div class="ttname"><a href="structcbuf.html">cbuf</a></div><div class="ttdoc">The circular buffer structure.</div><div class="ttdef"><b>Definition:</b> cbuf.h:24</div></div>
-<div class="ttc" id="acbuf_8h_html_ad21cf6f9f632f8139a577acd77267e60"><div class="ttname"><a href="cbuf_8h.html#ad21cf6f9f632f8139a577acd77267e60">cbuf_write</a></div><div class="ttdeci">int cbuf_write(cbuf_t *cbuf, void *element)</div><div class="ttdoc">The circular buffer reader function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:60</div></div>
+<div class="ttc" id="astructcbuf_html_ae3612656177d1ba7fc246ed8538cc19c"><div class="ttname"><a href="structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c">cbuf::elements</a></div><div class="ttdeci">void * elements</div><div class="ttdoc">The buffer elements.</div><div class="ttdef"><b>Definition:</b> cbuf.h:25</div></div>
+<div class="ttc" id="acbuf_8h_html_aac0f3f7b3b03c157b05611a408da1332"><div class="ttname"><a href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a></div><div class="ttdeci">int cbuf_read(cbuf_t *cbuf, void *element)</div><div class="ttdoc">The circular buffer writer function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:41</div></div>
+<div class="ttc" id="astructcbuf_html_a29ef0b382e7c054183beba2c3d7c4d0a"><div class="ttname"><a href="structcbuf.html#a29ef0b382e7c054183beba2c3d7c4d0a">cbuf::head</a></div><div class="ttdeci">unsigned long head</div><div class="ttdoc">The head index of the buffer (read end)</div><div class="ttdef"><b>Definition:</b> cbuf.h:21</div></div>
+<div class="ttc" id="acbuf_8h_html_af1c4d030227716d45d96acb8543339c8"><div class="ttname"><a href="cbuf_8h.html#af1c4d030227716d45d96acb8543339c8">cbuf_init</a></div><div class="ttdeci">int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)</div><div class="ttdoc">The circular buffer constructor function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:13</div></div>
+<div class="ttc" id="acbuf_8h_html_a789ec912c9a72fa961c18d40affd8214"><div class="ttname"><a href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a></div><div class="ttdeci">int cbuf_deinit(cbuf_t *cbuf)</div><div class="ttdoc">The circular buffer destructor function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:32</div></div>
+<div class="ttc" id="astructcbuf_html_aec9e206d6881ac0818672b35d227da6f"><div class="ttname"><a href="structcbuf.html#aec9e206d6881ac0818672b35d227da6f">cbuf::size</a></div><div class="ttdeci">unsigned long size</div><div class="ttdoc">The size of the buffer.</div><div class="ttdef"><b>Definition:</b> cbuf.h:23</div></div>
+<div class="ttc" id="astructcbuf_html"><div class="ttname"><a href="structcbuf.html">cbuf</a></div><div class="ttdoc">The circular buffer structure.</div><div class="ttdef"><b>Definition:</b> cbuf.h:19</div></div>
+<div class="ttc" id="acbuf_8h_html_ad21cf6f9f632f8139a577acd77267e60"><div class="ttname"><a href="cbuf_8h.html#ad21cf6f9f632f8139a577acd77267e60">cbuf_write</a></div><div class="ttdeci">int cbuf_write(cbuf_t *cbuf, void *element)</div><div class="ttdoc">The circular buffer reader function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:61</div></div>
 <div class="ttc" id="acbuf_8h_html_ac373269acf0f439c7df787497d8ac307"><div class="ttname"><a href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a></div><div class="ttdeci">struct cbuf cbuf_t</div><div class="ttdoc">The circular buffer structure.</div></div>
-<div class="ttc" id="astructcbuf_html_ad367a875a19f6dd794ecd38b119f790c"><div class="ttname"><a href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">cbuf::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">The size of the element.</div><div class="ttdef"><b>Definition:</b> cbuf.h:29</div></div>
-<div class="ttc" id="astructcbuf_html_af014e67d8f55193a8ada765eeb292282"><div class="ttname"><a href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">cbuf::tail</a></div><div class="ttdeci">unsigned long tail</div><div class="ttdoc">The tail index of the buffer (write end)</div><div class="ttdef"><b>Definition:</b> cbuf.h:27</div></div>
-<div class="ttc" id="acbuf_8h_html_adae072096a8b074e5e4c31b94ccc770b"><div class="ttname"><a href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a></div><div class="ttdeci">int cbuf_clear(cbuf_t *cbuf)</div><div class="ttdoc">The circular buffer writer function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:80</div></div>
+<div class="ttc" id="astructcbuf_html_ad367a875a19f6dd794ecd38b119f790c"><div class="ttname"><a href="structcbuf.html#ad367a875a19f6dd794ecd38b119f790c">cbuf::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">The size of the element.</div><div class="ttdef"><b>Definition:</b> cbuf.h:24</div></div>
+<div class="ttc" id="astructcbuf_html_af014e67d8f55193a8ada765eeb292282"><div class="ttname"><a href="structcbuf.html#af014e67d8f55193a8ada765eeb292282">cbuf::tail</a></div><div class="ttdeci">unsigned long tail</div><div class="ttdoc">The tail index of the buffer (write end)</div><div class="ttdef"><b>Definition:</b> cbuf.h:22</div></div>
+<div class="ttc" id="acbuf_8h_html_adae072096a8b074e5e4c31b94ccc770b"><div class="ttname"><a href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a></div><div class="ttdeci">int cbuf_clear(cbuf_t *cbuf)</div><div class="ttdoc">The circular buffer writer function.</div><div class="ttdef"><b>Definition:</b> cbuf.c:81</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

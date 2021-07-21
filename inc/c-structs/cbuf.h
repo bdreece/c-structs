@@ -13,11 +13,6 @@ extern "C" {
 
 #include <stddef.h>
 
-//! \brief The circular buffer error codes
-#define CBUF_SUCCESS 0
-#define CBUF_FAILURE -1
-#define CBUF_EMPTY -2
-
 /*! \brief The circular buffer structure
  *  \details This structure is used to hold the circular buffer.
  */
