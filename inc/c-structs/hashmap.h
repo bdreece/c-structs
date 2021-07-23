@@ -18,9 +18,8 @@ extern "C" {
 
 typedef struct hashmap
 {
-    unsigned long size;
+    unsigned long hash_val, initial_capacity;
     float load_factor;
-    unsigned long hash_val;
     vla_t vla;
 } hashmap_t;
 

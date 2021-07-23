@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cbuf_5ft',['cbuf_t',['../cbuf_8h.html#a1d84058a555989d023da961a57234eab',1,'cbuf.h']]]
+  ['cbuf_5ft_86',['cbuf_t',['../cbuf_8h.html#ac373269acf0f439c7df787497d8ac307',1,'cbuf.h']]]
 ];

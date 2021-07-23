@@ -87,4 +87,3 @@ int cbuf_clear(cbuf_t *cbuf)
     cbuf->tail = 0;
     return ERR_NONE;
 }
-
