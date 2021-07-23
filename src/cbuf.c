@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "c-structs/error.h"
-#include "c-structs/cbuf.h"
+#include "structs/error.h"
+#include "structs/cbuf.h"
 
 int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)
 {

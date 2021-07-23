@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "c-structs/error.h"
-#include "c-structs/vla.h"
-#include "c-structs/map.h"
-#include "c-structs/hashmap.h"
+#include "structs/error.h"
+#include "structs/vla.h"
+#include "structs/map.h"
+#include "structs/hashmap.h"
 
 static unsigned long hashmap_hash(hashmap_t *map, void *key)
 {

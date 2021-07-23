@@ -7,9 +7,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "c-structs/error.h"
-#include "c-structs/map.h"
-#include "c-structs/vla.h"
+#include "structs/error.h"
+#include "structs/map.h"
+#include "structs/vla.h"
 
 static unsigned long map_binary_search(map_t * map, void *key, unsigned long low, unsigned long high, bool err)
 {

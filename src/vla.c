@@ -7,8 +7,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "c-structs/error.h"
-#include "c-structs/vla.h"
+#include "structs/error.h"
+#include "structs/vla.h"
 
 /*! \brief Resize a variable length array.
  *  \details The new size is calculated by multiplying the element size by the new capacity

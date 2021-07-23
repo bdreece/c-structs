@@ -12,9 +12,9 @@ extern "C" {
 #endif
 
 #include <stddef.h>
-#include "c-structs/error.h"
-#include "c-structs/vla.h"
-#include "c-structs/map.h"
+#include "structs/error.h"
+#include "structs/vla.h"
+#include "structs/map.h"
 
 typedef struct hashmap
 {

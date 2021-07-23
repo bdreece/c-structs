@@ -13,7 +13,7 @@ extern "C" {
 
 #include <stddef.h>
 #include <stdbool.h>
-#include "vla.h"
+#include "structs/vla.h"
 
 typedef struct pair
 {
