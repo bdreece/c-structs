@@ -23,13 +23,14 @@ typedef struct pair
 typedef struct map
 {
 	vla_t vla;
-	bool sorted;
+  bool sorted;
 	size_t key_size, val_size;
 } map_t;
 
 int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity);
 
 int map_deinit(map_t *map);
+
 
 int map_set(map_t *map, void *key, void *val);
 

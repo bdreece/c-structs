@@ -12,7 +12,7 @@
 
 int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)
 {
-    if(!cbuf)
+    if (!cbuf)
         return ERR_NULL;
 
     if (size < 1)
@@ -23,7 +23,7 @@ int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)
     cbuf->head = 0;
     cbuf->tail = 0;
     cbuf->elements = malloc(size * element_size);
-    if(!cbuf->elements)
+    if (!cbuf->elements)
         return ERR_FAILURE;
 
     return ERR_NONE;
@@ -31,7 +31,7 @@ int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size)
 
 int cbuf_deinit(cbuf_t *cbuf)
 {
-    if(!cbuf)
+    if (!cbuf)
         return ERR_NULL;
 
     free(cbuf->elements);
@@ -40,13 +40,16 @@ int cbuf_deinit(cbuf_t *cbuf)
 
 int cbuf_read(cbuf_t *cbuf, void *element)
 {
-    if(!cbuf)
+    if (!cbuf)
         return ERR_NULL;
 
-    if(cbuf->size == 0)
+    if (cbuf->size == 0)
         return ERR_EMPTY;
 
-    if(cbuf->size == 1)
+    if (cbuf->head == cbuf->tail)
+        return ERR_EMPTY;
+
+    if (cbuf->size == 1)
     {   
         memcpy(element, cbuf->elements, cbuf->element_size);
         return ERR_NONE;
@@ -60,13 +63,13 @@ int cbuf_read(cbuf_t *cbuf, void *element)
 
 int cbuf_write(cbuf_t *cbuf, void *element)
 {
-    if(!cbuf)
+    if (!cbuf)
         return ERR_NULL;
 
-    if(cbuf->size == 0)
+    if (cbuf->size == 0)
         return ERR_EMPTY;
 
-    if(cbuf->size == 1)
+    if (cbuf->size == 1)
     {
         memcpy(cbuf->elements, element, cbuf->element_size);
         return ERR_NONE;
@@ -80,7 +83,7 @@ int cbuf_write(cbuf_t *cbuf, void *element)
 
 int cbuf_clear(cbuf_t *cbuf)
 {
-    if(!cbuf)
+    if (!cbuf)
         return ERR_NULL;
 
     cbuf->head = 0;

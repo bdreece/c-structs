@@ -73,13 +73,15 @@ int vla_push(vla_t *vla, void *element)
     if (!vla)
         return ERR_NULL;
 
-    if (vla->size == vla->capacity)
+    if (vla->size >= vla->capacity)
     {
         if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE)
             return ERR_FAILURE;
     }
 
-    memcpy(vla->elements + (vla->size * vla->element_size), element, vla->element_size);
+    memmove(vla->elements + vla->element_size, vla->elements, vla->element_size * vla->size);
+    memcpy(vla->elements, element, vla->element_size);
+
     vla->size++;
     
     return ERR_NONE;
@@ -87,14 +89,19 @@ int vla_push(vla_t *vla, void *element)
 
 int vla_pop(vla_t *vla, void *element)
 {
+    int i;
     if (!vla)
         return ERR_NULL;
 
     if (vla->size == 0)
         return ERR_EMPTY;
 
+    // Get first element
     memcpy(element, vla->elements, vla->element_size);
-    vla->elements += vla->element_size;
+    
+    // Shift memory block "left" by size of one element
+    memmove(vla->elements, vla->elements + vla->element_size, vla->element_size * vla->size);
+
     vla->size--;
 
     return ERR_NONE;
@@ -105,12 +112,14 @@ int vla_enq(vla_t *vla, void *element)
     if (!vla)
         return ERR_NULL;
 
+    // Resize if necessary
     if (vla->size == vla->capacity)
     {
         if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE)
             return ERR_FAILURE;
     }
 
+    // Append element to list
     memcpy(vla->elements + (vla->size * vla->element_size), element, vla->element_size);
     vla->size++;
 
@@ -150,6 +159,7 @@ int vla_del(vla_t *vla, unsigned long index)
     if (index >= vla->size)
         return ERR_INDEX_OUT_OF_BOUNDS;
 
+    // Move block at index + 1 to index
     memmove(vla->elements + (index * vla->element_size), 
             vla->elements + ((index + 1) * vla->element_size), 
             (vla->size - index - 1) * vla->element_size);
@@ -173,6 +183,7 @@ int vla_ins(vla_t *vla, unsigned long index, void *element)
             return ERR_FAILURE;
     }
 
+    // Make an empty slot at index by shifting index + 1 block right
     memmove(vla->elements + (index * vla->element_size) + vla->element_size,
             vla->elements + (index * vla->element_size),
             (vla->size - index) * vla->element_size);

@@ -43,7 +43,7 @@ int vla_init(struct vla *vla, size_t element_size, unsigned long initial_capacit
 int vla_deinit(struct vla *vla);
 
 /*! \brief VLA push function.
- *  \details This function pushes an element onto the VLA.
+ *  \details This function pushes an element onto the VLA. Time complexity on the order of O(n).
  *  \param[in] vla VLA to push to.
  *  \param[in] element Element to push.
  *  \return Zero on success, non-zero on failure.
@@ -51,7 +51,7 @@ int vla_deinit(struct vla *vla);
 int vla_push(struct vla *vla, void *element);
 
 /*! \brief VLA pop function.
- *  \details This function pops an element from the VLA.
+ *  \details This function pops an element from the VLA. Time complexity on the order of O(n).
  *  \param[in] vla VLA to pop from.
  *  \param[out] element Element to pop.
  *  \return Zero on success, non-zero on failure.
@@ -60,7 +60,7 @@ int vla_pop(struct vla *vla, void *element);
 
 /*! \func vla_enq
  *  \brief VLA enqueue function.
- *  \details This function enqueues an element onto the VLA.
+ *  \details This function enqueues an element onto the VLA. Time complexity on the order of O(1).
  *  \param[in] vla VLA to resize.
  *  \param[in] size New VLA size.
  *  \return Zero on success, non-zero on failure.
@@ -86,7 +86,7 @@ int vla_get(struct vla *vla, unsigned long index, void *element);
 int vla_set(struct vla *vla, unsigned long index, void *element);
 
 /*! \brief VLA insert function.
- *  \details This function inserts an element into the VLA.
+ *  \details This function inserts an element into the VLA. Time complexity on the order of O(n).
  *  \param[in] vla VLA to insert into.
  *  \param[in] index Index to insert at.
  *  \param[in] element Element to insert.
@@ -95,7 +95,7 @@ int vla_set(struct vla *vla, unsigned long index, void *element);
 int vla_ins(struct vla *vla, unsigned long index, void *element);
 
 /*! \brief VLA delete function.
- *  \details This function deletes an element from the VLA.
+ *  \details This function deletes an element from the VLA. Time complexity on the order of O(n).
  *  \param[in] vla VLA to delete from.
  *  \param[in] index Index of element to delete.
  *  \return Zero on success, non-zero on failure.
