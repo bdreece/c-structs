@@ -1,4 +1,5 @@
 prog.json
 .vscode/
 bin/*
+*.o
 
