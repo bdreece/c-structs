@@ -75,7 +75,8 @@ $(function() {
 
 <p>Map data structure implementation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">structs/error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="map_8h_source.html">structs/map.h</a>&quot;</code><br />
@@ -95,9 +96,9 @@ static <a class="el" href="structpair.html">pair_t</a> *&#160;</td><td class="me
 <tr class="memitem:a871d90333da478367ffce489fd85af9c"><td class="memItemLeft" align="right" valign="top"><a id="a871d90333da478367ffce489fd85af9c" name="a871d90333da478367ffce489fd85af9c"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>map_destroy_pair</b> (<a class="el" href="structpair.html">pair_t</a> *p)</td></tr>
 <tr class="separator:a871d90333da478367ffce489fd85af9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6494db909795d99ae8a1af14694755ba"><td class="memItemLeft" align="right" valign="top"><a id="a6494db909795d99ae8a1af14694755ba" name="a6494db909795d99ae8a1af14694755ba"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_init</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity)</td></tr>
-<tr class="separator:a6494db909795d99ae8a1af14694755ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ef1b59a4bfe047da4b5e2f0296c628"><td class="memItemLeft" align="right" valign="top"><a id="a25ef1b59a4bfe047da4b5e2f0296c628" name="a25ef1b59a4bfe047da4b5e2f0296c628"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>map_init</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity,...)</td></tr>
+<tr class="separator:a25ef1b59a4bfe047da4b5e2f0296c628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26f8ca7390fdaa7f67b180e025c41a7"><td class="memItemLeft" align="right" valign="top"><a id="aa26f8ca7390fdaa7f67b180e025c41a7" name="aa26f8ca7390fdaa7f67b180e025c41a7"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>map_deinit</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
 <tr class="separator:aa26f8ca7390fdaa7f67b180e025c41a7"><td class="memSeparator" colspan="2">&#160;</td></tr>

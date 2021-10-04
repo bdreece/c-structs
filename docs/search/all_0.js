@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c_2dstructs_0',['c-structs',['../md_README.html',1,'']]],
+  ['c_2dstructs_0',['c-structs',['../index.html',1,'']]],
   ['capacity_1',['capacity',['../structvla.html#ab1f2f9a1a51231cf8898d063b075944f',1,'vla']]],
   ['cbuf_2',['cbuf',['../structcbuf.html',1,'']]],
   ['cbuf_2ec_3',['cbuf.c',['../cbuf_8c.html',1,'']]],
