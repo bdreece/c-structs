@@ -1,0 +1,4 @@
+#!/bin/bash
+cd out
+ninja -j16 -f build.ninja
+cd ..

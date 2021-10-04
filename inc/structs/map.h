@@ -25,9 +25,10 @@ typedef struct map
   vla_t vla;
   bool sorted;
   size_t key_size, val_size;
+  int (*cmp)(void *, void *, size_t);
 } map_t;
 
-int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity);
+int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity, ...);
 
 int map_deinit(map_t *map);
 
@@ -38,6 +39,10 @@ int map_get(map_t *map, void *key, void *val);
 int map_del(map_t *map, void *key);
 
 int map_clear(map_t *map);
+
+int map_keys(map_t *map, void *keys);
+
+int map_vals(map_t *map, void *vals);
 
 #ifdef __cplusplus
 }

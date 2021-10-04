@@ -1,7 +1,11 @@
-add_executable(demo_vla vla_demo.c)
+add_executable(demo_vla demo_vla.c)
 target_include_directories(demo_vla PUBLIC ../../inc)
 target_link_libraries(demo_vla structs)
 
-add_executable(demo_cbuf cbuf_demo.c)
+add_executable(demo_cbuf demo_cbuf.c)
 target_include_directories(demo_cbuf PUBLIC ../../inc)
 target_link_libraries(demo_cbuf structs)
+
+add_executable(demo_map demo_map.c)
+target_include_directories(demo_map PUBLIC ../../inc)
+target_link_libraries(demo_map structs)

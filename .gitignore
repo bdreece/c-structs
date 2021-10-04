@@ -1,5 +1,4 @@
 prog.json
 .vscode/
-build/*
+out/*
 *.o
-

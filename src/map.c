@@ -4,6 +4,7 @@
  *  \version 0.1.0
  */
 
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -29,7 +30,7 @@ static unsigned long map_binary_search(map_t * map, void *key, unsigned long low
 	if (vla_get(&map->vla, mid, (void *)&pair) < 0)
 		return ERR_FAILURE;
 
-	cmp = memcmp(key, pair.key, map->key_size);
+	cmp = map->cmp(key, pair.key, map->key_size);
 	
 	if (cmp == 0)
 		return mid;
@@ -50,7 +51,7 @@ static unsigned long map_linear_search(map_t *map, void *key, bool err)
 	{
 		if(vla_get(&map->vla, i, (void *)&pair) < 0)
 			return ERR_FAILURE;
-		if(memcmp(key, pair.key, map->key_size) == 0)
+		if(map->cmp(key, pair.key, map->key_size) == 0)
 			return i;
 	}
 
@@ -78,7 +79,7 @@ static int map_destroy_pair(pair_t *p)
 	return ERR_NONE;
 }
 
-int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity)
+int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity, ...)
 {
 	if (!map)
 		return ERR_NULL;
@@ -93,6 +94,11 @@ int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned
 	map->key_size = key_size;
 	map->val_size = val_size;
 
+	va_list args;
+	va_start(args, initial_capacity);
+	map->cmp = va_arg(args, int (*)(void *, void *, size_t));
+	va_end(args);
+
 	return ERR_NONE;
 }
 
@@ -105,6 +111,7 @@ int map_deinit(map_t *map)
 		return ERR_FAILURE;
 
 	map->key_size = map->val_size = 0;
+	map->cmp = NULL;
 
 	return ERR_NONE;
 }
