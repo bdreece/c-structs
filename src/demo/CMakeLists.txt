@@ -13,3 +13,7 @@ target_link_libraries(demo_map structs)
 add_executable(demo_hashmap demo_hashmap.c)
 target_include_directories(demo_hashmap PUBLIC ../../inc)
 target_link_libraries(demo_hashmap structs)
+
+add_executable(demo_tree demo_tree.c)
+target_include_directories(demo_tree PUBLIC ../../inc)
+target_link_libraries(demo_tree structs)
