@@ -9,3 +9,7 @@ target_link_libraries(demo_cbuf structs)
 add_executable(demo_map demo_map.c)
 target_include_directories(demo_map PUBLIC ../../inc)
 target_link_libraries(demo_map structs)
+
+add_executable(demo_hashmap demo_hashmap.c)
+target_include_directories(demo_hashmap PUBLIC ../../inc)
+target_link_libraries(demo_hashmap structs)
