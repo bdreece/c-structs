@@ -1059,6 +1059,11 @@ FILTER_SOURCE_PATTERNS =
 # If the USE_MDFILE_AS_MAINPAGE tag refers to the name of a markdown file that
 # is part of the input, its contents will be placed on the main page
 # (index.html). This can be useful if you have a project on for instance GitHub
+/*! \file hashmap.c
+ *  \brief HashMap data structure implementation
+ *  \author Brian Reece
+ *  \version 0.1.0
+ */
 # and want to reuse the introduction page also for the doxygen output.
 
 USE_MDFILE_AS_MAINPAGE = ./README.md

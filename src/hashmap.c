@@ -31,7 +31,7 @@ static int hashmap_rehash(hashmap_t *map)
     key_size = tmp.key_size;
     val_size = tmp.val_size;
 
-    for (i = 0; i < map->vla.size; i++)
+    for (i = 0; i < vla_size(&map->vla); i++)
     {    
         map_t *new_map = (map_t *)malloc(sizeof(map_t));
         if (map_init(new_map, true, key_size, val_size, map->initial_capacity) < 0)
@@ -41,7 +41,7 @@ static int hashmap_rehash(hashmap_t *map)
 			return ERR_FAILURE;
     }
 
-    map->hash_val = map->vla.size - 1;
+    map->hash_val = vla_size(&map->vla) - 1;
 
     return ERR_NONE;
 }
@@ -49,23 +49,23 @@ static int hashmap_rehash(hashmap_t *map)
 int hashmap_init(hashmap_t *map, size_t key_size, size_t val_size, unsigned long initial_capacity, float load_factor)
 {
 	if (!map)
-		return ERR_NULL;
+	  return ERR_NULL;
 
-	if (key_size < 1 || val_size < 1 || initial_capacity < 1)
-		return ERR_FAILURE;
+	if (key_size < 1 || val_size < 1 || initial_capacity < 1 || load_factor < 0 || load_factor > 1)
+	  return ERR_INVALID_ARG;
 
 	if (vla_init(&map->vla, sizeof(map_t), initial_capacity) < 0)
-		return ERR_FAILURE;
+	  return ERR_FAILURE;
 
 	int i;
-	for (i = 0; i < map->vla.capacity - 1; i++)
+    map_t tmp;
+	if (map_init(&tmp, true, key_size, val_size, initial_capacity) < 0)
+	  return ERR_FAILURE;
+	
+    for (i = 0; i < map->vla.capacity; i++)
 	{
-		map_t *tmp = (map_t *) malloc(sizeof(map_t));
-		if (map_init(tmp, true, key_size, val_size, initial_capacity) < 0)
-			return ERR_FAILURE;
-
-		if (vla_enq(&map->vla, (void *)tmp) < 0)
-			return ERR_FAILURE;
+	  if (vla_enq(&map->vla, (void *)&tmp) < 0)
+		return ERR_FAILURE;
 	}
 
     map->initial_capacity = initial_capacity;
@@ -77,7 +77,14 @@ int hashmap_init(hashmap_t *map, size_t key_size, size_t val_size, unsigned long
 
 int hashmap_deinit(hashmap_t *map)
 {
-	return 0;
+	int i; 
+
+    vla_deinit(&map->vla);
+    map->initial_capacity = 0;
+    map->load_factor = 0;
+    map->hash_val = 0;
+
+    return ERR_NONE;
 }
 
 int hashmap_get(hashmap_t *map, void *key, void *val)
@@ -109,10 +116,13 @@ int hashmap_set(hashmap_t *map, void *key, void *val)
     map_t tmp_map;
 
     if (vla_get(&map->vla, hash_val, (void *)&tmp_map) < 0)
-        return ERR_FAILURE;
+      return ERR_FAILURE;
 
     if (map_set(&tmp_map, key, val) < 0)
-        return ERR_FAILURE;
+      return ERR_FAILURE;
+
+    if (vla_set(&map->vla, hash_val, (void *)&tmp_map) < 0)
+      return ERR_FAILURE;
 
     if (map->load_factor > 0 && tmp_map.vla.size > map->load_factor * tmp_map.vla.capacity)
         if (hashmap_rehash(map) < 0)
