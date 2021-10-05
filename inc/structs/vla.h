@@ -76,6 +76,15 @@ int vla_enq(struct vla *vla, void *element);
  */
 int vla_get(struct vla *vla, unsigned long index, void *element);
 
+/*! \brief VLA get pointer function
+ *  \details This function gets the pointer to an element in the VLA.
+ *  \param[in] vla VLA to get from
+ *  \param[in] index Index of element to get.
+ *  \param[out] element Element to get
+ *  \return Zero on success, non-zero on failure
+ */
+int vla_getp(struct vla *vla, unsigned long index, void *element);
+
 /*! \brief VLA set function.
  *  \details This function sets an element in the VLA.
  *  \param[in] vla VLA to set in.

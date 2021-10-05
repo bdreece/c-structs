@@ -139,6 +139,18 @@ int vla_get(vla_t *vla, unsigned long index, void *element)
     return ERR_NONE;
 }
 
+int vla_getp(vla_t *vla, unsigned long index, void *element)
+{
+  if (!vla)
+    return ERR_NULL;
+
+  if (index >= vla->size)
+    return ERR_INDEX_OUT_OF_BOUNDS;
+
+  element = vla->elements + (index * vla->element_size);
+  return ERR_NONE;
+}
+
 int vla_set(vla_t *vla, unsigned long index, void *element)
 {
     if (!vla)

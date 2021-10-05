@@ -52,7 +52,7 @@ int hashmap_init(hashmap_t *map, size_t key_size, size_t val_size, unsigned long
 	  return ERR_NULL;
 
 	if (key_size < 1 || val_size < 1 || initial_capacity < 1 || load_factor < 0 || load_factor > 1)
-	  return ERR_INVALID_ARG;
+	  return ERR_INVALID_ARGUMENT;
 
 	if (vla_init(&map->vla, sizeof(map_t), initial_capacity) < 0)
 	  return ERR_FAILURE;

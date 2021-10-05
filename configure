@@ -1,3 +1,3 @@
 #!/bin/bash
 mkdir -p out
-cmake -B out -G Ninja .
+cmake -B out -G Ninja $@ .
