@@ -196,3 +196,65 @@ int map_clear(map_t *map)
 
 	return ERR_NONE;
 }
+
+unsigned long map_size(map_t *map)
+{
+  return vla_size(&map->vla);
+}
+
+int map_keys(map_t *map, void *keys)
+{
+  if (!map || !keys)
+    return ERR_NULL;
+
+  int i;
+  pair_t tmp;
+
+  for (i = 0; i < vla_size(&map->vla); i++)
+  {
+    if (vla_get(&map->vla, i, (void *)&tmp) < 0)
+      return ERR_FAILURE;
+
+    memcpy(keys + (i * map->key_size), &tmp.key, map->key_size);
+  }
+
+  return ERR_NONE;
+}
+
+int map_vals(map_t *map, void *vals)
+{
+  if (!map || !vals)
+    return ERR_NULL;
+
+  int i;
+  pair_t tmp;
+
+  for (i = 0; i < vla_size(&map->vla); i++)
+  {
+    if (vla_get(&map->vla, i, (void *)&tmp) < 0)
+      return ERR_FAILURE;
+
+    memcpy(vals + (i * map->val_size), &tmp.val, map->val_size);
+  }
+
+  return ERR_NONE;
+}
+
+int map_pairs(map_t *map, int n, pair_t *pairs)
+{
+  if (!map || !pairs)
+    return ERR_NULL;
+
+  int i;
+  pair_t tmp;
+
+  for (i = 0; i < n; i++)
+  {
+    if (vla_get(&map->vla, i, (void *)&tmp) < 0)
+      return ERR_FAILURE;
+
+    memcpy(pairs + i, &tmp, sizeof(pair_t));
+  }
+
+  return ERR_NONE;
+}

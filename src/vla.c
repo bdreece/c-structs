@@ -52,6 +52,8 @@ int vla_init(vla_t *vla, size_t element_size, unsigned long initial_capacity)
     if (vla->elements == NULL)
         return ERR_FAILURE;
 
+    memset(vla->elements, 0, element_size * initial_capacity);
+
     return ERR_NONE;
 }
 
@@ -210,6 +212,8 @@ int vla_clear(vla_t *vla)
 {
     if (!vla)
         return ERR_NULL;
+
+    memset(vla->elements, 0, vla->capacity);
 
     vla->size = 0;
     return ERR_NONE;

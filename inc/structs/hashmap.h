@@ -18,7 +18,7 @@ extern "C" {
 
 typedef struct hashmap
 {
-    unsigned long hash_val, initial_capacity;
+    unsigned long hash_val, size, initial_capacity;
     float load_factor;
     vla_t vla;
 } hashmap_t;
@@ -32,6 +32,10 @@ int hashmap_get(hashmap_t *map, void *key, void *value);
 int hashmap_set(hashmap_t *map, void *key, void *value);
 
 int hashmap_del(hashmap_t *map, void *key);
+
+int hashmap_clear(hashmap_t *map);
+
+unsigned long hashmap_size(hashmap_t *map);
 
 #ifdef __cplusplus
 }

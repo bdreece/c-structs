@@ -40,9 +40,13 @@ int map_del(map_t *map, void *key);
 
 int map_clear(map_t *map);
 
+unsigned long map_size(map_t *map);
+
 int map_keys(map_t *map, void *keys);
 
 int map_vals(map_t *map, void *vals);
+
+int map_pairs(map_t *map, int n, pair_t *pairs);
 
 #ifdef __cplusplus
 }
