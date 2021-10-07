@@ -23,7 +23,7 @@ static int hashmap_rehash(hashmap_t *map)
         return ERR_NULL;
 
     unsigned long i, key_size, val_size, j = 0;
-    int retval;
+    int retval = 0;
     map_t *tmp;
     pair_t *pairs = (pair_t *) malloc(hashmap_size(map) * sizeof(pair_t));
 
@@ -83,17 +83,16 @@ int hashmap_init(hashmap_t *map, size_t key_size, size_t val_size, unsigned long
 	  return ERR_INVALID_ARGUMENT;
 
 
-	int i, retval;
+	int i, retval = 0;
     map_t tmp;
 
 	if ((retval = vla_init(&map->vla, sizeof(map_t), initial_capacity)) < 0)
 	  return retval;
 	
-    if ((retval = map_init(&tmp, true, key_size, val_size, initial_capacity)) < 0)
-	  return retval;
-	
     for (i = 0; i < map->vla.capacity; i++)
 	{
+      if ((retval = map_init(&tmp, true, key_size, val_size, initial_capacity)) < 0)
+	    return retval;
 	  if ((retval = vla_enq(&map->vla, (void *)&tmp)) < 0)
 		return retval;
 	}
@@ -107,7 +106,7 @@ int hashmap_init(hashmap_t *map, size_t key_size, size_t val_size, unsigned long
 
 int hashmap_deinit(hashmap_t *map)
 {
-  int i, retval; 
+  int i, retval = 0;
   map_t *tmp;
   
   for (i = 0; i < vla_size(&map->vla); i++)
@@ -139,7 +138,7 @@ int hashmap_get(hashmap_t *map, void *key, void *val)
         return ERR_EMPTY;
 
     unsigned long hash_val = hashmap_hash(map, key);
-    int retval;
+    int retval = 0;
     map_t tmp;
     
     if ((retval = vla_get(&map->vla, hash_val, (void *)&tmp)) < 0)
@@ -157,21 +156,18 @@ int hashmap_set(hashmap_t *map, void *key, void *val)
         return ERR_NULL;
 
     unsigned long hash_val = hashmap_hash(map, key);
-    int retval;
-    map_t tmp;
+    int retval = 0;
+    map_t *tmp;
 
-    if ((retval = vla_get(&map->vla, hash_val, (void *)&tmp)) < 0)
+    if ((retval = vla_getp(&map->vla, hash_val, (void *)tmp)) < 0)
       return retval;
 
-    if ((retval = map_set(&tmp, key, val)) < 0)
-      return retval;
-
-    if ((retval = vla_set(&map->vla, hash_val, (void *)&tmp)) < 0)
+    if ((retval = map_set(tmp, key, val)) < 0)
       return retval;
 
     map->size++;
 
-    if (map->load_factor > 0 && tmp.vla.size > map->load_factor * tmp.vla.capacity)
+    if (map->load_factor > 0 && tmp->vla.size > map->load_factor * tmp->vla.capacity)
         if ((retval = hashmap_rehash(map)) < 0)
             return retval;
 
@@ -184,7 +180,7 @@ int hashmap_del(hashmap_t *map, void *key)
         return ERR_NULL;
 
     unsigned long hash_val = hashmap_hash(map, key);
-    int retval;
+    int retval = 0;
     map_t tmp_map;
 
     if ((retval = vla_get(&map->vla, hash_val, (void *)&tmp_map)) < 0)
@@ -203,7 +199,7 @@ int hashmap_clear(hashmap_t *map)
   if (!map)
     return ERR_NULL;
 
-  int i, retval;
+  int i, retval = 0;
   map_t *tmp;
 
   for (i = 0; i < vla_size(&map->vla); i++)

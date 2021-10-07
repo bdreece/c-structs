@@ -1,3 +1,10 @@
 #!/bin/bash
+rm -rf out
+
 mkdir -p out
-cmake -B out -G Ninja $@ .
+
+if [ $1 == "debug" ]; then
+  cmake -DCMAKE_BUILD_TYPE=Debug -B out -G Ninja .
+elif [ $1 == "release" ]; then
+  cmake -B out -G Ninja .
+fi

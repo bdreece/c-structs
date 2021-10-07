@@ -52,7 +52,7 @@ int vla_init(vla_t *vla, size_t element_size, unsigned long initial_capacity)
     if (vla->elements == NULL)
         return ERR_FAILURE;
 
-    memset(vla->elements, 0, element_size * initial_capacity);
+    // memset(vla->elements, 0, element_size * initial_capacity);
 
     return ERR_NONE;
 }
@@ -136,7 +136,8 @@ int vla_get(vla_t *vla, unsigned long index, void *element)
     if (index >= vla->size)
         return ERR_INDEX_OUT_OF_BOUNDS;
     
-    memcpy(element, vla->elements + (index * vla->element_size), vla->element_size);
+    if ((char *)(vla->elements + (index * vla->element_size)) != NULL) 
+      memcpy(element, vla->elements + (index * vla->element_size), vla->element_size);
     
     return ERR_NONE;
 }
