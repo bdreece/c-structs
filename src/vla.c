@@ -203,8 +203,8 @@ int vla_ins(vla_t *vla, unsigned long index, void *element)
             vla->elements + (index * vla->element_size),
             (vla->size - index) * vla->element_size);
 
-    vla->size++;
     memcpy(vla->elements + (index * vla->element_size), element, vla->element_size);
+    vla->size++;
     
     return ERR_NONE;
 }
@@ -220,7 +220,7 @@ int vla_clear(vla_t *vla)
     return ERR_NONE;
 }
 
-unsigned long vla_size(vla_t *vla)
+long vla_size(vla_t *vla)
 {
     if (!vla)
         return ERR_NULL;
@@ -228,7 +228,7 @@ unsigned long vla_size(vla_t *vla)
     return vla->size;
 }
 
-unsigned long vla_capacity(vla_t *vla)
+long vla_capacity(vla_t *vla)
 {
     if (!vla)
         return ERR_NULL;

@@ -181,12 +181,12 @@ int hashmap_del(hashmap_t *map, void *key)
 
     unsigned long hash_val = hashmap_hash(map, key);
     int retval = 0;
-    map_t tmp_map;
+    map_t tmp;
 
-    if ((retval = vla_get(&map->vla, hash_val, (void *)&tmp_map)) < 0)
+    if ((retval = vla_get(&map->vla, hash_val, (void *)&tmp)) < 0)
         return retval;
 
-    if ((retval = map_del(&tmp_map, key)) < 0)
+    if ((retval = map_del(&tmp, key)) < 0)
         return retval;
 
     map->size--;

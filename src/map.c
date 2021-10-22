@@ -12,21 +12,21 @@
 #include "structs/map.h"
 #include "structs/vla.h"
 
-static unsigned long map_binary_search(map_t * map, void *key, unsigned long low, unsigned long high, bool err)
+static long map_binary_search(map_t *map, void *key, long low, long high, bool err)
 {
-	unsigned long mid;
+	long mid;
 	unsigned long cmp;
 	pair_t pair;
 
-	if (low > high)
+	if (low >= high)
 	{
 		if (err) 
 			return ERR_NOT_FOUND;
 		else 
-			return low - 1;
+			return low;
 	}
 
-	mid = (low + high) / 2;
+	mid = (long)((low + high) / 2);
 	if (vla_get(&map->vla, mid, (void *)&pair) < 0)
 		return ERR_FAILURE;
 
@@ -37,17 +37,17 @@ static unsigned long map_binary_search(map_t * map, void *key, unsigned long low
 	else if (cmp < 0)
 		return map_binary_search(map, key, low, mid - 1, err);
 	else
-		return map_binary_search(map, key, mid + 1, high, err);
+		return map_binary_search(map, key, mid, high, err);
 
 	return ERR_FAILURE;
 }
 
-static unsigned long map_linear_search(map_t *map, void *key, bool err)
+static long map_linear_search(map_t *map, void *key, bool err)
 {
 	unsigned long i;
 	pair_t pair;
 
-	for(i = 0; i < map->vla.size; i++)
+	for(i = 0; i < vla_size(&map->vla); i++)
 	{
 		if(vla_get(&map->vla, i, (void *)&pair) < 0)
 			return ERR_FAILURE;
@@ -64,6 +64,9 @@ static pair_t *map_create_pair(map_t *map, void *key, void *val)
 	pair_t *p = (struct pair *) malloc(sizeof(struct pair));
 	p->key = malloc(map->key_size);
 	p->val = malloc(map->val_size);
+
+    memcpy(p->key, key, map->key_size);
+    memcpy(p->val, val, map->val_size);
 
 	return p;
 }
@@ -124,7 +127,7 @@ int map_get(map_t *map, void *key, void *val)
 	if (map->vla.size < 1)
 		return ERR_EMPTY;
 
-	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1, true) : map_linear_search(map, key, true);
+	unsigned long i = map->sorted ? map_binary_search(map, key, 0, vla_size(&map->vla) - 1, true) : map_linear_search(map, key, true);
 	pair_t p;
 
 	if (i < 0)
@@ -144,10 +147,7 @@ int map_set(map_t *map, void *key, void *val)
 	if (!map || !map->vla.elements)
 		return ERR_NULL;
 
-	if (map->vla.size < 1)
-		return ERR_EMPTY;
-
-	unsigned long i = map->sorted ? map_binary_search(map, key, 0, map->vla.size - 1, false) : map_linear_search(map, key, false);
+	unsigned long i = map->sorted ? map_binary_search(map, key, 0, vla_size(&map->vla) - 1, false) : map_linear_search(map, key, false);
 
 	if (i < 0)
 		return ERR_FAILURE;

@@ -123,14 +123,14 @@ int vla_clear(struct vla *vla);
  *  \param[in] vla VLA to get size of.
  *  \return VLA size.
  */
-unsigned long vla_size(struct vla *vla);
+long vla_size(struct vla *vla);
 
 /*! \brief VLA capacity function.
  *  \details This function returns the VLA capacity.
  *  \param[in] vla VLA to get capacity of.
  *  \return VLA capacity.
  */
-unsigned long vla_capacity(struct vla *vla);
+long vla_capacity(struct vla *vla);
 
 #ifdef __cplusplus
 }
