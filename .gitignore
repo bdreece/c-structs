@@ -1,5 +1,5 @@
 prog.json
 .vscode/
 vgcore*
-out/*
+build/*
 *.o

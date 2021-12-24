@@ -11,42 +11,42 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
 #include <stdbool.h>
+#include <stddef.h>
+
 #include "structs/vla.h"
 
-typedef struct pair
-{
+typedef struct pair {
   void *key, *val;
 } pair_t;
 
-typedef struct map
-{
+typedef struct umap {
   vla_t vla;
-  bool sorted;
   size_t key_size, val_size;
-  int (*cmp)(void *, void *, size_t);
-} map_t;
+  int (*cmp)(const void *, const void *, size_t);
+} umap_t;
 
-int map_init(map_t *map, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity, ...);
+int umap_init(umap_t *map, const size_t key_size, const size_t val_size,
+              int (*cmp)(const void *, const void *, size_t),
+              const unsigned long initial_capacity);
 
-int map_deinit(map_t *map);
+int umap_deinit(umap_t *map);
 
-int map_set(map_t *map, void *key, void *val);
+int umap_set(umap_t *map, const void *key, const void *val);
 
-int map_get(map_t *map, void *key, void *val);
+int umap_get(umap_t *map, const void *key, void *val);
 
-int map_del(map_t *map, void *key);
+int umap_del(umap_t *map, const void *key);
 
-int map_clear(map_t *map);
+int umap_clear(umap_t *map);
 
-unsigned long map_size(map_t *map);
+extern long umap_size(umap_t *map);
 
-int map_keys(map_t *map, void *keys);
+int umap_keys(umap_t *map, void *keys);
 
-int map_vals(map_t *map, void *vals);
+int umap_vals(umap_t *map, void *vals);
 
-int map_pairs(map_t *map, int n, pair_t *pairs);
+int umap_pairs(umap_t *map, pair_t *pairs);
 
 #ifdef __cplusplus
 }
