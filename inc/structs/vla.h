@@ -50,9 +50,11 @@ int vla_deinit(struct vla *vla);
 int vla_push(struct vla *vla, void *element);
 
 /*! \brief VLA pop function.
- *  \details This function pops an element from the VLA. Time complexity on the
- * order of O(n). \param[in] vla VLA to pop from. \param[out] element Element to
- * pop. \return Zero on success, non-zero on failure.
+ *  \details This function pops an element from the VLA.
+ *           Time complexity on the order of O(n).
+ *  \param[in] vla VLA to pop from.
+ *  \param[out] element Element to pop.
+ *  \return Zero on success, non-zero on failure.
  */
 int vla_pop(struct vla *vla, void *element);
 
