@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(test_vla_get) {
 
 BOOST_AUTO_TEST_CASE(test_vla_getp) {
   int *val;
-  int ret = vla_getp(&vla, 0, (void *)&val);
+  int ret = vla_getp(&vla, 0, (void **)&val);
 
   BOOST_TEST(ret == 0);
   BOOST_TEST(vla.elements);

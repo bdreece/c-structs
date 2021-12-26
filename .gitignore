@@ -3,3 +3,5 @@ prog.json
 vgcore*
 build/*
 *.o
+Testing/
+.cache/

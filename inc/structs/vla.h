@@ -82,7 +82,7 @@ int vla_get(struct vla *vla, unsigned long index, void *element);
  *  \param[out] element Element to get
  *  \return Zero on success, non-zero on failure
  */
-int vla_getp(struct vla *vla, unsigned long index, void *element);
+int vla_getp(struct vla *vla, unsigned long index, void **element);
 
 /*! \brief VLA set function.
  *  \details This function sets an element in the VLA.

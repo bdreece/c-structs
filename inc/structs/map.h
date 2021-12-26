@@ -36,6 +36,9 @@ int umap_set(umap_t *map, const void *key, const void *val);
 
 int umap_get(umap_t *map, const void *key, void *val);
 
+// TODO: Implement umap_getp
+int umap_getp(umap_t *map, const void *key, void **val);
+
 int umap_del(umap_t *map, const void *key);
 
 int umap_clear(umap_t *map);

@@ -17,7 +17,7 @@ static long umap_search(umap_t *map, const void *key) {
 
   for (i = 0; i < umap_size(map); i++) {
     // we don't take ownership of p here
-    if (vla_getp(&map->vla, i, (void *)p) < 0)
+    if (vla_getp(&map->vla, i, (void *)&p) < 0)
       return ERR_FAILURE;
     if (map->cmp(key, p->key, map->key_size) == 0)
       return i;
@@ -70,7 +70,7 @@ int umap_deinit(umap_t *map) {
   int i;
   pair_t *p;
   for (i = 0; i < umap_size(map); i++) {
-    if (vla_getp(&map->vla, i, (void *)p) < 0)
+    if (vla_getp(&map->vla, i, (void *)&p) < 0)
       return ERR_FAILURE;
     if (map_destroy_pair(p) < 0)
       return ERR_FAILURE;
@@ -120,7 +120,7 @@ int umap_get(umap_t *map, const void *key, void *val) {
 
   pair_t *p;
   // vla_getp to avoid double copy
-  if (vla_getp(&map->vla, i, (void *)p) < 0)
+  if (vla_getp(&map->vla, i, (void *)&p) < 0)
     return ERR_FAILURE;
 
   memcpy(val, p->val, map->val_size);
@@ -142,7 +142,7 @@ int umap_del(umap_t *map, const void *key) {
 
   pair_t *p;
   // vla_getp to access heap pointer, instead of copying
-  if (vla_getp(&map->vla, i, (void *)p) < 0)
+  if (vla_getp(&map->vla, i, (void *)&p) < 0)
     return ERR_FAILURE;
 
   if (map_destroy_pair(p) < 0)
@@ -175,7 +175,7 @@ int umap_keys(umap_t *map, void *keys) {
 
   for (i = 0; i < umap_size(map); i++) {
     // vla_getp for subsequent copy, to avoid double copying
-    if (vla_getp(&map->vla, i, (void *)p) < 0)
+    if (vla_getp(&map->vla, i, (void *)&p) < 0)
       return ERR_FAILURE;
 
     memcpy(keys + (i * map->key_size), p->key, map->key_size);
@@ -192,7 +192,7 @@ int umap_vals(umap_t *map, void *vals) {
   pair_t *p;
 
   for (i = 0; i < umap_size(map); i++) {
-    if (vla_getp(&map->vla, i, (void *)p) < 0)
+    if (vla_getp(&map->vla, i, (void *)&p) < 0)
       return ERR_FAILURE;
 
     memcpy(vals + (i * map->val_size), p->val, map->val_size);
@@ -209,7 +209,7 @@ int umap_pairs(umap_t *map, pair_t *pairs) {
   pair_t *p;
 
   for (i = 0; i < umap_size(map); i++) {
-    if (vla_getp(&map->vla, i, (void *)p) < 0)
+    if (vla_getp(&map->vla, i, (void *)&p) < 0)
       return ERR_FAILURE;
 
     memcpy(pairs + i, p, sizeof(pair_t));

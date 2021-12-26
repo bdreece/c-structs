@@ -50,7 +50,7 @@ int vla_init(vla_t *vla, size_t element_size, unsigned long initial_capacity) {
   if (vla->elements == NULL)
     return ERR_FAILURE;
 
-  // memset(vla->elements, 0, element_size * initial_capacity);
+  memset(vla->elements, 0, element_size * initial_capacity);
 
   return ERR_NONE;
 }
@@ -63,6 +63,9 @@ int vla_deinit(vla_t *vla) {
     free(vla->elements);
 
   vla->elements = NULL;
+  vla->element_size = 0;
+  vla->size = 0;
+  vla->capacity = 0;
 
   return ERR_NONE;
 }
@@ -137,14 +140,14 @@ int vla_get(vla_t *vla, unsigned long index, void *restrict element) {
   return ERR_NONE;
 }
 
-int vla_getp(vla_t *vla, unsigned long index, void *element) {
+int vla_getp(vla_t *vla, unsigned long index, void **element) {
   if (!vla)
     return ERR_NULL;
 
   if (index >= vla->size)
     return ERR_INDEX_OUT_OF_BOUNDS;
 
-  element = vla->elements + (index * vla->element_size);
+  *element = vla->elements + (index * vla->element_size);
   return ERR_NONE;
 }
 
@@ -205,7 +208,7 @@ int vla_clear(vla_t *vla) {
   if (!vla)
     return ERR_NULL;
 
-  memset(vla->elements, 0, vla->capacity);
+  memset(vla->elements, 0, vla->element_size * vla->capacity);
 
   vla->size = 0;
   return ERR_NONE;
