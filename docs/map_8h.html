@@ -77,8 +77,8 @@ $(function() {
 
 <p>Map data structure.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="vla_8h_source.html">structs/vla.h</a>&quot;</code><br />
 </div>
 <p><a href="map_8h_source.html">Go to the source code of this file.</a></p>
@@ -87,7 +87,7 @@ $(function() {
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpair.html">pair</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmap.html">map</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structumap.html">umap</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -95,42 +95,45 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a401e2aca7327d07b7c928ba03142f4e3"><td class="memItemLeft" align="right" valign="top"><a id="a401e2aca7327d07b7c928ba03142f4e3" name="a401e2aca7327d07b7c928ba03142f4e3"></a>
 typedef struct <a class="el" href="structpair.html">pair</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pair_t</b></td></tr>
 <tr class="separator:a401e2aca7327d07b7c928ba03142f4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b2ae5fc86c11f192bf536c2f96060c3"><td class="memItemLeft" align="right" valign="top"><a id="a3b2ae5fc86c11f192bf536c2f96060c3" name="a3b2ae5fc86c11f192bf536c2f96060c3"></a>
-typedef struct <a class="el" href="structmap.html">map</a>&#160;</td><td class="memItemRight" valign="bottom"><b>map_t</b></td></tr>
-<tr class="separator:a3b2ae5fc86c11f192bf536c2f96060c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdaa2dc4f990cf8c989896ec67f48351"><td class="memItemLeft" align="right" valign="top"><a id="afdaa2dc4f990cf8c989896ec67f48351" name="afdaa2dc4f990cf8c989896ec67f48351"></a>
+typedef struct <a class="el" href="structumap.html">umap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>umap_t</b></td></tr>
+<tr class="separator:afdaa2dc4f990cf8c989896ec67f48351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a25ef1b59a4bfe047da4b5e2f0296c628"><td class="memItemLeft" align="right" valign="top"><a id="a25ef1b59a4bfe047da4b5e2f0296c628" name="a25ef1b59a4bfe047da4b5e2f0296c628"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_init</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, bool sorted, size_t key_size, size_t val_size, unsigned long initial_capacity,...)</td></tr>
-<tr class="separator:a25ef1b59a4bfe047da4b5e2f0296c628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa26f8ca7390fdaa7f67b180e025c41a7"><td class="memItemLeft" align="right" valign="top"><a id="aa26f8ca7390fdaa7f67b180e025c41a7" name="aa26f8ca7390fdaa7f67b180e025c41a7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_deinit</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
-<tr class="separator:aa26f8ca7390fdaa7f67b180e025c41a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a481a985de327eeed8f318d387ed6ccb1"><td class="memItemLeft" align="right" valign="top"><a id="a481a985de327eeed8f318d387ed6ccb1" name="a481a985de327eeed8f318d387ed6ccb1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_set</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, void *key, void *val)</td></tr>
-<tr class="separator:a481a985de327eeed8f318d387ed6ccb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7f8e3534b9c3c54b8043b5214c81899"><td class="memItemLeft" align="right" valign="top"><a id="ac7f8e3534b9c3c54b8043b5214c81899" name="ac7f8e3534b9c3c54b8043b5214c81899"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_get</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, void *key, void *val)</td></tr>
-<tr class="separator:ac7f8e3534b9c3c54b8043b5214c81899"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f5518510c4a4735245a8bec9dff02a6"><td class="memItemLeft" align="right" valign="top"><a id="a7f5518510c4a4735245a8bec9dff02a6" name="a7f5518510c4a4735245a8bec9dff02a6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_del</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, void *key)</td></tr>
-<tr class="separator:a7f5518510c4a4735245a8bec9dff02a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6b2b37571d973151f8fb9070f02a549"><td class="memItemLeft" align="right" valign="top"><a id="ac6b2b37571d973151f8fb9070f02a549" name="ac6b2b37571d973151f8fb9070f02a549"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_clear</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
-<tr class="separator:ac6b2b37571d973151f8fb9070f02a549"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7f6b46d6e283809f3f63126fabf35bf"><td class="memItemLeft" align="right" valign="top"><a id="ab7f6b46d6e283809f3f63126fabf35bf" name="ab7f6b46d6e283809f3f63126fabf35bf"></a>
-unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>map_size</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
-<tr class="separator:ab7f6b46d6e283809f3f63126fabf35bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ea5a220172f2ff2f2d0fa2f30d9ef66"><td class="memItemLeft" align="right" valign="top"><a id="a8ea5a220172f2ff2f2d0fa2f30d9ef66" name="a8ea5a220172f2ff2f2d0fa2f30d9ef66"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_keys</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, void *keys)</td></tr>
-<tr class="separator:a8ea5a220172f2ff2f2d0fa2f30d9ef66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e97408bfa3763fd92141b1a5f232dcd"><td class="memItemLeft" align="right" valign="top"><a id="a8e97408bfa3763fd92141b1a5f232dcd" name="a8e97408bfa3763fd92141b1a5f232dcd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_vals</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, void *vals)</td></tr>
-<tr class="separator:a8e97408bfa3763fd92141b1a5f232dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b5a5d893d9411d0f485dca1ff706159"><td class="memItemLeft" align="right" valign="top"><a id="a2b5a5d893d9411d0f485dca1ff706159" name="a2b5a5d893d9411d0f485dca1ff706159"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>map_pairs</b> (<a class="el" href="structmap.html">map_t</a> *<a class="el" href="structmap.html">map</a>, int n, <a class="el" href="structpair.html">pair_t</a> *pairs)</td></tr>
-<tr class="separator:a2b5a5d893d9411d0f485dca1ff706159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cfdaf1903ed8323a5a6ea9b78f1018b"><td class="memItemLeft" align="right" valign="top"><a id="a2cfdaf1903ed8323a5a6ea9b78f1018b" name="a2cfdaf1903ed8323a5a6ea9b78f1018b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_init</b> (<a class="el" href="structumap.html">umap_t</a> *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), const unsigned long initial_capacity)</td></tr>
+<tr class="separator:a2cfdaf1903ed8323a5a6ea9b78f1018b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092a5071ad6f597d000c440e0b8d3566"><td class="memItemLeft" align="right" valign="top"><a id="a092a5071ad6f597d000c440e0b8d3566" name="a092a5071ad6f597d000c440e0b8d3566"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_deinit</b> (<a class="el" href="structumap.html">umap_t</a> *map)</td></tr>
+<tr class="separator:a092a5071ad6f597d000c440e0b8d3566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf91cb22c82249c5a95c62113cd70f8"><td class="memItemLeft" align="right" valign="top"><a id="abdf91cb22c82249c5a95c62113cd70f8" name="abdf91cb22c82249c5a95c62113cd70f8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_set</b> (<a class="el" href="structumap.html">umap_t</a> *map, const void *key, const void *val)</td></tr>
+<tr class="separator:abdf91cb22c82249c5a95c62113cd70f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00098a2f116bfc720dd84745d507878"><td class="memItemLeft" align="right" valign="top"><a id="ac00098a2f116bfc720dd84745d507878" name="ac00098a2f116bfc720dd84745d507878"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_get</b> (<a class="el" href="structumap.html">umap_t</a> *map, const void *key, void *val)</td></tr>
+<tr class="separator:ac00098a2f116bfc720dd84745d507878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a109f7eb6d2d9fdb2d1b945d8c4f28b57"><td class="memItemLeft" align="right" valign="top"><a id="a109f7eb6d2d9fdb2d1b945d8c4f28b57" name="a109f7eb6d2d9fdb2d1b945d8c4f28b57"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_getp</b> (<a class="el" href="structumap.html">umap_t</a> *map, const void *key, void **val)</td></tr>
+<tr class="separator:a109f7eb6d2d9fdb2d1b945d8c4f28b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accb77ba7c761572b4654fb0e88ad8529"><td class="memItemLeft" align="right" valign="top"><a id="accb77ba7c761572b4654fb0e88ad8529" name="accb77ba7c761572b4654fb0e88ad8529"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_del</b> (<a class="el" href="structumap.html">umap_t</a> *map, const void *key)</td></tr>
+<tr class="separator:accb77ba7c761572b4654fb0e88ad8529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b1dc801db59b8ec027fb561bd5da49"><td class="memItemLeft" align="right" valign="top"><a id="a31b1dc801db59b8ec027fb561bd5da49" name="a31b1dc801db59b8ec027fb561bd5da49"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_clear</b> (<a class="el" href="structumap.html">umap_t</a> *map)</td></tr>
+<tr class="separator:a31b1dc801db59b8ec027fb561bd5da49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e043ac336b88517277a7e41954538d8"><td class="memItemLeft" align="right" valign="top"><a id="a3e043ac336b88517277a7e41954538d8" name="a3e043ac336b88517277a7e41954538d8"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>umap_size</b> (<a class="el" href="structumap.html">umap_t</a> *map)</td></tr>
+<tr class="separator:a3e043ac336b88517277a7e41954538d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01cb9a2bbe0b26544cc5b32f95db35e7"><td class="memItemLeft" align="right" valign="top"><a id="a01cb9a2bbe0b26544cc5b32f95db35e7" name="a01cb9a2bbe0b26544cc5b32f95db35e7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_keys</b> (<a class="el" href="structumap.html">umap_t</a> *map, void *keys)</td></tr>
+<tr class="separator:a01cb9a2bbe0b26544cc5b32f95db35e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdafe591f25897e19b6c27e5a50c9d02"><td class="memItemLeft" align="right" valign="top"><a id="abdafe591f25897e19b6c27e5a50c9d02" name="abdafe591f25897e19b6c27e5a50c9d02"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_vals</b> (<a class="el" href="structumap.html">umap_t</a> *map, void *vals)</td></tr>
+<tr class="separator:abdafe591f25897e19b6c27e5a50c9d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04be874535f4be445d774da03ea93133"><td class="memItemLeft" align="right" valign="top"><a id="a04be874535f4be445d774da03ea93133" name="a04be874535f4be445d774da03ea93133"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>umap_pairs</b> (<a class="el" href="structumap.html">umap_t</a> *map, <a class="el" href="structpair.html">pair_t</a> *pairs)</td></tr>
+<tr class="separator:a04be874535f4be445d774da03ea93133"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Map data structure. </p>

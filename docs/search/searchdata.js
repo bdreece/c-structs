@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "cehmnpstv",
-  1: "chmnptv",
-  2: "cehmtv",
+  0: "cehlmpstuv",
+  1: "cpuv",
+  2: "cemv",
   3: "cv",
   4: "cehst",
   5: "cv",
   6: "e",
-  7: "c"
+  7: "l"
 };
 
 var indexSectionNames =
