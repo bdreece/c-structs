@@ -1,6 +1,7 @@
 # libstructs
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bdreece/libstructs/CMake)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/bdreece/libstructs?include_prereleases)
 
 Cross-platform C99 implementation of classic data structures.
 
