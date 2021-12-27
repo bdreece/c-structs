@@ -11,7 +11,7 @@
 #include "structs/map.h"
 #include "structs/vla.h"
 
-static long umap_search(umap_t *map, const void *key) {
+static long umap_search(map_t *map, const void *key) {
   unsigned long i;
   pair_t *p;
 
@@ -26,7 +26,7 @@ static long umap_search(umap_t *map, const void *key) {
   return map->vla.size;
 }
 
-static pair_t map_create_pair(umap_t *map, const void *key, const void *val) {
+static pair_t map_create_pair(map_t *map, const void *key, const void *val) {
   pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
 
   memcpy(p.key, key, map->key_size);
@@ -44,7 +44,7 @@ static inline int map_destroy_pair(pair_t *p) {
   return ERR_NONE;
 }
 
-int umap_init(umap_t *map, const size_t key_size, const size_t val_size,
+int umap_init(map_t *map, const size_t key_size, const size_t val_size,
               int (*cmp)(const void *, const void *, size_t),
               const unsigned long initial_capacity) {
   if (!map)
@@ -63,7 +63,7 @@ int umap_init(umap_t *map, const size_t key_size, const size_t val_size,
   return ERR_NONE;
 }
 
-int umap_deinit(umap_t *map) {
+int umap_deinit(map_t *map) {
   if (!map)
     return ERR_NULL;
 
@@ -85,7 +85,7 @@ int umap_deinit(umap_t *map) {
   return ERR_NONE;
 }
 
-int umap_set(umap_t *map, const void *key, const void *val) {
+int umap_set(map_t *map, const void *key, const void *val) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -106,7 +106,7 @@ int umap_set(umap_t *map, const void *key, const void *val) {
   return ERR_NONE;
 }
 
-int umap_get(umap_t *map, const void *key, void *val) {
+int umap_get(map_t *map, const void *key, void *val) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -128,7 +128,7 @@ int umap_get(umap_t *map, const void *key, void *val) {
   return ERR_NONE;
 }
 
-int umap_del(umap_t *map, const void *key) {
+int umap_del(map_t *map, const void *key) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -154,7 +154,7 @@ int umap_del(umap_t *map, const void *key) {
   return ERR_NONE;
 }
 
-int umap_clear(umap_t *map) {
+int umap_clear(map_t *map) {
   if (!map || !map->vla.elements)
     return ERR_FAILURE;
 
@@ -164,9 +164,9 @@ int umap_clear(umap_t *map) {
   return ERR_NONE;
 }
 
-inline long umap_size(umap_t *map) { return vla_size(&map->vla); }
+inline long umap_size(map_t *map) { return vla_size(&map->vla); }
 
-int umap_keys(umap_t *map, void *keys) {
+int umap_keys(map_t *map, void *keys) {
   if (!map || !keys)
     return ERR_NULL;
 
@@ -184,7 +184,7 @@ int umap_keys(umap_t *map, void *keys) {
   return ERR_NONE;
 }
 
-int umap_vals(umap_t *map, void *vals) {
+int umap_vals(map_t *map, void *vals) {
   if (!map || !vals)
     return ERR_NULL;
 
@@ -201,7 +201,7 @@ int umap_vals(umap_t *map, void *vals) {
   return ERR_NONE;
 }
 
-int umap_pairs(umap_t *map, pair_t *pairs) {
+int umap_pairs(map_t *map, pair_t *pairs) {
   if (!map || !pairs)
     return ERR_NULL;
 
