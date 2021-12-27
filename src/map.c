@@ -85,7 +85,7 @@ int map_deinit(map_t *map) {
   return ERR_NONE;
 }
 
-int umap_set(map_t *map, const void *key, const void *val) {
+int map_set(map_t *map, const void *key, const void *val) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -106,12 +106,7 @@ int umap_set(map_t *map, const void *key, const void *val) {
   return ERR_NONE;
 }
 
-// TODO: omap_set
-int omap_set(map_t *map, const void *key, const void *val) {
-  return 0;
-}
-
-int umap_get(map_t *map, const void *key, void *val) {
+int map_get(map_t *map, const void *key, void *val) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -133,22 +128,12 @@ int umap_get(map_t *map, const void *key, void *val) {
   return ERR_NONE;
 }
 
-// TODO: omap_get
-int omap_get(map_t *map, const void *key, void *val) {
+// TODO: map_getp
+int map_getp(map_t *map, const void *key, void **val) {
   return 0;
 }
 
-// TODO: umap_getp
-int umap_getp(map_t *map, const void *key, void **val) {
-  return 0;
-}
-
-// TODO: omap_getp
-int omap_getp(map_t *map, const void *key, void **val) {
-  return 0;
-}
-
-int umap_del(map_t *map, const void *key) {
+int map_del(map_t *map, const void *key) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
 
@@ -172,11 +157,6 @@ int umap_del(map_t *map, const void *key) {
     return ERR_FAILURE;
 
   return ERR_NONE;
-}
-
-// TODO: omap_del
-int omap_del(map_t *map, const void *key) {
-  return 0;
 }
 
 int map_clear(map_t *map) {

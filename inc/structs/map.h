@@ -23,6 +23,7 @@ typedef struct pair {
 typedef struct map {
   vla_t vla;
   size_t key_size, val_size;
+  bool ordered;
   int (*cmp)(const void *, const void *, size_t);
 } map_t;
 
@@ -32,22 +33,13 @@ int map_init(map_t *map, const size_t key_size, const size_t val_size,
 
 int map_deinit(map_t *map);
 
-int umap_set(map_t *map, const void *key, const void *val);
+int map_set(map_t *map, const void *key, const void *val);
 
-int omap_set(map_t *map, const void *key, const void *val)
+int map_get(map_t *map, const void *key, void *val);
 
-int umap_get(map_t *map, const void *key, void *val);
+int map_getp(map_t *map, const void *key, void **val);
 
-int omap_get(map_t *map, const void *key, void *val);
-
-// TODO: Implement umap_get, omap_getp
-int umap_getp(map_t *map, const void *key, void **val);
-
-int omap_getp(map_t *map, const void *key, void **val);
-
-int umap_del(map_t *map, const void *key);
-
-int omap_del(map_t *map, const void *key);
+int map_del(map_t *map, const void *key);
 
 int map_clear(map_t *map);
 
