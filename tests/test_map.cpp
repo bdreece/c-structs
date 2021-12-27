@@ -79,6 +79,79 @@ BOOST_AUTO_TEST_CASE(test_umap_getp) {
   BOOST_TEST(*val == 1);
 }
 
+BOOST_AUTO_TEST_CASE(test_umap_keys) {
+  vla_t keys;
+
+  int ret = vla_init(&keys, sizeof(char), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_keys(&map, &keys);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  char *key;
+  ret = vla_getp(&keys, 0, (void **)&key);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*key == 'a');
+}
+
+BOOST_AUTO_TEST_CASE(test_umap_vals) {
+  vla_t vals;
+
+  int ret = vla_init(&vals, sizeof(int), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_vals(&map, &vals);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  int *val;
+  ret = vla_getp(&vals, 0, (void **)&val);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*val == 1);
+}
+
+BOOST_AUTO_TEST_CASE(test_umap_pairs) {
+  vla_t pairs;
+
+  int ret = vla_init(&pairs, sizeof(pair_t), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_pairs(&map, &pairs);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  pair_t *pair;
+  ret = vla_getp(&pairs, 0, (void **)&pair);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*(char *)pair->key == 'a');
+  BOOST_TEST(*(int *)pair->val == 1);
+}
+
 BOOST_AUTO_TEST_CASE(test_umap_del) {
   char key = 'a';
 
@@ -183,6 +256,79 @@ BOOST_AUTO_TEST_CASE(test_omap_getp) {
   BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
 
   BOOST_TEST(*val == 1);
+}
+
+BOOST_AUTO_TEST_CASE(test_omap_keys) {
+  vla_t keys;
+
+  int ret = vla_init(&keys, sizeof(char), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_keys(&map, &keys);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  char *key;
+  ret = vla_getp(&keys, 0, (void **)&key);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*key == 'a');
+}
+
+BOOST_AUTO_TEST_CASE(test_omap_vals) {
+  vla_t vals;
+
+  int ret = vla_init(&vals, sizeof(int), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_vals(&map, &vals);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  int *val;
+  ret = vla_getp(&vals, 0, (void **)&val);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*val == 1);
+}
+
+BOOST_AUTO_TEST_CASE(test_omap_pairs) {
+  vla_t pairs;
+
+  int ret = vla_init(&pairs, sizeof(pair_t), 1);
+  BOOST_TEST(ret == 0);
+
+  ret = map_pairs(&map, &pairs);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(map.vla.elements);
+  BOOST_TEST(map.vla.size == 1);
+  BOOST_TEST(map.vla.capacity == 10);
+  BOOST_TEST(map.key_size == sizeof(char));
+  BOOST_TEST(map.val_size == sizeof(int));
+  BOOST_TEST(map.cmp == cmp);
+  BOOST_TEST(map.search != (long (*)(const struct map *, const void *))NULL);
+
+  pair_t *pair;
+  ret = vla_getp(&pairs, 0, (void **)&pair);
+
+  BOOST_TEST(ret == 0);
+  BOOST_TEST(*(char *)pair->key == 'a');
+  BOOST_TEST(*(int *)pair->val == 1);
 }
 
 BOOST_AUTO_TEST_CASE(test_omap_del) {
