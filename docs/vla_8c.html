@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.1-alpha</span>
+   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.2-alpha</span>
    </div>
    <div id="projectbrief">Implementation of classic data structures in C99</div>
   </td>
@@ -85,53 +85,53 @@ Functions</h2></td></tr>
 <tr class="memitem:a958277e3b0c9a981de2d8a32ef7a12ff"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a958277e3b0c9a981de2d8a32ef7a12ff">vla_resize</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long capacity)</td></tr>
 <tr class="memdesc:a958277e3b0c9a981de2d8a32ef7a12ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize a variable length array.  <a href="vla_8c.html#a958277e3b0c9a981de2d8a32ef7a12ff">More...</a><br /></td></tr>
 <tr class="separator:a958277e3b0c9a981de2d8a32ef7a12ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f134fefed57b1439baefde2681b9197"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a6f134fefed57b1439baefde2681b9197">vla_init</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, size_t element_size, unsigned long initial_capacity)</td></tr>
-<tr class="memdesc:a6f134fefed57b1439baefde2681b9197"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA construction function.  <a href="vla_8c.html#a6f134fefed57b1439baefde2681b9197">More...</a><br /></td></tr>
-<tr class="separator:a6f134fefed57b1439baefde2681b9197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee50eef545fd12e8871a304ca3bb7066"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#aee50eef545fd12e8871a304ca3bb7066">vla_init</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const size_t element_size, const long initial_capacity)</td></tr>
+<tr class="memdesc:aee50eef545fd12e8871a304ca3bb7066"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA construction function.  <a href="vla_8c.html#aee50eef545fd12e8871a304ca3bb7066">More...</a><br /></td></tr>
+<tr class="separator:aee50eef545fd12e8871a304ca3bb7066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ea3f4a4ac8a3aa4233b1552e474fe95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a0ea3f4a4ac8a3aa4233b1552e474fe95">vla_deinit</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
 <tr class="memdesc:a0ea3f4a4ac8a3aa4233b1552e474fe95"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA destruction function.  <a href="vla_8c.html#a0ea3f4a4ac8a3aa4233b1552e474fe95">More...</a><br /></td></tr>
 <tr class="separator:a0ea3f4a4ac8a3aa4233b1552e474fe95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bf4ab015ec955a99f70f51a97b7a06f"><td class="memItemLeft" align="right" valign="top"><a id="a9bf4ab015ec955a99f70f51a97b7a06f" name="a9bf4ab015ec955a99f70f51a97b7a06f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_push</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, void *restrict element)</td></tr>
-<tr class="separator:a9bf4ab015ec955a99f70f51a97b7a06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff40fce63bdad0ec610348d0ab49ba40"><td class="memItemLeft" align="right" valign="top"><a id="aff40fce63bdad0ec610348d0ab49ba40" name="aff40fce63bdad0ec610348d0ab49ba40"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_push</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const void *restrict element)</td></tr>
+<tr class="separator:aff40fce63bdad0ec610348d0ab49ba40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7b286eba3c1ede6e8d6bb9c0a81c82e"><td class="memItemLeft" align="right" valign="top"><a id="ab7b286eba3c1ede6e8d6bb9c0a81c82e" name="ab7b286eba3c1ede6e8d6bb9c0a81c82e"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_pop</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, void *restrict element)</td></tr>
 <tr class="separator:ab7b286eba3c1ede6e8d6bb9c0a81c82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a296bd402f866f2f57b5b9d8027202202"><td class="memItemLeft" align="right" valign="top"><a id="a296bd402f866f2f57b5b9d8027202202" name="a296bd402f866f2f57b5b9d8027202202"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_enq</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, void *restrict element)</td></tr>
-<tr class="separator:a296bd402f866f2f57b5b9d8027202202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a250e9449fc57dbf34616a787f2569fa4"><td class="memItemLeft" align="right" valign="top"><a id="a250e9449fc57dbf34616a787f2569fa4" name="a250e9449fc57dbf34616a787f2569fa4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_get</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long index, void *restrict element)</td></tr>
-<tr class="separator:a250e9449fc57dbf34616a787f2569fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1540139291568f131ce03e08eab906e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a1540139291568f131ce03e08eab906e3">vla_getp</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long index, void **element)</td></tr>
-<tr class="memdesc:a1540139291568f131ce03e08eab906e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA get pointer function.  <a href="vla_8c.html#a1540139291568f131ce03e08eab906e3">More...</a><br /></td></tr>
-<tr class="separator:a1540139291568f131ce03e08eab906e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45e56aff8c2702fb17a249ee32438c0c"><td class="memItemLeft" align="right" valign="top"><a id="a45e56aff8c2702fb17a249ee32438c0c" name="a45e56aff8c2702fb17a249ee32438c0c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_set</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long index, void *restrict element)</td></tr>
-<tr class="separator:a45e56aff8c2702fb17a249ee32438c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d65a63b3087ecfa0a694136e482d47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#ad1d65a63b3087ecfa0a694136e482d47">vla_del</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long index)</td></tr>
-<tr class="memdesc:ad1d65a63b3087ecfa0a694136e482d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA delete function.  <a href="vla_8c.html#ad1d65a63b3087ecfa0a694136e482d47">More...</a><br /></td></tr>
-<tr class="separator:ad1d65a63b3087ecfa0a694136e482d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35c4f8fee81ecee01e94f10d3725c62"><td class="memItemLeft" align="right" valign="top"><a id="ac35c4f8fee81ecee01e94f10d3725c62" name="ac35c4f8fee81ecee01e94f10d3725c62"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, unsigned long index, void *restrict element)</td></tr>
-<tr class="separator:ac35c4f8fee81ecee01e94f10d3725c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2791512a520b3382da1a224f9a1a74dd"><td class="memItemLeft" align="right" valign="top"><a id="a2791512a520b3382da1a224f9a1a74dd" name="a2791512a520b3382da1a224f9a1a74dd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_enq</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const void *restrict element)</td></tr>
+<tr class="separator:a2791512a520b3382da1a224f9a1a74dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb30a104f49fd5ecc62a7dcb7bb70d6"><td class="memItemLeft" align="right" valign="top"><a id="a5fb30a104f49fd5ecc62a7dcb7bb70d6" name="a5fb30a104f49fd5ecc62a7dcb7bb70d6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_get</b> (const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const long index, void *restrict element)</td></tr>
+<tr class="separator:a5fb30a104f49fd5ecc62a7dcb7bb70d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c718efd93233dc3f2094ce8e6cc01f"><td class="memItemLeft" align="right" valign="top"><a id="a20c718efd93233dc3f2094ce8e6cc01f" name="a20c718efd93233dc3f2094ce8e6cc01f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_getp</b> (const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const long index, void **restrict element)</td></tr>
+<tr class="separator:a20c718efd93233dc3f2094ce8e6cc01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad79e0e2b3cdafcfd9b3eb681346ea9db"><td class="memItemLeft" align="right" valign="top"><a id="ad79e0e2b3cdafcfd9b3eb681346ea9db" name="ad79e0e2b3cdafcfd9b3eb681346ea9db"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_set</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const long index, const void *restrict element)</td></tr>
+<tr class="separator:ad79e0e2b3cdafcfd9b3eb681346ea9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2321ae9071c5922203cf727f6b8383f"><td class="memItemLeft" align="right" valign="top"><a id="af2321ae9071c5922203cf727f6b8383f" name="af2321ae9071c5922203cf727f6b8383f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const long index, const void *restrict element)</td></tr>
+<tr class="separator:af2321ae9071c5922203cf727f6b8383f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d1286b2c0e90cbb3fb01b50682fa60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a09d1286b2c0e90cbb3fb01b50682fa60">vla_del</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>, const long index)</td></tr>
+<tr class="memdesc:a09d1286b2c0e90cbb3fb01b50682fa60"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA delete function.  <a href="vla_8c.html#a09d1286b2c0e90cbb3fb01b50682fa60">More...</a><br /></td></tr>
+<tr class="separator:a09d1286b2c0e90cbb3fb01b50682fa60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac200260f6a6dbbd73cdae9004dd093f4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#ac200260f6a6dbbd73cdae9004dd093f4">vla_clear</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
 <tr class="memdesc:ac200260f6a6dbbd73cdae9004dd093f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA clear function.  <a href="vla_8c.html#ac200260f6a6dbbd73cdae9004dd093f4">More...</a><br /></td></tr>
 <tr class="separator:ac200260f6a6dbbd73cdae9004dd093f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c7c583284984c17271fae12c0a5cf0a"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a9c7c583284984c17271fae12c0a5cf0a">vla_size</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
-<tr class="memdesc:a9c7c583284984c17271fae12c0a5cf0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA size function.  <a href="vla_8c.html#a9c7c583284984c17271fae12c0a5cf0a">More...</a><br /></td></tr>
-<tr class="separator:a9c7c583284984c17271fae12c0a5cf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef0f4412acd5fa26221d4aa92351588e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#aef0f4412acd5fa26221d4aa92351588e">vla_capacity</a> (<a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
-<tr class="memdesc:aef0f4412acd5fa26221d4aa92351588e"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA capacity function.  <a href="vla_8c.html#aef0f4412acd5fa26221d4aa92351588e">More...</a><br /></td></tr>
-<tr class="separator:aef0f4412acd5fa26221d4aa92351588e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b2491d70e2b342fa33e677fff1e820"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#ae6b2491d70e2b342fa33e677fff1e820">vla_size</a> (const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
+<tr class="memdesc:ae6b2491d70e2b342fa33e677fff1e820"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA size function.  <a href="vla_8c.html#ae6b2491d70e2b342fa33e677fff1e820">More...</a><br /></td></tr>
+<tr class="separator:ae6b2491d70e2b342fa33e677fff1e820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a715b8c57ca13a40832264d4ca45ac7a6"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vla_8c.html#a715b8c57ca13a40832264d4ca45ac7a6">vla_capacity</a> (const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *<a class="el" href="structvla.html">vla</a>)</td></tr>
+<tr class="memdesc:a715b8c57ca13a40832264d4ca45ac7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA capacity function.  <a href="vla_8c.html#a715b8c57ca13a40832264d4ca45ac7a6">More...</a><br /></td></tr>
+<tr class="separator:a715b8c57ca13a40832264d4ca45ac7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Variable length array implementation. </p>
 <dl class="section author"><dt>Author</dt><dd>Brian Reece </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1.0 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aef0f4412acd5fa26221d4aa92351588e" name="aef0f4412acd5fa26221d4aa92351588e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef0f4412acd5fa26221d4aa92351588e">&#9670;&nbsp;</a></span>vla_capacity()</h2>
+<a id="a715b8c57ca13a40832264d4ca45ac7a6" name="a715b8c57ca13a40832264d4ca45ac7a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a715b8c57ca13a40832264d4ca45ac7a6">&#9670;&nbsp;</a></span>vla_capacity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +142,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">long vla_capacity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em></td><td>)</td>
           <td></td>
         </tr>
@@ -174,7 +174,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">int vla_clear </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structvla.html">vla</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em></td><td>)</td>
           <td></td>
         </tr>
@@ -201,7 +201,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">int vla_deinit </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structvla.html">vla</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em></td><td>)</td>
           <td></td>
         </tr>
@@ -219,8 +219,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
 
 </div>
 </div>
-<a id="ad1d65a63b3087ecfa0a694136e482d47" name="ad1d65a63b3087ecfa0a694136e482d47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d65a63b3087ecfa0a694136e482d47">&#9670;&nbsp;</a></span>vla_del()</h2>
+<a id="a09d1286b2c0e90cbb3fb01b50682fa60" name="a09d1286b2c0e90cbb3fb01b50682fa60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d1286b2c0e90cbb3fb01b50682fa60">&#9670;&nbsp;</a></span>vla_del()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,14 +228,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">int vla_del </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structvla.html">vla</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>i</em>&#160;</td>
+          <td class="paramtype">const long&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -257,53 +257,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
 
 </div>
 </div>
-<a id="a1540139291568f131ce03e08eab906e3" name="a1540139291568f131ce03e08eab906e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1540139291568f131ce03e08eab906e3">&#9670;&nbsp;</a></span>vla_getp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int vla_getp </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structvla.html">vla</a> *&#160;</td>
-          <td class="paramname"><em>vla</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void **&#160;</td>
-          <td class="paramname"><em>element</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>VLA get pointer function. </p>
-<p >This function gets the pointer to an element in the VLA. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to get from </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of element to get. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">element</td><td>Element to get </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero on success, non-zero on failure </dd></dl>
-
-</div>
-</div>
-<a id="a6f134fefed57b1439baefde2681b9197" name="a6f134fefed57b1439baefde2681b9197"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f134fefed57b1439baefde2681b9197">&#9670;&nbsp;</a></span>vla_init()</h2>
+<a id="aee50eef545fd12e8871a304ca3bb7066" name="aee50eef545fd12e8871a304ca3bb7066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee50eef545fd12e8871a304ca3bb7066">&#9670;&nbsp;</a></span>vla_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,19 +266,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">int vla_init </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structvla.html">vla</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
+          <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>element_size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramtype">const long&#160;</td>
           <td class="paramname"><em>initial_capacity</em>&#160;</td>
         </tr>
         <tr>
@@ -394,8 +349,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
 
 </div>
 </div>
-<a id="a9c7c583284984c17271fae12c0a5cf0a" name="a9c7c583284984c17271fae12c0a5cf0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c7c583284984c17271fae12c0a5cf0a">&#9670;&nbsp;</a></span>vla_size()</h2>
+<a id="ae6b2491d70e2b342fa33e677fff1e820" name="ae6b2491d70e2b342fa33e677fff1e820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6b2491d70e2b342fa33e677fff1e820">&#9670;&nbsp;</a></span>vla_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -406,7 +361,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>vla_ins</b> (<a class=
         <tr>
           <td class="memname">long vla_size </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *&#160;</td>
           <td class="paramname"><em>vla</em></td><td>)</td>
           <td></td>
         </tr>

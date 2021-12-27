@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.1-alpha</span>
+   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.2-alpha</span>
    </div>
    <div id="projectbrief">Implementation of classic data structures in C99</div>
   </td>
@@ -87,44 +87,44 @@ $(function() {
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">void</span> *key, *val;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>} <a class="code hl_struct" href="structpair.html">pair_t</a>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structumap.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structumap.html">umap</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structmap.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmap.html">map</a> {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_struct" href="structvla.html">vla_t</a> <a class="code hl_struct" href="structvla.html">vla</a>;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">size_t</span> key_size, val_size;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  int (*cmp)(<span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">void</span> *, size_t);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <a class="code hl_struct" href="structumap.html">umap_t</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">int</span> umap_init(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keyword">const</span> <span class="keywordtype">size_t</span> key_size, <span class="keyword">const</span> <span class="keywordtype">size_t</span> val_size,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>              <span class="keywordtype">int</span> (*cmp)(<span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keywordtype">size_t</span>),</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>              <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> initial_capacity);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">int</span> umap_deinit(<a class="code hl_struct" href="structumap.html">umap_t</a> *map);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">int</span> umap_set(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keyword">const</span> <span class="keywordtype">void</span> *val);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">int</span> umap_get(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keywordtype">void</span> *val);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// TODO: Implement umap_getp</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">int</span> umap_getp(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keywordtype">void</span> **val);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  long (*search)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmap.html">map</a> *, <span class="keyword">const</span> <span class="keywordtype">void</span> *);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <a class="code hl_struct" href="structmap.html">map_t</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">int</span> map_init(<a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <span class="keyword">const</span> <span class="keywordtype">size_t</span> key_size, <span class="keyword">const</span> <span class="keywordtype">size_t</span> val_size,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>             <span class="keywordtype">bool</span> ordered, <span class="keywordtype">int</span> (*cmp)(<span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">void</span> *, <span class="keywordtype">size_t</span>),</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> initial_capacity);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">int</span> map_deinit(<a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">int</span> map_set(<a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keyword">const</span> <span class="keywordtype">void</span> *val);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">int</span> map_get(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keywordtype">void</span> *val);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">int</span> map_getp(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *key, <span class="keywordtype">void</span> **val);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">int</span> umap_del(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keyword">const</span> <span class="keywordtype">void</span> *key);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">int</span> map_del(<a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *key);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">int</span> umap_clear(<a class="code hl_struct" href="structumap.html">umap_t</a> *map);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">int</span> map_clear(<a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">extern</span> <span class="keywordtype">long</span> umap_size(<a class="code hl_struct" href="structumap.html">umap_t</a> *map);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">extern</span> <span class="keywordtype">long</span> map_size(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">int</span> umap_keys(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keywordtype">void</span> *keys);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">int</span> map_keys(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <a class="code hl_struct" href="structvla.html">vla_t</a> *keys);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">int</span> umap_vals(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <span class="keywordtype">void</span> *vals);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">int</span> map_vals(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <a class="code hl_struct" href="structvla.html">vla_t</a> *vals);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">int</span> umap_pairs(<a class="code hl_struct" href="structumap.html">umap_t</a> *map, <a class="code hl_struct" href="structpair.html">pair_t</a> *pairs);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">int</span> map_pairs(<span class="keyword">const</span> <a class="code hl_struct" href="structmap.html">map_t</a> *<a class="code hl_struct" href="structmap.html">map</a>, <a class="code hl_struct" href="structvla.html">vla_t</a> *pairs);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#ifdef __cplusplus</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif </span><span class="comment">// MAP_H</span></div>
+<div class="ttc" id="astructmap_html"><div class="ttname"><a href="structmap.html">map</a></div><div class="ttdef"><b>Definition:</b> map.h:23</div></div>
 <div class="ttc" id="astructpair_html"><div class="ttname"><a href="structpair.html">pair</a></div><div class="ttdef"><b>Definition:</b> map.h:19</div></div>
-<div class="ttc" id="astructumap_html"><div class="ttname"><a href="structumap.html">umap</a></div><div class="ttdef"><b>Definition:</b> map.h:23</div></div>
 <div class="ttc" id="astructvla_html"><div class="ttname"><a href="structvla.html">vla</a></div><div class="ttdoc">VLA error codes.</div><div class="ttdef"><b>Definition:</b> vla.h:20</div></div>
 <div class="ttc" id="avla_8h_html"><div class="ttname"><a href="vla_8h.html">vla.h</a></div><div class="ttdoc">VLA definition and manipulation functions.</div></div>
 </div><!-- fragment --></div><!-- contents -->
