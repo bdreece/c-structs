@@ -23,33 +23,33 @@ typedef struct pair {
 typedef struct map {
   vla_t vla;
   size_t key_size, val_size;
-  bool ordered;
   int (*cmp)(const void *, const void *, size_t);
+  long (*search)(const struct map *, const void *);
 } map_t;
 
 int map_init(map_t *map, const size_t key_size, const size_t val_size,
-              int (*cmp)(const void *, const void *, size_t),
-              const unsigned long initial_capacity);
+             bool ordered, int (*cmp)(const void *, const void *, size_t),
+             const unsigned long initial_capacity);
 
 int map_deinit(map_t *map);
 
 int map_set(map_t *map, const void *key, const void *val);
 
-int map_get(map_t *map, const void *key, void *val);
+int map_get(const map_t *map, const void *key, void *val);
 
-int map_getp(map_t *map, const void *key, void **val);
+int map_getp(const map_t *map, const void *key, void **val);
 
 int map_del(map_t *map, const void *key);
 
 int map_clear(map_t *map);
 
-extern long map_size(map_t *map);
+extern long map_size(const map_t *map);
 
-int map_keys(map_t *map, void *keys);
+int map_keys(const map_t *map, vla_t *keys);
 
-int map_vals(map_t *map, void *vals);
+int map_vals(const map_t *map, vla_t *vals);
 
-int map_pairs(map_t *map, pair_t *pairs);
+int map_pairs(const map_t *map, vla_t *pairs);
 
 #ifdef __cplusplus
 }

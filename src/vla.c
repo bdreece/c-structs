@@ -31,15 +31,13 @@ static int vla_resize(vla_t *vla, unsigned long capacity) {
   return ERR_NONE;
 }
 
-int vla_init(vla_t *vla, size_t element_size, unsigned long initial_capacity) {
+int vla_init(vla_t *vla, const size_t element_size,
+             const long initial_capacity) {
   if (!vla)
     return ERR_NULL;
 
-  if (element_size <= 0)
+  if (element_size <= 0 || initial_capacity <= 0)
     return ERR_INVALID_ARGUMENT;
-
-  if (initial_capacity <= 0)
-    return ERR_EMPTY;
 
   vla->element_size = element_size;
   vla->size = 0;
@@ -50,7 +48,7 @@ int vla_init(vla_t *vla, size_t element_size, unsigned long initial_capacity) {
   if (vla->elements == NULL)
     return ERR_FAILURE;
 
-  memset(vla->elements, 0, element_size * initial_capacity);
+  ASSERT(memset(vla->elements, 0, element_size * initial_capacity) != NULL);
 
   return ERR_NONE;
 }
@@ -70,7 +68,7 @@ int vla_deinit(vla_t *vla) {
   return ERR_NONE;
 }
 
-int vla_push(vla_t *vla, void *restrict element) {
+int vla_push(vla_t *vla, const void *restrict element) {
   if (!vla)
     return ERR_NULL;
 
@@ -108,7 +106,7 @@ int vla_pop(vla_t *vla, void *restrict element) {
   return ERR_NONE;
 }
 
-int vla_enq(vla_t *vla, void *restrict element) {
+int vla_enq(vla_t *vla, const void *restrict element) {
   if (!vla)
     return ERR_NULL;
 
@@ -126,7 +124,7 @@ int vla_enq(vla_t *vla, void *restrict element) {
   return ERR_NONE;
 }
 
-int vla_get(vla_t *vla, unsigned long index, void *restrict element) {
+int vla_get(const vla_t *vla, const long index, void *restrict element) {
   if (!vla)
     return ERR_NULL;
 
@@ -140,7 +138,7 @@ int vla_get(vla_t *vla, unsigned long index, void *restrict element) {
   return ERR_NONE;
 }
 
-int vla_getp(vla_t *vla, unsigned long index, void **element) {
+int vla_getp(const vla_t *vla, const long index, void **restrict element) {
   if (!vla)
     return ERR_NULL;
 
@@ -151,7 +149,7 @@ int vla_getp(vla_t *vla, unsigned long index, void **element) {
   return ERR_NONE;
 }
 
-int vla_set(vla_t *vla, unsigned long index, void *restrict element) {
+int vla_set(vla_t *vla, const long index, const void *restrict element) {
   if (!vla)
 
     if (index >= vla->size)
@@ -163,24 +161,7 @@ int vla_set(vla_t *vla, unsigned long index, void *restrict element) {
   return ERR_NONE;
 }
 
-int vla_del(vla_t *vla, unsigned long index) {
-  if (!vla)
-    return ERR_NULL;
-
-  if (index >= vla->size)
-    return ERR_INDEX_OUT_OF_BOUNDS;
-
-  // Move block at index + 1 to index
-  memmove(vla->elements + (index * vla->element_size),
-          vla->elements + ((index + 1) * vla->element_size),
-          (vla->size - index - 1) * vla->element_size);
-
-  vla->size--;
-
-  return ERR_NONE;
-}
-
-int vla_ins(vla_t *vla, unsigned long index, void *restrict element) {
+int vla_ins(vla_t *vla, const long index, const void *restrict element) {
   if (!vla)
     return ERR_NULL;
 
@@ -204,6 +185,23 @@ int vla_ins(vla_t *vla, unsigned long index, void *restrict element) {
   return ERR_NONE;
 }
 
+int vla_del(vla_t *vla, const long index) {
+  if (!vla)
+    return ERR_NULL;
+
+  if (index >= vla->size)
+    return ERR_INDEX_OUT_OF_BOUNDS;
+
+  // Move block at index + 1 to index
+  memmove(vla->elements + (index * vla->element_size),
+          vla->elements + ((index + 1) * vla->element_size),
+          (vla->size - index - 1) * vla->element_size);
+
+  vla->size--;
+
+  return ERR_NONE;
+}
+
 int vla_clear(vla_t *vla) {
   if (!vla)
     return ERR_NULL;
@@ -214,8 +212,8 @@ int vla_clear(vla_t *vla) {
   return ERR_NONE;
 }
 
-inline long vla_size(vla_t *vla) { return (!vla) ? ERR_NULL : vla->size; }
+inline long vla_size(const vla_t *vla) { return (!vla) ? ERR_NULL : vla->size; }
 
-inline long vla_capacity(vla_t *vla) {
+inline long vla_capacity(const vla_t *vla) {
   return (!vla) ? ERR_NONE : vla->capacity;
 }
