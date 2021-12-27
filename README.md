@@ -24,9 +24,8 @@ libstructs is a cross-platform implementation of classic data structures written
 
 * Variable-length array
 * Circular buffer
-* Map (unordered)
+* Map (ordered / unordered)
 * **TODO**:
-  * Map (ordered)
   * Hashmap
   * N-ary tree
   * Adjacency graph
