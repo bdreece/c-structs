@@ -44,7 +44,7 @@ static inline int map_destroy_pair(pair_t *p) {
   return ERR_NONE;
 }
 
-int umap_init(map_t *map, const size_t key_size, const size_t val_size,
+int map_init(map_t *map, const size_t key_size, const size_t val_size,
               int (*cmp)(const void *, const void *, size_t),
               const unsigned long initial_capacity) {
   if (!map)
@@ -63,7 +63,7 @@ int umap_init(map_t *map, const size_t key_size, const size_t val_size,
   return ERR_NONE;
 }
 
-int umap_deinit(map_t *map) {
+int map_deinit(map_t *map) {
   if (!map)
     return ERR_NULL;
 
@@ -106,6 +106,11 @@ int umap_set(map_t *map, const void *key, const void *val) {
   return ERR_NONE;
 }
 
+// TODO: omap_set
+int omap_set(map_t *map, const void *key, const void *val) {
+  return 0;
+}
+
 int umap_get(map_t *map, const void *key, void *val) {
   if (!map || !map->vla.elements)
     return ERR_NULL;
@@ -126,6 +131,21 @@ int umap_get(map_t *map, const void *key, void *val) {
   memcpy(val, p->val, map->val_size);
 
   return ERR_NONE;
+}
+
+// TODO: omap_get
+int omap_get(map_t *map, const void *key, void *val) {
+  return 0;
+}
+
+// TODO: umap_getp
+int umap_getp(map_t *map, const void *key, void **val) {
+  return 0;
+}
+
+// TODO: omap_getp
+int omap_getp(map_t *map, const void *key, void **val) {
+  return 0;
 }
 
 int umap_del(map_t *map, const void *key) {
@@ -154,7 +174,12 @@ int umap_del(map_t *map, const void *key) {
   return ERR_NONE;
 }
 
-int umap_clear(map_t *map) {
+// TODO: omap_del
+int omap_del(map_t *map, const void *key) {
+  return 0;
+}
+
+int map_clear(map_t *map) {
   if (!map || !map->vla.elements)
     return ERR_FAILURE;
 
@@ -164,9 +189,9 @@ int umap_clear(map_t *map) {
   return ERR_NONE;
 }
 
-inline long umap_size(map_t *map) { return vla_size(&map->vla); }
+inline long map_size(map_t *map) { return vla_size(&map->vla); }
 
-int umap_keys(map_t *map, void *keys) {
+int map_keys(map_t *map, void *keys) {
   if (!map || !keys)
     return ERR_NULL;
 
@@ -184,7 +209,7 @@ int umap_keys(map_t *map, void *keys) {
   return ERR_NONE;
 }
 
-int umap_vals(map_t *map, void *vals) {
+int map_vals(map_t *map, void *vals) {
   if (!map || !vals)
     return ERR_NULL;
 
@@ -201,7 +226,7 @@ int umap_vals(map_t *map, void *vals) {
   return ERR_NONE;
 }
 
-int umap_pairs(map_t *map, pair_t *pairs) {
+int map_pairs(map_t *map, pair_t *pairs) {
   if (!map || !pairs)
     return ERR_NULL;
 

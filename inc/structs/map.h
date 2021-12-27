@@ -26,30 +26,38 @@ typedef struct map {
   int (*cmp)(const void *, const void *, size_t);
 } map_t;
 
-int umap_init(map_t *map, const size_t key_size, const size_t val_size,
+int map_init(map_t *map, const size_t key_size, const size_t val_size,
               int (*cmp)(const void *, const void *, size_t),
               const unsigned long initial_capacity);
 
-int umap_deinit(map_t *map);
+int map_deinit(map_t *map);
 
 int umap_set(map_t *map, const void *key, const void *val);
 
+int omap_set(map_t *map, const void *key, const void *val)
+
 int umap_get(map_t *map, const void *key, void *val);
 
-// TODO: Implement umap_getp
+int omap_get(map_t *map, const void *key, void *val);
+
+// TODO: Implement umap_get, omap_getp
 int umap_getp(map_t *map, const void *key, void **val);
+
+int omap_getp(map_t *map, const void *key, void **val);
 
 int umap_del(map_t *map, const void *key);
 
-int umap_clear(map_t *map);
+int omap_del(map_t *map, const void *key);
 
-extern long umap_size(map_t *map);
+int map_clear(map_t *map);
 
-int umap_keys(map_t *map, void *keys);
+extern long map_size(map_t *map);
 
-int umap_vals(map_t *map, void *vals);
+int map_keys(map_t *map, void *keys);
 
-int umap_pairs(map_t *map, pair_t *pairs);
+int map_vals(map_t *map, void *vals);
+
+int map_pairs(map_t *map, pair_t *pairs);
 
 #ifdef __cplusplus
 }
