@@ -6,41 +6,46 @@
 static cbuf_t cbuf;
 
 BOOST_AUTO_TEST_CASE(test_cbuf_init) {
-  int ret = cbuf_init(&cbuf, sizeof(int), 10);
+  int ret = cbuf_init(&cbuf, sizeof(int), 5);
 
   BOOST_TEST(ret == 0);
   BOOST_TEST(cbuf.elements);
   BOOST_TEST(cbuf.element_size == sizeof(int));
   BOOST_TEST(cbuf.head == 0);
   BOOST_TEST(cbuf.tail == 0);
-  BOOST_TEST(cbuf.size == 10);
+  BOOST_TEST(cbuf.size == 5);
 };
 
+// Write 9 integers
 BOOST_AUTO_TEST_CASE(test_cbuf_write) {
-  int val = 1;
-  int ret = cbuf_write(&cbuf, (void *)&val);
+  int ret, vals[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-  BOOST_TEST(ret == 0);
-  BOOST_TEST(cbuf.elements);
-  BOOST_TEST(cbuf.element_size == sizeof(int));
-  BOOST_TEST(cbuf.size == 10);
+  for (int i = 0; i < 9; i++) {
+    ret = cbuf_write(&cbuf, (void *)&vals[i]);
+    BOOST_TEST(ret == 0);
+    BOOST_TEST(cbuf.tail == (i + 1) % 5);
+  }
 
   BOOST_TEST(cbuf.head == 0);
-  BOOST_TEST(cbuf.tail == 1);
-}
-
-BOOST_AUTO_TEST_CASE(test_cbuf_read) {
-  int val;
-  int ret = cbuf_read(&cbuf, (void *)&val);
-
-  BOOST_TEST(ret == 0);
   BOOST_TEST(cbuf.elements);
   BOOST_TEST(cbuf.element_size == sizeof(int));
-  BOOST_TEST(cbuf.size == 10);
+  BOOST_TEST(cbuf.size == 5);
+}
 
-  BOOST_TEST(cbuf.head == 1);
-  BOOST_TEST(cbuf.tail == 1);
-  BOOST_TEST(val == 1);
+// Read 3 integers
+BOOST_AUTO_TEST_CASE(test_cbuf_read) {
+  int ret, vals[3];
+  for (int i = 0; i < 3; i++) {
+    ret = cbuf_read(&cbuf, (void *)&vals[i]);
+    BOOST_TEST(ret == 0);
+    BOOST_TEST(vals[i] == i + 6);
+    BOOST_TEST(cbuf.head == i + 1);
+  }
+  BOOST_TEST(cbuf.elements);
+  BOOST_TEST(cbuf.element_size == sizeof(int));
+  BOOST_TEST(cbuf.size == 5);
+
+  BOOST_TEST(cbuf.tail == 4);
 }
 
 BOOST_AUTO_TEST_CASE(test_cbuf_clear) {
@@ -49,7 +54,7 @@ BOOST_AUTO_TEST_CASE(test_cbuf_clear) {
   BOOST_TEST(ret == 0);
   BOOST_TEST(cbuf.elements);
   BOOST_TEST(cbuf.element_size == sizeof(int));
-  BOOST_TEST(cbuf.size == 10);
+  BOOST_TEST(cbuf.size == 5);
 
   BOOST_TEST(cbuf.head == 0);
   BOOST_TEST(cbuf.tail == 0);
