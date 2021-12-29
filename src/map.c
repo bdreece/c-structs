@@ -11,7 +11,26 @@
 #include "structs/map.h"
 #include "structs/vla.h"
 
-static long umap_search(const struct map *map, const void *key) {
+static inline pair_t map_create_pair(map_t *map, const void *key,
+                                     const void *val) {
+  pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
+
+  ASSERT(memcpy(p.key, key, map->key_size) != NULL);
+  ASSERT(memcpy(p.val, val, map->val_size) != NULL);
+
+  return p;
+}
+
+static inline int map_destroy_pair(pair_t *p) {
+  if (!p || !p->key || !p->val)
+    return ERR_NULL;
+
+  free(p->key);
+  free(p->val);
+  return ERR_NONE;
+}
+
+long umap_search(const struct map *map, const void *key) {
   if (!map || !map->vla.elements | !key)
     return ERR_NULL;
 
@@ -30,11 +49,13 @@ static long umap_search(const struct map *map, const void *key) {
   return map_size(map);
 }
 
-static long omap_search_helper(const struct map *map, long l, long r,
-                               const void *key) {
+long omap_search(const struct map *map, const void *key) {
   int ret, compare;
-  long m;
+  long l, r, m;
   pair_t *p;
+
+  l = 0;
+  r = map_size(map);
 
   while (l <= r) {
     m = (long)(l + (r - l) / 2);
@@ -54,28 +75,6 @@ static long omap_search_helper(const struct map *map, long l, long r,
   }
 
   return map_size(map);
-}
-
-static long omap_search(const struct map *map, const void *key) {
-  return omap_search_helper(map, 0, map_size(map) - 1, key);
-}
-
-static pair_t map_create_pair(map_t *map, const void *key, const void *val) {
-  pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
-
-  ASSERT(memcpy(p.key, key, map->key_size) != NULL);
-  ASSERT(memcpy(p.val, val, map->val_size) != NULL);
-
-  return p;
-}
-
-static inline int map_destroy_pair(pair_t *p) {
-  if (!p || !p->key || !p->val)
-    return ERR_NULL;
-
-  free(p->key);
-  free(p->val);
-  return ERR_NONE;
 }
 
 int map_init(map_t *map, const size_t key_size, const size_t val_size,
@@ -151,6 +150,9 @@ int map_set(map_t *map, const void *key, const void *val) {
 
   return ERR_NONE;
 }
+
+// TODO: map_contains
+bool map_contains(const map_t *map, const void *key) { return false; }
 
 int map_get(const map_t *map, const void *key, void *restrict val) {
   if (!map || !map->vla.elements)

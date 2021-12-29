@@ -1,7 +1,8 @@
 /*! \file vla.c
  *  \brief Variable length array implementation.
  *  \author Brian Reece
- *  \version 0.1.0
+ *  \version 0.3
+ *  \date 12/28/2021
  */
 
 #include <stdlib.h>
@@ -193,9 +194,10 @@ int vla_del(vla_t *vla, const long index) {
     return ERR_INDEX_OUT_OF_BOUNDS;
 
   // Move block at index + 1 to index
-  memmove(vla->elements + (index * vla->element_size),
-          vla->elements + ((index + 1) * vla->element_size),
-          (vla->size - index - 1) * vla->element_size);
+  if (memmove(vla->elements + (index * vla->element_size),
+              vla->elements + ((index + 1) * vla->element_size),
+              (vla->size - index - 1) * vla->element_size) == NULL)
+    return ERR_FAILURE;
 
   vla->size--;
 
@@ -209,6 +211,27 @@ int vla_clear(vla_t *vla) {
   memset(vla->elements, 0, vla->element_size * vla->capacity);
 
   vla->size = 0;
+  return ERR_NONE;
+}
+
+int vla_ext(vla_t *dest, const vla_t *restrict src) {
+  if (!dest || !src)
+    return ERR_NULL;
+
+  if (dest->element_size != src->element_size)
+    return ERR_INVALID_ARGUMENT;
+
+  size_t new_size = dest->element_size * (dest->size + src->size);
+  dest->elements = realloc(dest->elements, new_size);
+
+  // Copy src into dest
+  if (memcpy(dest->elements + (dest->element_size * dest->size), src->elements,
+             src->element_size * src->size) == NULL)
+    return ERR_FAILURE;
+
+  dest->size += src->size;
+  dest->capacity = dest->size;
+
   return ERR_NONE;
 }
 

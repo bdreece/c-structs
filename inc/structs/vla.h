@@ -1,7 +1,7 @@
 /*! \file vla.h
  *  \brief VLA definition and manipulation functions.
  *  \author Brian Reece
- *  \version 0.1.0
+ *  \version 0.3
  */
 #ifndef VLA_H
 #define VLA_H
@@ -11,10 +11,6 @@ extern "C" {
 #endif
 
 #include <stddef.h>
-
-/*! \brief VLA error codes.
- *  \details These are error codes returned by the VLA functions.
- */
 
 //! \brief VLA struct definition.
 typedef struct vla {
@@ -118,6 +114,13 @@ int vla_del(vla_t *vla, const long index);
  *  \return Zero on success, non-zero on failure.
  */
 int vla_clear(vla_t *vla);
+
+/*! \brief VLA combine function
+ *  \details This function adds the element of VLA b to VLA a.
+ *  \param[out] a Resulting VLA
+ *  \param[in] b Absorbed VLA
+ */
+int vla_ext(vla_t *dest, const vla_t *src);
 
 /*! \brief VLA size function.
  *  \details This function returns the VLA size.

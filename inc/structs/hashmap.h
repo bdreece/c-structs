@@ -8,6 +8,7 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
 
+#include <stdbool.h>
 #include <stddef.h>
 
 #include "structs/map.h"
@@ -21,14 +22,17 @@ typedef struct hashmap {
   vla_t vla;
   size_t key_size, val_size;
   int (*cmp)(const void *, const void *, size_t);
-  float load_factor;
+  long (*hash)(long, const void *);
 } hashmap_t;
 
 int hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size,
                  int (*cmp)(const void *, const void *, size_t),
-                 long initial_breadth, long depth, float load_factor);
+                 long (*hash)(long, const void *), long initial_breadth,
+                 long depth);
 
 int hashmap_deinit(hashmap_t *map);
+
+bool hashmap_contains(const hashmap_t *map, const void *key);
 
 int hashmap_get(const hashmap_t *map, const void *key, void *val);
 

@@ -35,6 +35,8 @@ int map_deinit(map_t *map);
 
 int map_set(map_t *map, const void *key, const void *val);
 
+bool map_contains(const map_t *map, const void *key);
+
 int map_get(const map_t *map, const void *key, void *val);
 
 int map_getp(const map_t *map, const void *key, void **val);

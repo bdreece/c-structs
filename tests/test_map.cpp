@@ -2,17 +2,9 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include "structs/map.h"
+#include "util.hpp"
 
 static map_t map;
-
-static int cmp(const void *a, const void *b, size_t size) {
-  if (*(char *)a < *(char *)b)
-    return -1;
-  else if (*(char *)a > *(char *)b)
-    return 1;
-  else
-    return 0;
-};
 
 BOOST_AUTO_TEST_CASE(test_umap_init) {
   int ret = map_init(&map, sizeof(char), sizeof(int), false, cmp, 10);
