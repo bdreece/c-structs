@@ -83,6 +83,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aca68c0d4ac8df0838e209fb5300f7be3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#aca68c0d4ac8df0838e209fb5300f7be3">ASSERT</a>(x)</td></tr>
+<tr class="memdesc:aca68c0d4ac8df0838e209fb5300f7be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assertion macro.  <a href="error_8h.html#aca68c0d4ac8df0838e209fb5300f7be3">More...</a><br /></td></tr>
 <tr class="separator:aca68c0d4ac8df0838e209fb5300f7be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff0d3fb76f11f6e8ea4002d826bbd23c"><td class="memItemLeft" align="right" valign="top"><a id="aff0d3fb76f11f6e8ea4002d826bbd23c" name="aff0d3fb76f11f6e8ea4002d826bbd23c"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_NONE</b>&#160;&#160;&#160;0</td></tr>
@@ -90,7 +91,7 @@ Macros</h2></td></tr>
 <tr class="separator:aff0d3fb76f11f6e8ea4002d826bbd23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26fc6554da458bd012638a7020b00b6"><td class="memItemLeft" align="right" valign="top"><a id="aa26fc6554da458bd012638a7020b00b6" name="aa26fc6554da458bd012638a7020b00b6"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_FAILURE</b>&#160;&#160;&#160;-1</td></tr>
-<tr class="memdesc:aa26fc6554da458bd012638a7020b00b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure. <br /></td></tr>
+<tr class="memdesc:aa26fc6554da458bd012638a7020b00b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory failure. <br /></td></tr>
 <tr class="separator:aa26fc6554da458bd012638a7020b00b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c443c3953fd819755a211bcc945f46b"><td class="memItemLeft" align="right" valign="top"><a id="a1c443c3953fd819755a211bcc945f46b" name="a1c443c3953fd819755a211bcc945f46b"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_INVALID_ARGUMENT</b>&#160;&#160;&#160;-2</td></tr>
@@ -110,13 +111,14 @@ Macros</h2></td></tr>
 <tr class="separator:a0c5594b6ceb056b0d8e037deb10968d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47744541258a26adfce215564d8d05f4"><td class="memItemLeft" align="right" valign="top"><a id="a47744541258a26adfce215564d8d05f4" name="a47744541258a26adfce215564d8d05f4"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_NOT_FOUND</b>&#160;&#160;&#160;-6</td></tr>
-<tr class="memdesc:a47744541258a26adfce215564d8d05f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not found. <br /></td></tr>
+<tr class="memdesc:a47744541258a26adfce215564d8d05f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element not found. <br /></td></tr>
 <tr class="separator:a47744541258a26adfce215564d8d05f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >List of error codes pertaining to the library. </p>
 <dl class="section author"><dt>Author</dt><dd>Brian Reece </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.1.0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>v0.3-alpha </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>12/28/2021 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="aca68c0d4ac8df0838e209fb5300f7be3" name="aca68c0d4ac8df0838e209fb5300f7be3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca68c0d4ac8df0838e209fb5300f7be3">&#9670;&nbsp;</a></span>ASSERT</h2>
@@ -138,6 +140,8 @@ Macros</h2></td></tr>
 <div class="line">      error_at_line(1, errno, __FILE__, __LINE__, <span class="stringliteral">&quot;[ERROR]: %s\n&quot;</span>, #x);        \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p>Assertion macro. </p>
+
 </div>
 </div>
 </div><!-- contents -->

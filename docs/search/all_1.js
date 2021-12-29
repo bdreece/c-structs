@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['element_5fsize_0',['element_size',['../structcbuf.html#ad367a875a19f6dd794ecd38b119f790c',1,'cbuf::element_size()'],['../structvla.html#aafe063a69e8b05ed779ef226293cfba0',1,'vla::element_size()']]],
-  ['elements_1',['elements',['../structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c',1,'cbuf::elements()'],['../structvla.html#a3278141ea2eae30b3655f161a704580d',1,'vla::elements()']]],
-  ['err_5fempty_2',['ERR_EMPTY',['../error_8h.html#a5bca617ab5b79831176af3ad980fc3ba',1,'error.h']]],
-  ['err_5ffailure_3',['ERR_FAILURE',['../error_8h.html#aa26fc6554da458bd012638a7020b00b6',1,'error.h']]],
-  ['err_5findex_5fout_5fof_5fbounds_4',['ERR_INDEX_OUT_OF_BOUNDS',['../error_8h.html#a0c5594b6ceb056b0d8e037deb10968d4',1,'error.h']]],
-  ['err_5finvalid_5fargument_5',['ERR_INVALID_ARGUMENT',['../error_8h.html#a1c443c3953fd819755a211bcc945f46b',1,'error.h']]],
-  ['err_5fnone_6',['ERR_NONE',['../error_8h.html#aff0d3fb76f11f6e8ea4002d826bbd23c',1,'error.h']]],
-  ['err_5fnot_5ffound_7',['ERR_NOT_FOUND',['../error_8h.html#a47744541258a26adfce215564d8d05f4',1,'error.h']]],
-  ['err_5fnull_8',['ERR_NULL',['../error_8h.html#a377ec0a62a8d11ba62abd5d57dff2026',1,'error.h']]],
-  ['error_2eh_9',['error.h',['../error_8h.html',1,'']]]
+  ['capacity_0',['capacity',['../structvla.html#ab1f2f9a1a51231cf8898d063b075944f',1,'vla']]],
+  ['cbuf_1',['cbuf',['../structcbuf.html',1,'']]],
+  ['cbuf_2ec_2',['cbuf.c',['../cbuf_8c.html',1,'']]],
+  ['cbuf_2eh_3',['cbuf.h',['../cbuf_8h.html',1,'']]],
+  ['cbuf_5fclear_4',['cbuf_clear',['../cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b',1,'cbuf_clear(cbuf_t *cbuf):&#160;cbuf.c'],['../cbuf_8c.html#adae072096a8b074e5e4c31b94ccc770b',1,'cbuf_clear(cbuf_t *cbuf):&#160;cbuf.c']]],
+  ['cbuf_5fdeinit_5',['cbuf_deinit',['../cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214',1,'cbuf_deinit(cbuf_t *cbuf):&#160;cbuf.c'],['../cbuf_8c.html#a789ec912c9a72fa961c18d40affd8214',1,'cbuf_deinit(cbuf_t *cbuf):&#160;cbuf.c']]],
+  ['cbuf_5finit_6',['cbuf_init',['../cbuf_8h.html#af1c4d030227716d45d96acb8543339c8',1,'cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size):&#160;cbuf.c'],['../cbuf_8c.html#af1c4d030227716d45d96acb8543339c8',1,'cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size):&#160;cbuf.c']]],
+  ['cbuf_5fread_7',['cbuf_read',['../cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332',1,'cbuf_read(cbuf_t *cbuf, void *element):&#160;cbuf.c'],['../cbuf_8c.html#aac0f3f7b3b03c157b05611a408da1332',1,'cbuf_read(cbuf_t *cbuf, void *element):&#160;cbuf.c']]],
+  ['cbuf_5ft_8',['cbuf_t',['../cbuf_8h.html#ac373269acf0f439c7df787497d8ac307',1,'cbuf.h']]],
+  ['cbuf_5fwrite_9',['cbuf_write',['../cbuf_8h.html#ad21cf6f9f632f8139a577acd77267e60',1,'cbuf_write(cbuf_t *cbuf, void *element):&#160;cbuf.c'],['../cbuf_8c.html#ad21cf6f9f632f8139a577acd77267e60',1,'cbuf_write(cbuf_t *cbuf, void *element):&#160;cbuf.c']]],
+  ['cmp_10',['cmp',['../structmap.html#a944533925061d8e2facf0224ddff063d',1,'map::cmp()'],['../structhashmap.html#a213bd5c528632e8a0559cad7da686956',1,'hashmap::cmp()']]]
 ];

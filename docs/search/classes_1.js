@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['map_0',['map',['../structmap.html',1,'']]]
+  ['hashmap_0',['hashmap',['../structhashmap.html',1,'']]]
 ];

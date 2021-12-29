@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pair_0',['pair',['../structpair.html',1,'']]]
+  ['libstructs_0',['libstructs',['../index.html',1,'']]]
 ];

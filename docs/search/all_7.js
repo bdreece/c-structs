@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tail_0',['tail',['../structcbuf.html#af014e67d8f55193a8ada765eeb292282',1,'cbuf']]]
+  ['pair_0',['pair',['../structpair.html',1,'']]],
+  ['pair_5ft_1',['pair_t',['../map_8h.html#a401e2aca7327d07b7c928ba03142f4e3',1,'map.h']]]
 ];
