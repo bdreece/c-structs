@@ -1,7 +1,8 @@
-/*! \file cbuf.h
- *  \brief The circular buffer header file.
- *  \author Brian Reece
- *  \version 0.1.0
+/*! \file       cbuf.h
+ *  \brief      The circular buffer header file.
+ *  \author     Brian Reece
+ *  \version    v0.3-alpha
+ *  \date       12/28/2021
  */
 
 #ifndef CBUF_H
@@ -13,9 +14,7 @@ extern "C" {
 
 #include <stddef.h>
 
-/*! \brief The circular buffer structure
- *  \details This structure is used to hold the circular buffer.
- */
+//! \brief The circular buffer structure
 typedef struct cbuf {
   unsigned long head;  //!< The head index of the buffer (read end)
   unsigned long tail;  //!< The tail index of the buffer (write end)
@@ -29,14 +28,14 @@ typedef struct cbuf {
  *  \param[in] cbuf The circular buffer to be initialized.
  *  \param[in] element_size The size of the element.
  *  \param[in] size The size of the buffer.
- *  \return CBUF_SUCCESS if successful, CBUF_FAILURE otherwise.
+ *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size);
 
 /*! \brief The circular buffer destructor function
  *  \details This function releases the circular buffer.
  *  \param[in] cbuf The circular buffer to be released.
- *  \return CBUF_SUCCESS if successful, CBUF_FAILURE otherwise.
+ *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_deinit(cbuf_t *cbuf);
 
@@ -44,7 +43,7 @@ int cbuf_deinit(cbuf_t *cbuf);
  *  \details This function writes the element to the circular buffer.
  *  \param[in] cbuf The circular buffer.
  *  \param[in] element The element to be written.
- *  \return CBUF_SUCCESS if successful, CBUF_FAILURE otherwise.
+ *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_read(cbuf_t *cbuf, void *element);
 
@@ -52,7 +51,7 @@ int cbuf_read(cbuf_t *cbuf, void *element);
  *  \details This function reads the element from the circular buffer.
  *  \param[in] cbuf The circular buffer.
  *  \param[out] element The element to be read.
- *  \return CBUF_SUCCESS if successful, CBUF_FAILURE otherwise.
+ *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_write(cbuf_t *cbuf, void *element);
 
@@ -60,7 +59,7 @@ int cbuf_write(cbuf_t *cbuf, void *element);
  *  \details This function writes the element to the circular buffer.
  *  \param[in] cbuf The circular buffer.
  *  \param[in] element The element to be written.
- *  \return CBUF_SUCCESS if successful, CBUF_FAILURE otherwise.
+ *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_clear(cbuf_t *cbuf);
 
