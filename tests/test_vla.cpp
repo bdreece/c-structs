@@ -60,10 +60,11 @@ BOOST_AUTO_TEST_CASE(empty_clear) { BOOST_TEST(vla_clear(&vla) == ERR_NONE); }
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief Default VLA operations
- *  \details Examples of standard VLA operations.
+/*! \brief VLA addition operations
+ *  \details Examples of standard operations that
+ *           add elements to the VLA.
  */
-BOOST_AUTO_TEST_SUITE(default_ops)
+BOOST_AUTO_TEST_SUITE(addition_ops)
 
 BOOST_FIXTURE_TEST_CASE(push_five_elements, vla_empty_fixture) {
   int values[5] = {0, 1, 2, 3, 4};
@@ -98,6 +99,23 @@ BOOST_FIXTURE_TEST_CASE(ins_five_elements, vla_empty_fixture) {
   for (long i = 0; i < 5; i++) {
     BOOST_TEST(vla_ins(&vla, 0, (const void *)&values[i]) == ERR_NONE);
     BOOST_TEST(*((int *)vla.elements) == values[i]);
+  }
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+/*! \brief VLA subtraction operations
+ *  \details Examples of standard operations that
+ *           remove elements from the VLA.
+ */
+BOOST_AUTO_TEST_SUITE(subtraction_ops)
+
+BOOST_FIXTURE_TEST_CASE(pop_five_elements, vla_populated_fixture) {
+  int values[5];
+
+  for (long i = 0; i < 5; i++) {
+    BOOST_TEST(vla_pop(&vla, (void *)&values[i]) == ERR_NONE);
+    BOOST_TEST(values[i] == i + 1);
   }
 }
 
