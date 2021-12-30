@@ -15,9 +15,12 @@ static int hashmap_rehash(hashmap_t *map) {
     return ERR_NULL;
 
   int i, ret;
-  map_t
+  map_t *m;
 
-      for (i = 0; i < vla_size(&map->vla); i++) {}
+  for (i = 0; i < vla_size(&map->vla); i++) {
+  }
+
+  return 0;
 }
 
 int hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size,
