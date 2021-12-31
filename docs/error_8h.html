@@ -135,9 +135,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
-<div class="line">    if (!(x))                                                                  \</div>
-<div class="line">      error_at_line(1, errno, __FILE__, __LINE__, <span class="stringliteral">&quot;[ERROR]: %s\n&quot;</span>, #x);        \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                  \</div>
+<div class="line">    if (!(x))                                                           \</div>
+<div class="line">      error_at_line(1, errno, __FILE__, __LINE__, <span class="stringliteral">&quot;[ERROR]: %s\n&quot;</span>, #x); \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
 <p>Assertion macro. </p>

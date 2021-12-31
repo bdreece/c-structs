@@ -45,16 +45,16 @@ BOOST_AUTO_TEST_CASE(empty_pop) {
 BOOST_AUTO_TEST_CASE(empty_get) {
   int element;
 
-  BOOST_TEST(vla_get(&vla, 0, (void *)&element) == ERR_EMPTY);
+  BOOST_TEST(vla_get(&vla, 0, (void *)&element) == ERR_INDEX_OUT_OF_BOUNDS);
 }
 
 BOOST_AUTO_TEST_CASE(empty_getp) {
   int *element;
 
-  BOOST_TEST(vla_getp(&vla, 0, (void **)&element) == ERR_EMPTY);
+  BOOST_TEST(vla_getp(&vla, 0, (void **)&element) == ERR_INDEX_OUT_OF_BOUNDS);
 }
 
-BOOST_AUTO_TEST_CASE(empty_del) { BOOST_TEST(vla_del(&vla, 0) == ERR_EMPTY); }
+BOOST_AUTO_TEST_CASE(empty_del) { BOOST_TEST(vla_del(&vla, 0) == ERR_INDEX_OUT_OF_BOUNDS); }
 
 BOOST_AUTO_TEST_CASE(empty_clear) { BOOST_TEST(vla_clear(&vla) == ERR_NONE); }
 

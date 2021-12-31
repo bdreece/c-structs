@@ -21,11 +21,11 @@ extern "C" {
 
 //! \brief Hashmap data structure
 typedef struct hashmap {
-  vla_t vla;                                      //!< VLA of maps
-  size_t key_size;                                //!< Size of keys
-  size_t val_size;                                //!< Size of values
-  int (*cmp)(const void *, const void *, size_t); //!< Key comparison function
-  long (*hash)(long, const void *);               //!< Key hashing function
+  vla_t vla;                                       //!< VLA of maps
+  size_t key_size;                                 //!< Size of keys
+  size_t val_size;                                 //!< Size of values
+  int (*cmp)(const void *, const void *, size_t);  //!< Key comparison function
+  long (*hash)(long, const void *);                //!< Key hashing function
 } hashmap_t;
 
 /*! \brief Hashmap construction function
@@ -72,7 +72,6 @@ bool hashmap_contains(const hashmap_t *map, const void *key);
  */
 int hashmap_get(const hashmap_t *map, const void *key, void *val);
 
-
 int hashmap_getp(const hashmap_t *map, const void *key, void **val);
 
 int hashmap_set(hashmap_t *map, const void *key, const void *val);
@@ -93,4 +92,4 @@ int hashmap_pairs(const hashmap_t *map, vla_t *pairs);
 }
 #endif
 
-#endif // HASHMAP_H
+#endif  // HASHMAP_H

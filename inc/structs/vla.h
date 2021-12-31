@@ -14,10 +14,10 @@ extern "C" {
 
 //! \brief VLA struct definition.
 typedef struct vla {
-  unsigned long size;     //!< VLA size.
-  unsigned long capacity; //!< VLA capacity.
-  size_t element_size;    //!< VLA element size.
-  void *elements;         //!< VLA elements.
+  unsigned long size;      //!< VLA size.
+  unsigned long capacity;  //!< VLA capacity.
+  size_t element_size;     //!< VLA element size.
+  void *elements;          //!< VLA elements.
 } vla_t;
 
 /*! \brief VLA construction function.
@@ -145,4 +145,4 @@ extern long vla_capacity(const vla_t *vla);
 }
 #endif
 
-#endif // VLA_H
+#endif  // VLA_H

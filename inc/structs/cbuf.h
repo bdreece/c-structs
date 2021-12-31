@@ -16,11 +16,11 @@ extern "C" {
 
 //! \brief The circular buffer structure
 typedef struct cbuf {
-  unsigned long head;  //!< The head index of the buffer (read end)
-  unsigned long tail;  //!< The tail index of the buffer (write end)
-  unsigned long size;  //!< The size of the buffer
-  size_t element_size; //!< The size of the element
-  void *elements;      //!< The buffer elements
+  unsigned long head;   //!< The head index of the buffer (read end)
+  unsigned long tail;   //!< The tail index of the buffer (write end)
+  unsigned long size;   //!< The size of the buffer
+  size_t element_size;  //!< The size of the element
+  void *elements;       //!< The buffer elements
 } cbuf_t;
 
 /*! \brief The circular buffer constructor function
@@ -67,4 +67,4 @@ int cbuf_clear(cbuf_t *cbuf);
 }
 #endif
 
-#endif // CBUF_H
+#endif  // CBUF_H

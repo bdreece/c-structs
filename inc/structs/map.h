@@ -19,17 +19,17 @@ extern "C" {
 
 //! \brief Key-value pair struct
 typedef struct pair {
-  void *key; //!< Key
-  void *val; //!< Value
+  void *key;  //!< Key
+  void *val;  //!< Value
 } pair_t;
 
 //! \brief Map data structure
 typedef struct map {
-  vla_t vla;                                        //!< VLA of pairs
-  size_t key_size;                                  //!< Size of keys
-  size_t val_size;                                  //!< Size of values
-  int (*cmp)(const void *, const void *, size_t);   //!< Key comparison function
-  long (*search)(const struct map *, const void *); //!< Map search function
+  vla_t vla;                                       //!< VLA of pairs
+  size_t key_size;                                 //!< Size of keys
+  size_t val_size;                                 //!< Size of values
+  int (*cmp)(const void *, const void *, size_t);  //!< Key comparison function
+  long (*search)(const struct map *, const void *);  //!< Map search function
 } map_t;
 
 /*! \brief Map construction function
@@ -141,4 +141,4 @@ int map_pairs(const map_t *map, vla_t *pairs);
 }
 #endif
 
-#endif // MAP_H
+#endif  // MAP_H

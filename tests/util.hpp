@@ -12,4 +12,4 @@
 
 int cmp(const void *a, const void *b, size_t size);
 
-#endif // UTIL_HPP
+#endif  // UTIL_HPP

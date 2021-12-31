@@ -5,11 +5,12 @@
  *  \date 12/28/2021
  */
 
+#include "structs/vla.h"
+
 #include <stdlib.h>
 #include <string.h>
 
 #include "structs/error.h"
-#include "structs/vla.h"
 
 /*! \brief Resize a variable length array.
  *  \details The new size is calculated by multiplying the element size by the
@@ -18,13 +19,11 @@
  * failure.
  */
 static int vla_resize(vla_t *vla, unsigned long capacity) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
   void *p = realloc(vla->elements, vla->element_size * capacity);
 
-  if (p == NULL)
-    return ERR_FAILURE;
+  if (p == NULL) return ERR_FAILURE;
 
   vla->elements = p;
   vla->capacity = capacity;
@@ -34,11 +33,9 @@ static int vla_resize(vla_t *vla, unsigned long capacity) {
 
 int vla_init(vla_t *vla, const size_t element_size,
              const long initial_capacity) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (element_size <= 0 || initial_capacity <= 0)
-    return ERR_INVALID_ARGUMENT;
+  if (element_size <= 0 || initial_capacity <= 0) return ERR_INVALID_ARGUMENT;
 
   vla->element_size = element_size;
   vla->size = 0;
@@ -46,8 +43,7 @@ int vla_init(vla_t *vla, const size_t element_size,
 
   vla->elements = malloc(element_size * initial_capacity);
 
-  if (vla->elements == NULL)
-    return ERR_FAILURE;
+  if (vla->elements == NULL) return ERR_FAILURE;
 
   ASSERT(memset(vla->elements, 0, element_size * initial_capacity) != NULL);
 
@@ -55,11 +51,9 @@ int vla_init(vla_t *vla, const size_t element_size,
 }
 
 int vla_deinit(vla_t *vla) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (vla->elements != NULL)
-    free(vla->elements);
+  if (vla->elements != NULL) free(vla->elements);
 
   vla->elements = NULL;
   vla->element_size = 0;
@@ -70,12 +64,10 @@ int vla_deinit(vla_t *vla) {
 }
 
 int vla_push(vla_t *vla, const void *restrict element) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
   if (vla->size >= vla->capacity) {
-    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE)
-      return ERR_FAILURE;
+    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE) return ERR_FAILURE;
   }
 
   memmove(vla->elements + vla->element_size, vla->elements,
@@ -89,11 +81,9 @@ int vla_push(vla_t *vla, const void *restrict element) {
 
 int vla_pop(vla_t *vla, void *restrict element) {
   int i;
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (vla->size == 0)
-    return ERR_EMPTY;
+  if (vla->size == 0) return ERR_EMPTY;
 
   // Get first element
   memcpy(element, vla->elements, vla->element_size);
@@ -108,13 +98,11 @@ int vla_pop(vla_t *vla, void *restrict element) {
 }
 
 int vla_enq(vla_t *vla, const void *restrict element) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
   // Resize if necessary
   if (vla->size == vla->capacity) {
-    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE)
-      return ERR_FAILURE;
+    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE) return ERR_FAILURE;
   }
 
   // Append element to list
@@ -126,11 +114,9 @@ int vla_enq(vla_t *vla, const void *restrict element) {
 }
 
 int vla_get(const vla_t *vla, const long index, void *restrict element) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (index >= vla->size)
-    return ERR_INDEX_OUT_OF_BOUNDS;
+  if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   if ((char *)(vla->elements + (index * vla->element_size)) != NULL)
     memcpy(element, vla->elements + (index * vla->element_size),
@@ -140,11 +126,9 @@ int vla_get(const vla_t *vla, const long index, void *restrict element) {
 }
 
 int vla_getp(const vla_t *vla, const long index, void **restrict element) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (index >= vla->size)
-    return ERR_INDEX_OUT_OF_BOUNDS;
+  if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   *element = vla->elements + (index * vla->element_size);
   return ERR_NONE;
@@ -153,8 +137,7 @@ int vla_getp(const vla_t *vla, const long index, void **restrict element) {
 int vla_set(vla_t *vla, const long index, const void *restrict element) {
   if (!vla)
 
-    if (index >= vla->size)
-      return ERR_INDEX_OUT_OF_BOUNDS;
+    if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   memcpy(vla->elements + (index * vla->element_size), element,
          vla->element_size);
@@ -163,15 +146,12 @@ int vla_set(vla_t *vla, const long index, const void *restrict element) {
 }
 
 int vla_ins(vla_t *vla, const long index, const void *restrict element) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (index > vla->size)
-    return ERR_INDEX_OUT_OF_BOUNDS;
+  if (index > vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   if (vla->size == vla->capacity) {
-    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE)
-      return ERR_FAILURE;
+    if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE) return ERR_FAILURE;
   }
 
   // Make an empty slot at index by shifting index + 1 block right
@@ -187,11 +167,9 @@ int vla_ins(vla_t *vla, const long index, const void *restrict element) {
 }
 
 int vla_del(vla_t *vla, const long index) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
-  if (index >= vla->size)
-    return ERR_INDEX_OUT_OF_BOUNDS;
+  if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   // Move block at index + 1 to index
   if (memmove(vla->elements + (index * vla->element_size),
@@ -205,8 +183,7 @@ int vla_del(vla_t *vla, const long index) {
 }
 
 int vla_clear(vla_t *vla) {
-  if (!vla)
-    return ERR_NULL;
+  if (!vla) return ERR_NULL;
 
   memset(vla->elements, 0, vla->element_size * vla->capacity);
 
@@ -215,11 +192,9 @@ int vla_clear(vla_t *vla) {
 }
 
 int vla_ext(vla_t *dest, const vla_t *restrict src) {
-  if (!dest || !src)
-    return ERR_NULL;
+  if (!dest || !src) return ERR_NULL;
 
-  if (dest->element_size != src->element_size)
-    return ERR_INVALID_ARGUMENT;
+  if (dest->element_size != src->element_size) return ERR_INVALID_ARGUMENT;
 
   size_t new_size = dest->element_size * (dest->size + src->size);
   dest->elements = realloc(dest->elements, new_size);

@@ -16,22 +16,22 @@ extern "C" {
 #endif
 
 //! \brief Assertion macro
-#define ASSERT(x)                                                              \
-  do {                                                                         \
-    if (!(x))                                                                  \
-      error_at_line(1, errno, __FILE__, __LINE__, "[ERROR]: %s\n", #x);        \
+#define ASSERT(x)                                                       \
+  do {                                                                  \
+    if (!(x))                                                           \
+      error_at_line(1, errno, __FILE__, __LINE__, "[ERROR]: %s\n", #x); \
   } while (0)
 
-#define ERR_NONE 0                 //!< No error
-#define ERR_FAILURE -1             //!< Memory failure
-#define ERR_INVALID_ARGUMENT -2    //!< Invalid argument
-#define ERR_NULL -3                //!< Null pointer
-#define ERR_EMPTY -4               //!< Empty structure
-#define ERR_INDEX_OUT_OF_BOUNDS -5 //!< Index out of bounds
-#define ERR_NOT_FOUND -6           //!< Element not found
+#define ERR_NONE 0                  //!< No error
+#define ERR_FAILURE -1              //!< Memory failure
+#define ERR_INVALID_ARGUMENT -2     //!< Invalid argument
+#define ERR_NULL -3                 //!< Null pointer
+#define ERR_EMPTY -4                //!< Empty structure
+#define ERR_INDEX_OUT_OF_BOUNDS -5  //!< Index out of bounds
+#define ERR_NOT_FOUND -6            //!< Element not found
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // ERROR_H
+#endif  // ERROR_H
