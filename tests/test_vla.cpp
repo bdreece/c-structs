@@ -117,6 +117,41 @@ BOOST_FIXTURE_TEST_CASE(pop_five_elements, vla_populated_fixture) {
     BOOST_TEST(vla_pop(&vla, (void *)&values[i]) == ERR_NONE);
     BOOST_TEST(values[i] == i + 1);
   }
+
+  BOOST_TEST(vla_size(&vla) == 0);
+}
+
+BOOST_FIXTURE_TEST_CASE(get_five_elements, vla_populated_fixture) {
+  int values[5];
+  for (long i = 0; i < 5; i++) {
+    BOOST_TEST(vla_get(&vla, i, (void *)&values[i]) == ERR_NONE);
+    BOOST_TEST(values[i] == i + 1);
+  }
+
+  BOOST_TEST(vla_size(&vla) == 5);
+}
+
+BOOST_FIXTURE_TEST_CASE(getp_five_elements, vla_populated_fixture) {
+  int *values[5];
+
+  for (long i = 0; i < 5; i++) {
+    BOOST_TEST(vla_getp(&vla, i, (void **)&values[i]) == ERR_NONE);
+    BOOST_TEST(*values[i] == i + 1);
+  }
+
+  BOOST_TEST(vla_size(&vla) == 5);
+}
+
+BOOST_FIXTURE_TEST_CASE(del_five_elements, vla_populated_fixture) {
+  for (long i = 0; i < 5; i++) {
+    BOOST_TEST(vla_del(&vla, i) == ERR_NONE);
+    BOOST_TEST(vla_size(&vla) == 4 - i);
+  }
+}
+
+BOOST_FIXTURE_TEST_CASE(clear_five_elements, vla_populated_fixture) {
+  BOOST_TEST(vla_clear(&vla) == ERR_NONE);
+  BOOST_TEST(vla_size(&vla) == 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
