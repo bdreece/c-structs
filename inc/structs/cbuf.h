@@ -16,9 +16,10 @@ extern "C" {
 
 //! \brief The circular buffer structure
 typedef struct cbuf {
-  unsigned long head;   //!< The head index of the buffer (read end)
-  unsigned long tail;   //!< The tail index of the buffer (write end)
-  unsigned long size;   //!< The size of the buffer
+  long head;  //!< The head index of the buffer (read end)
+  long tail;  //!< The tail index of the buffer (write end)
+  long size;
+  size_t capacity;      //!< The size of the buffer
   size_t element_size;  //!< The size of the element
   void *elements;       //!< The buffer elements
 } cbuf_t;
@@ -30,7 +31,7 @@ typedef struct cbuf {
  *  \param[in] size The size of the buffer.
  *  \return Zero if successful, non-zero otherwise.
  */
-int cbuf_init(cbuf_t *cbuf, size_t element_size, size_t size);
+int cbuf_init(cbuf_t *cbuf, const size_t element_size, const size_t capacity);
 
 /*! \brief The circular buffer destructor function
  *  \details This function releases the circular buffer.
@@ -53,15 +54,38 @@ int cbuf_read(cbuf_t *cbuf, void *element);
  *  \param[out] element The element to be read.
  *  \return Zero if successful, non-zero otherwise.
  */
-int cbuf_write(cbuf_t *cbuf, void *element);
+int cbuf_write(cbuf_t *cbuf, const void *element);
 
-/*! \brief The circular buffer writer function
- *  \details This function writes the element to the circular buffer.
+/*! \brief The circular buffer get function
+ *  \details This function retrieves an element from the circular buffer
+ *           without removing it.
  *  \param[in] cbuf The circular buffer.
- *  \param[in] element The element to be written.
+ *  \param[out] element The element to be read.
+ *  \return Zero if successful, non-zero otherwise
+ */
+int cbuf_get(const cbuf_t *cbuf, void *element);
+
+/*! \brief The circular buffer get pointer function
+ *  \details This function retrieves a pointer to an element from the
+ *           circular buffer without removing it.
+ *  \param[in] cbuf The circular buffer
+ *  \param[out] element The element to be read
+ *  \return Zero if successful, non-zero otherwise.
+ */
+int cbuf_getp(const cbuf_t *cbuf, void **element);
+
+/*! \brief The circular buffer clear function
+ *  \details This function zeroes all elements in the circular buffer.
+ *  \param[in] cbuf The circular buffer.
  *  \return Zero if successful, non-zero otherwise.
  */
 int cbuf_clear(cbuf_t *cbuf);
+
+// TODO: cbuf_size
+extern long cbuf_size(const cbuf_t *cbuf);
+
+// TODO: cbuf_capacity
+extern long cbuf_capacity(const cbuf_t *cbuf);
 
 #ifdef __cplusplus
 }

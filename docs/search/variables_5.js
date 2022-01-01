@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tail_0',['tail',['../structcbuf.html#af014e67d8f55193a8ada765eeb292282',1,'cbuf']]]
+  ['tail_0',['tail',['../structcbuf.html#ac3266c8d675d64ce0b40a254c9c07dbf',1,'cbuf']]]
 ];
