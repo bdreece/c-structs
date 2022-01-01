@@ -69,7 +69,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">cbuf.h File Reference</div></div>
 </div><!--header-->
@@ -83,45 +82,38 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcbuf.html">cbuf</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer structure.  <a href="structcbuf.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcbuf__t.html">cbuf_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer structure.  <a href="structcbuf__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ac373269acf0f439c7df787497d8ac307"><td class="memItemLeft" align="right" valign="top"><a id="ac373269acf0f439c7df787497d8ac307" name="ac373269acf0f439c7df787497d8ac307"></a>
-typedef struct <a class="el" href="structcbuf.html">cbuf</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_t</b></td></tr>
-<tr class="memdesc:ac373269acf0f439c7df787497d8ac307"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer structure. <br /></td></tr>
-<tr class="separator:ac373269acf0f439c7df787497d8ac307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a708c51e80ff0bb8679fc3ab24712603e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a708c51e80ff0bb8679fc3ab24712603e">cbuf_init</a> (<a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>, const size_t element_size, const size_t capacity)</td></tr>
+<tr class="memitem:a708c51e80ff0bb8679fc3ab24712603e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a708c51e80ff0bb8679fc3ab24712603e">cbuf_init</a> (<a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf, const size_t element_size, const size_t capacity)</td></tr>
 <tr class="memdesc:a708c51e80ff0bb8679fc3ab24712603e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer constructor function.  <a href="cbuf_8h.html#a708c51e80ff0bb8679fc3ab24712603e">More...</a><br /></td></tr>
 <tr class="separator:a708c51e80ff0bb8679fc3ab24712603e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a789ec912c9a72fa961c18d40affd8214"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a> (<a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>)</td></tr>
+<tr class="memitem:a789ec912c9a72fa961c18d40affd8214"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">cbuf_deinit</a> (<a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf)</td></tr>
 <tr class="memdesc:a789ec912c9a72fa961c18d40affd8214"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer destructor function.  <a href="cbuf_8h.html#a789ec912c9a72fa961c18d40affd8214">More...</a><br /></td></tr>
 <tr class="separator:a789ec912c9a72fa961c18d40affd8214"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac0f3f7b3b03c157b05611a408da1332"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a> (<a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>, void *element)</td></tr>
+<tr class="memitem:aac0f3f7b3b03c157b05611a408da1332"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">cbuf_read</a> (<a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf, void *element)</td></tr>
 <tr class="memdesc:aac0f3f7b3b03c157b05611a408da1332"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer writer function.  <a href="cbuf_8h.html#aac0f3f7b3b03c157b05611a408da1332">More...</a><br /></td></tr>
 <tr class="separator:aac0f3f7b3b03c157b05611a408da1332"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59aca56228ea8a0c92dac27f497bf08b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a59aca56228ea8a0c92dac27f497bf08b">cbuf_write</a> (<a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>, const void *element)</td></tr>
+<tr class="memitem:a59aca56228ea8a0c92dac27f497bf08b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a59aca56228ea8a0c92dac27f497bf08b">cbuf_write</a> (<a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf, const void *element)</td></tr>
 <tr class="memdesc:a59aca56228ea8a0c92dac27f497bf08b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer reader function.  <a href="cbuf_8h.html#a59aca56228ea8a0c92dac27f497bf08b">More...</a><br /></td></tr>
 <tr class="separator:a59aca56228ea8a0c92dac27f497bf08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac82a1b04f8cfe1762b30b201279f3c0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#ac82a1b04f8cfe1762b30b201279f3c0e">cbuf_get</a> (const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>, void *element)</td></tr>
+<tr class="memitem:ac82a1b04f8cfe1762b30b201279f3c0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#ac82a1b04f8cfe1762b30b201279f3c0e">cbuf_get</a> (const <a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf, void *element)</td></tr>
 <tr class="memdesc:ac82a1b04f8cfe1762b30b201279f3c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer get function.  <a href="cbuf_8h.html#ac82a1b04f8cfe1762b30b201279f3c0e">More...</a><br /></td></tr>
 <tr class="separator:ac82a1b04f8cfe1762b30b201279f3c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3adbd60262b7b7c61b2451ca8a493048"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a3adbd60262b7b7c61b2451ca8a493048">cbuf_getp</a> (const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>, void **element)</td></tr>
+<tr class="memitem:a3adbd60262b7b7c61b2451ca8a493048"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#a3adbd60262b7b7c61b2451ca8a493048">cbuf_getp</a> (const <a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf, void **element)</td></tr>
 <tr class="memdesc:a3adbd60262b7b7c61b2451ca8a493048"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer get pointer function.  <a href="cbuf_8h.html#a3adbd60262b7b7c61b2451ca8a493048">More...</a><br /></td></tr>
 <tr class="separator:a3adbd60262b7b7c61b2451ca8a493048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adae072096a8b074e5e4c31b94ccc770b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a> (<a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>)</td></tr>
+<tr class="memitem:adae072096a8b074e5e4c31b94ccc770b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">cbuf_clear</a> (<a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf)</td></tr>
 <tr class="memdesc:adae072096a8b074e5e4c31b94ccc770b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The circular buffer clear function.  <a href="cbuf_8h.html#adae072096a8b074e5e4c31b94ccc770b">More...</a><br /></td></tr>
 <tr class="separator:adae072096a8b074e5e4c31b94ccc770b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac51f581af4ba83d58bf9de0c20ccae97"><td class="memItemLeft" align="right" valign="top"><a id="ac51f581af4ba83d58bf9de0c20ccae97" name="ac51f581af4ba83d58bf9de0c20ccae97"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_size</b> (const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>)</td></tr>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_size</b> (const <a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf)</td></tr>
 <tr class="separator:ac51f581af4ba83d58bf9de0c20ccae97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0661c6de8fb8271256a5d196334b721"><td class="memItemLeft" align="right" valign="top"><a id="ad0661c6de8fb8271256a5d196334b721" name="ad0661c6de8fb8271256a5d196334b721"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *<a class="el" href="structcbuf.html">cbuf</a>)</td></tr>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (const <a class="el" href="structcbuf__t.html">cbuf_t</a> *cbuf)</td></tr>
 <tr class="separator:ad0661c6de8fb8271256a5d196334b721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -139,7 +131,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_clear </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
@@ -166,7 +158,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_deinit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
@@ -193,7 +185,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_get </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>
@@ -231,7 +223,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_getp </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>
@@ -269,7 +261,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>
@@ -314,7 +306,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_read </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>
@@ -352,7 +344,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>cbuf_capacity</b> (co
         <tr>
           <td class="memname">int cbuf_write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cbuf_8h.html#ac373269acf0f439c7df787497d8ac307">cbuf_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structcbuf__t.html">cbuf_t</a> *&#160;</td>
           <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>

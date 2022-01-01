@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hash_0',['hash',['../structhashmap.html#a5ae69156005ba4b40e42de2a8395a9ad',1,'hashmap']]],
-  ['head_1',['head',['../structcbuf.html#a248ade10f95abbd232dbe0187f7bfdf1',1,'cbuf']]]
+  ['hash_0',['hash',['../structhashmap__t.html#a58fea00595bfbef41f66f741cf495be7',1,'hashmap_t']]],
+  ['head_1',['head',['../structcbuf__t.html#a462461bc0c88722963075ebeb2cba491',1,'cbuf_t']]]
 ];

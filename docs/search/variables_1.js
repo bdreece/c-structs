@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['element_5fsize_0',['element_size',['../structcbuf.html#ad367a875a19f6dd794ecd38b119f790c',1,'cbuf::element_size()'],['../structvla.html#aafe063a69e8b05ed779ef226293cfba0',1,'vla::element_size()']]],
-  ['elements_1',['elements',['../structcbuf.html#ae3612656177d1ba7fc246ed8538cc19c',1,'cbuf::elements()'],['../structvla.html#a3278141ea2eae30b3655f161a704580d',1,'vla::elements()']]]
+  ['element_5fsize_0',['element_size',['../structcbuf__t.html#a2f13cac8bf557b1ba25ecac4c1f7c959',1,'cbuf_t::element_size()'],['../structvla__t.html#a544de2c74959d4a20a57f89c7b2ee52e',1,'vla_t::element_size()']]],
+  ['elements_1',['elements',['../structcbuf__t.html#a353c8b977755d153ea29eb2bbfaf93e3',1,'cbuf_t::elements()'],['../structvla__t.html#aa239b7326c728bbfb752845176556778',1,'vla_t::elements()']]]
 ];

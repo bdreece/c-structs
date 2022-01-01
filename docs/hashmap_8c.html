@@ -80,43 +80,43 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2e58e11ee339a5dfafa2a1aab0773865"><td class="memItemLeft" align="right" valign="top"><a id="a2e58e11ee339a5dfafa2a1aab0773865" name="a2e58e11ee339a5dfafa2a1aab0773865"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_rehash</b> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_rehash</b> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map)</td></tr>
 <tr class="separator:a2e58e11ee339a5dfafa2a1aab0773865"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad48861bd8fba06e4d083fe50c11d9722"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#ad48861bd8fba06e4d083fe50c11d9722">hashmap_init</a> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth)</td></tr>
+<tr class="memitem:ad48861bd8fba06e4d083fe50c11d9722"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#ad48861bd8fba06e4d083fe50c11d9722">hashmap_init</a> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth)</td></tr>
 <tr class="memdesc:ad48861bd8fba06e4d083fe50c11d9722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap construction function.  <a href="hashmap_8c.html#ad48861bd8fba06e4d083fe50c11d9722">More...</a><br /></td></tr>
 <tr class="separator:ad48861bd8fba06e4d083fe50c11d9722"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a339af1965ea040b65ace092935146c2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#a339af1965ea040b65ace092935146c2d">hashmap_deinit</a> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
+<tr class="memitem:a339af1965ea040b65ace092935146c2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#a339af1965ea040b65ace092935146c2d">hashmap_deinit</a> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map)</td></tr>
 <tr class="memdesc:a339af1965ea040b65ace092935146c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap destruction function.  <a href="hashmap_8c.html#a339af1965ea040b65ace092935146c2d">More...</a><br /></td></tr>
 <tr class="separator:a339af1965ea040b65ace092935146c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f1f6a70a5eeb227e3e2e63c88d088f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#a9f1f6a70a5eeb227e3e2e63c88d088f1">hashmap_contains</a> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const void *key)</td></tr>
+<tr class="memitem:a9f1f6a70a5eeb227e3e2e63c88d088f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#a9f1f6a70a5eeb227e3e2e63c88d088f1">hashmap_contains</a> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const void *key)</td></tr>
 <tr class="memdesc:a9f1f6a70a5eeb227e3e2e63c88d088f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap contains function.  <a href="hashmap_8c.html#a9f1f6a70a5eeb227e3e2e63c88d088f1">More...</a><br /></td></tr>
 <tr class="separator:a9f1f6a70a5eeb227e3e2e63c88d088f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbe920d4e8ac9e6076511b15588d32dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#adbe920d4e8ac9e6076511b15588d32dc">hashmap_get</a> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const void *key, void *val)</td></tr>
+<tr class="memitem:adbe920d4e8ac9e6076511b15588d32dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8c.html#adbe920d4e8ac9e6076511b15588d32dc">hashmap_get</a> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const void *key, void *val)</td></tr>
 <tr class="memdesc:adbe920d4e8ac9e6076511b15588d32dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashmap get function.  <a href="hashmap_8c.html#adbe920d4e8ac9e6076511b15588d32dc">More...</a><br /></td></tr>
 <tr class="separator:adbe920d4e8ac9e6076511b15588d32dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c73fd33d94110f61c4e9729157026c5"><td class="memItemLeft" align="right" valign="top"><a id="a7c73fd33d94110f61c4e9729157026c5" name="a7c73fd33d94110f61c4e9729157026c5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_getp</b> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const void *key, void **val)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_getp</b> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const void *key, void **val)</td></tr>
 <tr class="separator:a7c73fd33d94110f61c4e9729157026c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29859c91e885e755a3834e20056df43a"><td class="memItemLeft" align="right" valign="top"><a id="a29859c91e885e755a3834e20056df43a" name="a29859c91e885e755a3834e20056df43a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_set</b> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const void *key, const void *val)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_set</b> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const void *key, const void *val)</td></tr>
 <tr class="separator:a29859c91e885e755a3834e20056df43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a165ca1795723db8896649ad4a3a86375"><td class="memItemLeft" align="right" valign="top"><a id="a165ca1795723db8896649ad4a3a86375" name="a165ca1795723db8896649ad4a3a86375"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_del</b> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, const void *key)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_del</b> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map, const void *key)</td></tr>
 <tr class="separator:a165ca1795723db8896649ad4a3a86375"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2f4a25946ffc17547688c2412466034"><td class="memItemLeft" align="right" valign="top"><a id="ae2f4a25946ffc17547688c2412466034" name="ae2f4a25946ffc17547688c2412466034"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_clear</b> (<a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_clear</b> (<a class="el" href="structhashmap__t.html">hashmap_t</a> *map)</td></tr>
 <tr class="separator:ae2f4a25946ffc17547688c2412466034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a453907baa12079eb3ad09d8fd801d2ed"><td class="memItemLeft" align="right" valign="top"><a id="a453907baa12079eb3ad09d8fd801d2ed" name="a453907baa12079eb3ad09d8fd801d2ed"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_size</b> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>)</td></tr>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_size</b> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map)</td></tr>
 <tr class="separator:a453907baa12079eb3ad09d8fd801d2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86f60a645584fffb1b30516ed5ede75b"><td class="memItemLeft" align="right" valign="top"><a id="a86f60a645584fffb1b30516ed5ede75b" name="a86f60a645584fffb1b30516ed5ede75b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_keys</b> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *keys)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_keys</b> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, <a class="el" href="structvla__t.html">vla_t</a> *keys)</td></tr>
 <tr class="separator:a86f60a645584fffb1b30516ed5ede75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d71ba79c92a0a234991dc2a513fa5c8"><td class="memItemLeft" align="right" valign="top"><a id="a2d71ba79c92a0a234991dc2a513fa5c8" name="a2d71ba79c92a0a234991dc2a513fa5c8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_vals</b> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *vals)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_vals</b> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, <a class="el" href="structvla__t.html">vla_t</a> *vals)</td></tr>
 <tr class="separator:a2d71ba79c92a0a234991dc2a513fa5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab31edf2286c9f1a6abd84150ea6ee098"><td class="memItemLeft" align="right" valign="top"><a id="ab31edf2286c9f1a6abd84150ea6ee098" name="ab31edf2286c9f1a6abd84150ea6ee098"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *<a class="el" href="structmap.html">map</a>, <a class="el" href="vla_8h.html#aac950efc38dbdec3ab72a02e75851bdd">vla_t</a> *pairs)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (const <a class="el" href="structhashmap__t.html">hashmap_t</a> *map, <a class="el" href="structvla__t.html">vla_t</a> *pairs)</td></tr>
 <tr class="separator:ab31edf2286c9f1a6abd84150ea6ee098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -132,7 +132,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (con
         <tr>
           <td class="memname">bool hashmap_contains </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structhashmap__t.html">hashmap_t</a> *&#160;</td>
           <td class="paramname"><em>map</em>, </td>
         </tr>
         <tr>
@@ -170,7 +170,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (con
         <tr>
           <td class="memname">int hashmap_deinit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structhashmap__t.html">hashmap_t</a> *&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
           <td></td>
         </tr>
@@ -197,7 +197,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (con
         <tr>
           <td class="memname">int hashmap_get </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structhashmap__t.html">hashmap_t</a> *&#160;</td>
           <td class="paramname"><em>map</em>, </td>
         </tr>
         <tr>
@@ -242,7 +242,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>hashmap_pairs</b> (con
         <tr>
           <td class="memname">int hashmap_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="hashmap_8h.html#af5dd1a5b97346e35746536a25b1a706d">hashmap_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structhashmap__t.html">hashmap_t</a> *&#160;</td>
           <td class="paramname"><em>map</em>, </td>
         </tr>
         <tr>

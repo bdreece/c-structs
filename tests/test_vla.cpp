@@ -1,11 +1,19 @@
+/*! \file       test_vla.cpp
+ *  \brief      Variable-length array data structure testing suite
+ *  \author     Brian Reece
+ *  \version    v0.3-alpha
+ *  \date       01/01/2022
+ */
+
 #define BOOST_TEST_MODULE test_vla
 #include <boost/test/included/unit_test.hpp>
 
 #include "test_vla.hpp"
 
-/*! \brief Invalid VLA initialization
- *  \details Ensures VLA construction function returns
- *           error upon receiving invalid arguments.
+/*! \test       test_vla/invalid_init
+ *  \brief      Invalid VLA initialization
+ *  \details    Ensures VLA construction function returns
+ *              error upon receiving invalid arguments.
  */
 BOOST_AUTO_TEST_SUITE(invalid_init)
 
@@ -29,10 +37,11 @@ BOOST_AUTO_TEST_CASE(invalid_capacity) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief Operations on empty VLA
- *  \details Performs a series of operations on
- *           an empty VLA, which may or may not
- *           result in error.
+/*! \test       test_vla/empty_ops
+ *  \brief      Operations on empty VLA
+ *  \details    Performs a series of operations on
+ *              an empty VLA, which may or may not
+ *              result in error.
  */
 BOOST_FIXTURE_TEST_SUITE(empty_ops, vla_empty_fixture)
 
@@ -60,9 +69,10 @@ BOOST_AUTO_TEST_CASE(empty_clear) { BOOST_TEST(vla_clear(&vla) == ERR_NONE); }
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief VLA addition operations
- *  \details Examples of standard operations that
- *           add elements to the VLA.
+/*! \test       test_vla/addition_ops
+ *  \brief      VLA addition operations
+ *  \details    Examples of standard operations that
+ *              add elements to the VLA.
  */
 BOOST_AUTO_TEST_SUITE(addition_ops)
 
@@ -104,9 +114,10 @@ BOOST_FIXTURE_TEST_CASE(ins_five_elements, vla_empty_fixture) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief VLA subtraction operations
- *  \details Examples of standard operations that
- *           remove elements from the VLA.
+/*! \test       test_vla/subtraction_ops
+ *  \brief      VLA subtraction operations
+ *  \details    Examples of standard operations that
+ *              remove elements from the VLA.
  */
 BOOST_AUTO_TEST_SUITE(subtraction_ops)
 

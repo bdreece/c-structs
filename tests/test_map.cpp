@@ -1,7 +1,15 @@
+/*! \file       test_map.cpp
+ *  \brief      Map data structure testing suite
+ *  \author     Brian Reece
+ *  \version    v0.3-alpha
+ *  \date       01/01/2022
+ */
+
 #define BOOST_TEST_MODULE test_map
 #include "test_map.hpp"
 
-/*! \brief      Map invalid initialization testing suite
+/*! \test       test_map/invalid_init
+ *  \brief      Map invalid initialization testing suite
  *  \details    Asserts proper behavior in error throwing
  *              upon invalid initialization.
  */
@@ -63,7 +71,8 @@ static void test_empty_clear(map_t *map) {
   BOOST_TEST(map_clear(map) == ERR_NONE);
 }
 
-/*! \brief      Unordered map empty operations testing suite
+/*! \test       test_map/umap_empty_ops
+ *  \brief      Unordered map empty operations testing suite
  *  \details    Asserts proper behavior in error throwing upon
  *              get operations on an empty unordered map.
  */
@@ -77,7 +86,8 @@ BOOST_AUTO_TEST_CASE(empty_clear) { test_empty_clear(&map); }
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Ordered map empty operations testing suite
+/*! \test       test_map/omap_empty_ops
+ *  \brief      Ordered map empty operations testing suite
  *  \details    Asserts proper behavior in error throwing upon
  *              get operations on an empty ordered map
  */
@@ -91,7 +101,8 @@ BOOST_AUTO_TEST_CASE(empty_clear) { test_empty_clear(&map); }
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Map addition operations testing suite
+/*! \test       test_map/addition_ops
+ *  \brief      Map addition operations testing suite
  *  \details    Asserts proper behavior in executing
  *              set operations.
  */
@@ -119,7 +130,8 @@ BOOST_FIXTURE_TEST_CASE(omap_set_five_elements, omap_empty_fixture) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Map subtraction operations testing suite
+/*! \test       test_map/subtraction_ops
+ *  \brief      Map subtraction operations testing suite
  *  \details    Asserts proper behavior in executing get,
  *              delete, and clear operations.
  */
@@ -240,7 +252,8 @@ static void test_pairs_five_elements(map_t *map) {
   }
 }
 
-/*! \brief      Unordered map aggregation operations testing suite
+/*! \test       test_map/umap_aggregation_ops
+ *  \brief      Unordered map aggregation operations testing suite
  *  \details    Asserts proper behavior in executing keys, vals, and
  *              pairs aggregations on unordered map.
  */
@@ -254,7 +267,8 @@ BOOST_AUTO_TEST_CASE(pairs_five_elements) { test_pairs_five_elements(&map); }
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Ordered map aggregation operations testing suite
+/*! \test       test_map/omap_aggregation_ops
+ *  \brief      Ordered map aggregation operations testing suite
  *  \details    Asserts proper behavior in executing keys, vals, and
  *              pairs aggregations on ordered map.
  */

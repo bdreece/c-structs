@@ -1,7 +1,15 @@
+/*! \file       test_cbuf.cpp
+ *  \brief      Circular buffer data structure testing suite
+ *  \author     Brian Reece
+ *  \version    v0.3-alpha
+ *  \date       01/01/2022
+ */
+
 #define BOOST_TEST_MODULE test_cbuf
 #include "test_cbuf.hpp"
 
-/*! \brief      Circular buffer invalid initialization test suite
+/*! \test       test_cbuf/invalid_init
+ *  \brief      Circular buffer invalid initialization test suite
  *  \details    Asserts proper behavior in error throwing upon
  *              invalid initializations
  */
@@ -27,7 +35,8 @@ BOOST_AUTO_TEST_CASE(empty_size) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Circular buffer empty operations test suite
+/*! \test       test_cbuf/empty_ops
+ *  \brief      Circular buffer empty operations test suite
  *  \details    Asserts proper behavior in error throwing upon
  *              reads from empty circular buffer
  */
@@ -53,7 +62,8 @@ BOOST_AUTO_TEST_CASE(empty_getp) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Circular buffer addition operations testing suite
+/*! \test       test_cbuf/addition_ops
+ *  \brief      Circular buffer addition operations testing suite
  *  \details    Asserts proper behavior in execution of write
  *              operations.
  */
@@ -74,7 +84,8 @@ BOOST_FIXTURE_TEST_CASE(write_five_elements, cbuf_empty_fixture) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
-/*! \brief      Circular buffer subtraction operations testing suite
+/*! \test       test_cbuf/subtraction_ops
+ *  \brief      Circular buffer subtraction operations testing suite
  *  \details    Asserts proper behavior in execution of read, clear,
  *              and get operations.
  */
