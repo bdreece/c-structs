@@ -16,12 +16,13 @@
 
 struct cbuf_empty_fixture {
   cbuf_empty_fixture() {
-    BOOST_TEST_REQUIRE(cbuf_init(&cbuf, sizeof(int), 10) == ERR_NONE);
+    BOOST_TEST_REQUIRE(cbuf_init(&cbuf, sizeof(int), 5) == ERR_NONE);
     BOOST_TEST(cbuf.elements);
     BOOST_TEST(cbuf.head == 0);
     BOOST_TEST(cbuf.tail == 0);
+    BOOST_TEST(cbuf.size == 0);
     BOOST_TEST(cbuf.element_size == sizeof(int));
-    BOOST_TEST(cbuf.capacity == 10);
+    BOOST_TEST(cbuf.capacity == 5);
   }
 
   ~cbuf_empty_fixture() { BOOST_TEST_REQUIRE(cbuf_deinit(&cbuf) == ERR_NONE); }
