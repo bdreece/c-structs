@@ -79,7 +79,7 @@ BOOST_FIXTURE_TEST_CASE(enq_five_elements, vla_empty_fixture) {
   int values[5] = {0, 1, 2, 3, 4};
 
   for (long i = 0; i < 5; i++) {
-    BOOST_TEST(vla_push(&vla, (const void *)&values[i]) == ERR_NONE);
+    BOOST_TEST(vla_enq(&vla, (const void *)&values[i]) == ERR_NONE);
     BOOST_TEST(*((int *)vla.elements + i) == values[i]);
   }
 }
@@ -144,7 +144,7 @@ BOOST_FIXTURE_TEST_CASE(getp_five_elements, vla_populated_fixture) {
 
 BOOST_FIXTURE_TEST_CASE(del_five_elements, vla_populated_fixture) {
   for (long i = 0; i < 5; i++) {
-    BOOST_TEST(vla_del(&vla, i) == ERR_NONE);
+    BOOST_TEST(vla_del(&vla, 0) == ERR_NONE);
     BOOST_TEST(vla_size(&vla) == 4 - i);
   }
 }

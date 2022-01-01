@@ -39,9 +39,9 @@ struct vla_empty_fixture {
 struct vla_populated_fixture {
   vla_populated_fixture() {
     int vals[5] = {1, 2, 3, 4, 5};
-    BOOST_TEST_REQUIRE(vla_init(&vla, sizeof(int), 5) == ERR_NONE);
-    for (int i = 0; i < 5; i++)
-      BOOST_TEST(vla_set(&vla, i, (const void *)&vals[i]) == ERR_NONE);
+    BOOST_TEST_REQUIRE(vla_init(&vla, sizeof(int), 10) == ERR_NONE);
+    for (long i = 0; i < 5; i++)
+      BOOST_TEST(vla_enq(&vla, (const void *)&vals[i]) == ERR_NONE);
   }
 
   ~vla_populated_fixture() { BOOST_TEST_REQUIRE(vla_deinit(&vla) == ERR_NONE); }
