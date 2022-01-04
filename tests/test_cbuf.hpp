@@ -33,8 +33,12 @@ struct cbuf_empty_fixture {
 struct cbuf_populated_fixture {
   cbuf_populated_fixture() {
     BOOST_TEST_REQUIRE(cbuf_init(&cbuf, sizeof(int), 5) == ERR_NONE);
-    BOOST_TEST_REQUIRE(memcpy(cbuf.elements, values, 5 * sizeof(int)) !=
-                       (void *)NULL);
+    for (int i = 0; i < 5; i++) {
+      BOOST_TEST_REQUIRE(memcpy((int *)cbuf.elements + i, (const void *)&i,
+                                sizeof(int)) != (void *)NULL);
+    }
+
+    cbuf.size = 5;
   }
 
   ~cbuf_populated_fixture() {
@@ -42,7 +46,6 @@ struct cbuf_populated_fixture {
   }
 
   cbuf_t cbuf;
-  int values[5] = {1, 2, 3, 4, 5};
 };
 
 #endif  // TEST_CBUF_HPP

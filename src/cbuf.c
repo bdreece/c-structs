@@ -81,12 +81,12 @@ int cbuf_get(const cbuf_t *cbuf, void *element) {
   if (cbuf->size == 0) return ERR_EMPTY;
 
   if (cbuf->capacity == 1) {
-    if (memcpy(cbuf->elements, element, cbuf->element_size) == NULL)
+    if (memcpy(element, cbuf->elements, cbuf->element_size) == NULL)
       return ERR_FAILURE;
     else
       return ERR_NONE;
   } else {
-    if (memcpy(cbuf->elements + cbuf->tail * cbuf->element_size, element,
+    if (memcpy(element, cbuf->elements + cbuf->tail * cbuf->element_size,
                cbuf->element_size) == NULL)
       return ERR_FAILURE;
     else
@@ -111,9 +111,12 @@ int cbuf_getp(const cbuf_t *cbuf, void **element) {
 int cbuf_clear(cbuf_t *cbuf) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
+  if (memset(cbuf->elements, 0, cbuf->element_size * cbuf->capacity) ==
+      (void *)NULL)
+    return ERR_FAILURE;
   cbuf->head = 0;
   cbuf->tail = 0;
-  memset(cbuf->elements, 0, cbuf->element_size * cbuf->capacity);
+  cbuf->size = 0;
   return ERR_NONE;
 }
 

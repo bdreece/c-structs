@@ -96,7 +96,7 @@ BOOST_FIXTURE_TEST_CASE(read_five_elements, cbuf_populated_fixture) {
 
   for (long i = 0; i < 5; i++) {
     BOOST_TEST(cbuf_read(&cbuf, (void *)&values[i]) == ERR_NONE);
-    BOOST_TEST(values[i] == i + 1);
+    BOOST_TEST(values[i] == i);
   }
 
   BOOST_TEST(cbuf.head == 0);
@@ -109,7 +109,7 @@ BOOST_FIXTURE_TEST_CASE(get_five_elements, cbuf_populated_fixture) {
 
   for (long i = 0; i < 5; i++) {
     BOOST_TEST(cbuf_get(&cbuf, (void *)&values[i]) == ERR_NONE);
-    BOOST_TEST(values[i] == 1);
+    BOOST_TEST(values[i] == 0);
   }
 
   BOOST_TEST(cbuf.head == 0);
@@ -122,7 +122,7 @@ BOOST_FIXTURE_TEST_CASE(getp_five_elements, cbuf_populated_fixture) {
 
   for (long i = 0; i < 5; i++) {
     BOOST_TEST(cbuf_getp(&cbuf, (void **)&values[i]) == ERR_NONE);
-    BOOST_TEST(*values[i] == 1);
+    BOOST_TEST(*values[i] == 0);
   }
 
   BOOST_TEST(cbuf.head == 0);

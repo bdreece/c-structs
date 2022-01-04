@@ -35,7 +35,7 @@ long umap_search(const struct map *map, const void *key) {
 
   int ret;
   long i;
-  pair_t *p;
+  const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
     // we don't take ownership of p here
@@ -43,19 +43,21 @@ long umap_search(const struct map *map, const void *key) {
     if (map->cmp(key, p->key, map->key_size) == 0) return i;
   }
 
-  return map_size(map);
+  return map_size(map) + 1;
 }
 
 long omap_search(const struct map *map, const void *key) {
   int ret, compare;
   long l, r, m;
-  pair_t *p;
+  const pair_t *p;
 
   l = 0;
   r = map_size(map);
 
+  if (r == 0) return r;
+
   while (l <= r) {
-    m = (long)(l + (r - l) / 2);
+    m = (long)((r - l) / 2);
 
     // Not copying p here
     if ((ret = vla_getp(&map->vla, m, (void **)&p)) < 0) return ret;
@@ -70,14 +72,14 @@ long omap_search(const struct map *map, const void *key) {
       return m;
   }
 
-  return map_size(map);
+  return map_size(map) + 1;
 }
 
 int map_init(map_t *map, const size_t key_size, const size_t val_size,
              bool ordered, int (*cmp)(const void *, const void *, size_t),
              const unsigned long initial_capacity) {
   int ret;
-  if (!map) return ERR_NULL;
+  if (!map || !cmp) return ERR_NULL;
 
   if (key_size < 1 || val_size < 1 || initial_capacity < 1)
     return ERR_INVALID_ARGUMENT;
@@ -120,14 +122,14 @@ int map_set(map_t *map, const void *key, const void *val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
-  long i = map->search(map, key);
+  const long i = map->search(map, key);
 
   // Got an error
   if (i < 0) return i;
 
-  pair_t p = map_create_pair(map, key, val);
+  const pair_t p = map_create_pair(map, key, val);
 
-  if (i == map_size(map)) {
+  if (i >= map_size(map)) {
     // Key not found
     if ((ret = vla_enq(&map->vla, (void *)&p)) < 0) return ret;
   } else {
@@ -146,7 +148,7 @@ int map_get(const map_t *map, const void *key, void *restrict val) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  long i = map->search(map, key);
+  const long i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -155,7 +157,7 @@ int map_get(const map_t *map, const void *key, void *restrict val) {
   if (i == map_size(map)) return ERR_NOT_FOUND;
 
   int ret;
-  pair_t *p;
+  const pair_t *p;
 
   // vla_getp to avoid double copy
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
@@ -171,7 +173,7 @@ int map_getp(const map_t *map, const void *key, void **restrict val) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  long i = map->search(map, key);
+  const long i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -180,7 +182,7 @@ int map_getp(const map_t *map, const void *key, void **restrict val) {
   if (i == map_size(map)) return ERR_NOT_FOUND;
 
   int ret;
-  pair_t *p;
+  const pair_t *p;
 
   // vla_getp to avoid double copy
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
@@ -196,7 +198,7 @@ int map_del(map_t *map, const void *key) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  long i = map->search(map, key);
+  const long i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -232,7 +234,7 @@ int map_keys(const map_t *map, vla_t *keys) {
 
   int ret;
   long i;
-  pair_t *p;
+  const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
     // vla_getp for subsequent copy, to avoid double copying
@@ -249,7 +251,7 @@ int map_vals(const map_t *map, vla_t *vals) {
 
   int ret;
   long i;
-  pair_t *p;
+  const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
     if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
@@ -265,7 +267,7 @@ int map_pairs(const map_t *map, vla_t *pairs) {
 
   int ret;
   long i;
-  pair_t *p;
+  const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
     if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
