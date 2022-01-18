@@ -46,7 +46,7 @@ STRUCTS_DEF int vla_deinit(vla_t *const vla);
  *  \param[in] element Element to push.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_push(vla_t *const vla, const void *restrict const element);
+STRUCTS_DEF int vla_push(vla_t *const vla, const void *restrict element);
 
 /*! \brief VLA pop function.
  *  \details This function pops an element from the VLA.
@@ -55,7 +55,7 @@ STRUCTS_DEF int vla_push(vla_t *const vla, const void *restrict const element);
  *  \param[out] element Element to pop.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_pop(vla_t *const vla, void *restrict const element);
+STRUCTS_DEF int vla_pop(vla_t *const vla, void *restrict element);
 
 /*! \func vla_enq
  *  \brief VLA enqueue function.
@@ -65,7 +65,7 @@ STRUCTS_DEF int vla_pop(vla_t *const vla, void *restrict const element);
  *  \param[in] size New VLA size.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_enq(vla_t *const vla, const void *restrict const element);
+STRUCTS_DEF int vla_enq(vla_t *const vla, const void *restrict element);
 
 /*! \brief VLA get function.
  *  \details This function gets an element from the VLA.
@@ -75,7 +75,7 @@ STRUCTS_DEF int vla_enq(vla_t *const vla, const void *restrict const element);
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_get(const vla_t *const vla, const long index,
-                        void *const restrict element);
+                        void *restrict element);
 
 /*! \brief VLA get pointer function
  *  \details This function gets the pointer to an element in the VLA.
@@ -95,7 +95,7 @@ STRUCTS_DEF int vla_getp(const vla_t *const vla, const long index,
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_set(vla_t *const vla, const long index,
-                        const void *restrict const element);
+                        const void *restrict element);
 
 /*! \brief VLA insert function.
  *  \details This function inserts an element into the VLA.
@@ -106,7 +106,7 @@ STRUCTS_DEF int vla_set(vla_t *const vla, const long index,
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_ins(vla_t *const vla, const long index,
-                        const void *const element);
+                        const void *restrict element);
 
 /*! \brief VLA delete function.
  *  \details This function deletes an element from the VLA. Time complexity on
@@ -130,7 +130,7 @@ STRUCTS_DEF int vla_clear(vla_t *const vla);
  *  \param[in] src The source VLA
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_ext(vla_t *const dest, const vla_t *const src);
+STRUCTS_DEF int vla_ext(vla_t *const dest, const vla_t *restrict src);
 
 /*! \brief VLA size function.
  *  \details This function returns the VLA size.
@@ -204,7 +204,7 @@ int vla_deinit(vla_t *const vla) {
   return ERR_NONE;
 }
 
-int vla_push(vla_t *const vla, const void *const element) {
+int vla_push(vla_t *const vla, const void *element) {
   if (!vla) return ERR_NULL;
 
   if (vla->size >= vla->capacity) {
@@ -220,7 +220,7 @@ int vla_push(vla_t *const vla, const void *const element) {
   return ERR_NONE;
 }
 
-int vla_pop(vla_t *const vla, void *const element) {
+int vla_pop(vla_t *const vla, void *element) {
   int i;
   if (!vla) return ERR_NULL;
 
@@ -238,7 +238,7 @@ int vla_pop(vla_t *const vla, void *const element) {
   return ERR_NONE;
 }
 
-int vla_enq(vla_t *const vla, const void *const element) {
+int vla_enq(vla_t *const vla, const void *element) {
   if (!vla) return ERR_NULL;
 
   // Resize if necessary
@@ -254,7 +254,7 @@ int vla_enq(vla_t *const vla, const void *const element) {
   return ERR_NONE;
 }
 
-int vla_get(const vla_t *const vla, const long index, void *const element) {
+int vla_get(const vla_t *const vla, const long index, void *element) {
   if (!vla) return ERR_NULL;
 
   if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
@@ -275,7 +275,7 @@ int vla_getp(const vla_t *const vla, const long index, void **const element) {
   return ERR_NONE;
 }
 
-int vla_set(vla_t *const vla, const long index, const void *const element) {
+int vla_set(vla_t *const vla, const long index, const void *element) {
   if (!vla)
 
     if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
@@ -286,7 +286,7 @@ int vla_set(vla_t *const vla, const long index, const void *const element) {
   return ERR_NONE;
 }
 
-int vla_ins(vla_t *const vla, const long index, const void *const element) {
+int vla_ins(vla_t *const vla, const long index, const void *element) {
   if (!vla) return ERR_NULL;
 
   if (index > vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
@@ -332,7 +332,7 @@ int vla_clear(vla_t *const vla) {
   return ERR_NONE;
 }
 
-int vla_ext(vla_t *const dest, const vla_t *const src) {
+int vla_ext(vla_t *const dest, const vla_t *restrict src) {
   if (!dest || !src) return ERR_NULL;
 
   if (dest->element_size != src->element_size) return ERR_INVALID_ARGUMENT;
@@ -359,10 +359,4 @@ long vla_capacity(const vla_t *const vla) {
 
 #endif  // STRUCTS_VLA_IMPL
 
-#ifdef __cplusplus
-#ifndef STRUCTS_MAP_H
-}
-#endif  // STRUCTS_MAP_H
-#endif  // __cplusplus
-
-#endif  // VLA_H
+#endif  // STRUCTS_VLA_H

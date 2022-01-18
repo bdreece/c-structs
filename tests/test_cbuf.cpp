@@ -6,7 +6,51 @@
  */
 
 #define BOOST_TEST_MODULE test_cbuf
-#include "test_cbuf.hpp"
+
+#include <string.h>
+
+#include <boost/test/included/unit_test.hpp>
+
+extern "C" {
+#define restrict     /** nothing **/
+#define STRUCTS_DEF  /** nothing **/
+#include "structs/cbuf.h"
+#include "structs/error.h"
+}
+
+struct cbuf_empty_fixture {
+  cbuf_empty_fixture() {
+    BOOST_TEST_REQUIRE(cbuf_init(&cbuf, sizeof(int), 5) == ERR_NONE);
+    BOOST_TEST(cbuf.elements);
+    BOOST_TEST(cbuf.head == 0);
+    BOOST_TEST(cbuf.tail == 0);
+    BOOST_TEST(cbuf.size == 0);
+    BOOST_TEST(cbuf.element_size == sizeof(int));
+    BOOST_TEST(cbuf.capacity == 5);
+  }
+
+  ~cbuf_empty_fixture() { BOOST_TEST_REQUIRE(cbuf_deinit(&cbuf) == ERR_NONE); }
+
+  cbuf_t cbuf;
+};
+
+struct cbuf_populated_fixture {
+  cbuf_populated_fixture() {
+    BOOST_TEST_REQUIRE(cbuf_init(&cbuf, sizeof(int), 5) == ERR_NONE);
+    for (int i = 0; i < 5; i++) {
+      BOOST_TEST_REQUIRE(memcpy((int *)cbuf.elements + i, (const void *)&i,
+                                sizeof(int)) != (void *)NULL);
+    }
+
+    cbuf.size = 5;
+  }
+
+  ~cbuf_populated_fixture() {
+    BOOST_TEST_REQUIRE(cbuf_deinit(&cbuf) == ERR_NONE);
+  }
+
+  cbuf_t cbuf;
+};
 
 /*! \test       test_cbuf/invalid_init
  *  \brief      Circular buffer invalid initialization test suite

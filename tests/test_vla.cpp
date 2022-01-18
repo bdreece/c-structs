@@ -8,7 +8,49 @@
 #define BOOST_TEST_MODULE test_vla
 #include <boost/test/included/unit_test.hpp>
 
-#include "test_vla.hpp"
+extern "C" {
+#define restrict /** nothing **/
+#define STRUCTS_DEF /** nothing **/
+#include "structs/error.h"
+#include "structs/vla.h"
+}
+
+/*! \brief      BOOST.Test VLA Empty Fixture
+ *  \details    Fixture object orchestrates construction
+ *              and destruction of empty VLAs.
+ */
+struct vla_empty_fixture {
+  vla_empty_fixture() {
+    BOOST_TEST_REQUIRE(vla_init(&vla, sizeof(int), 10) == ERR_NONE);
+    BOOST_TEST(vla.elements);
+    BOOST_TEST(vla.element_size == sizeof(int));
+    BOOST_TEST(vla.size == 0);
+    BOOST_TEST(vla.capacity == 10);
+  }
+
+  ~vla_empty_fixture() {
+    BOOST_TEST_REQUIRE(vla_deinit(&vla) == ERR_NONE);
+    BOOST_TEST(!vla.elements);
+    BOOST_TEST(vla.element_size == 0);
+    BOOST_TEST(vla.size == 0);
+    BOOST_TEST(vla.capacity == 0);
+  }
+
+  vla_t vla;
+};
+
+struct vla_populated_fixture {
+  vla_populated_fixture() {
+    int vals[5] = {1, 2, 3, 4, 5};
+    BOOST_TEST_REQUIRE(vla_init(&vla, sizeof(int), 10) == ERR_NONE);
+    for (long i = 0; i < 5; i++)
+      BOOST_TEST(vla_enq(&vla, (const void *)&vals[i]) == ERR_NONE);
+  }
+
+  ~vla_populated_fixture() { BOOST_TEST_REQUIRE(vla_deinit(&vla) == ERR_NONE); }
+
+  vla_t vla;
+};
 
 BOOST_AUTO_TEST_SUITE(invalid_init)
 
@@ -73,7 +115,9 @@ BOOST_AUTO_TEST_CASE(empty_getp) {
   BOOST_TEST(vla_getp(&vla, 0, (void **)&element) == ERR_INDEX_OUT_OF_BOUNDS);
 }
 
-BOOST_AUTO_TEST_CASE(empty_del) { BOOST_TEST(vla_del(&vla, 0) == ERR_INDEX_OUT_OF_BOUNDS); }
+BOOST_AUTO_TEST_CASE(empty_del) {
+  BOOST_TEST(vla_del(&vla, 0) == ERR_INDEX_OUT_OF_BOUNDS);
+}
 
 BOOST_AUTO_TEST_CASE(empty_clear) { BOOST_TEST(vla_clear(&vla) == ERR_NONE); }
 
