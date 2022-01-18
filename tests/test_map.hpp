@@ -7,7 +7,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include "structs/error.h"
+#define STRUCTS_MAP_IMPL
 #include "structs/map.h"
 #include "util.hpp"
 

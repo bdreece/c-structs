@@ -10,25 +10,35 @@
 
 #include "test_vla.hpp"
 
-/*! \test       test_vla/invalid_init
- *  \brief      Invalid VLA initialization
- *  \details    Ensures VLA construction function returns
- *              error upon receiving invalid arguments.
- */
 BOOST_AUTO_TEST_SUITE(invalid_init)
 
+/*! \test       test_vla/invalid_init/null_pointer
+ *  \brief      VLA null pointer argument
+ *  \details    Ensures VLA construction function returns
+ *              error upon receiving invalid VLA argument.
+ */
 BOOST_AUTO_TEST_CASE(null_pointer) {
   vla_t *v = NULL;
 
   BOOST_TEST(vla_init(v, sizeof(int), 10) == ERR_NULL);
 }
 
+/*! \test       test_vla/invalid_init/invalid_size
+ *  \brief      VLA invalid size argument
+ *  \details    Ensures VLA construction function returns
+ *              error upon receiving invalid size argument.
+ */
 BOOST_AUTO_TEST_CASE(invalid_size) {
   vla_t v;
 
   BOOST_TEST(vla_init(&v, 0, 10) == ERR_INVALID_ARGUMENT);
 }
 
+/*! \test       test_vla/invalid_init/invalid_capacity
+ *  \brief      VLA invalid capacity argument
+ *  \details    Ensures VLA construction function returns
+ *              error upon receiving invalid capacity argument.
+ */
 BOOST_AUTO_TEST_CASE(invalid_capacity) {
   vla_t v;
 

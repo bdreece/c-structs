@@ -7,5 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 add_subdirectory(src)
 
+add_subdirectory(sandbox)
+
 enable_testing()
 add_subdirectory(tests)

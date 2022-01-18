@@ -10,6 +10,8 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include "structs/error.h"
+
+#define STRUCTS_VLA_IMPL
 #include "structs/vla.h"
 
 /*! \brief      BOOST.Test VLA Empty Fixture

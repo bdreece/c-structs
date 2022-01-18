@@ -11,8 +11,8 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+#define STRUCTS_CBUF_IMPL
 #include "structs/cbuf.h"
-#include "structs/error.h"
 
 struct cbuf_empty_fixture {
   cbuf_empty_fixture() {
