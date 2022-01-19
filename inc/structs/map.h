@@ -28,11 +28,13 @@ typedef struct pair {
 
 //! \brief Map data structure
 typedef struct map {
-  vla_t vla;                                       //!< VLA of pairs
-  size_t key_size;                                 //!< Size of keys
-  size_t val_size;                                 //!< Size of values
-  int (*cmp)(const void *, const void *, size_t);  //!< Key comparison function
-  long (*search)(const struct map *, const void *);  //!< Map search function
+  vla_t vla;        //!< VLA of pairs
+  size_t key_size;  //!< Size of keys
+  size_t val_size;  //!< Size of values
+  int (*cmp)(const void *, const void *,
+             const size_t);  //!< Key comparison function
+  long (*search)(const struct map *const,
+                 const void *const);  //!< Map search function
 } map_t;
 
 /*! \brief Map construction function
@@ -45,7 +47,7 @@ typedef struct map {
  *  \param[in] initial_capacity The initial capacity of the inner VLA
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_init(map_t *map, const size_t key_size,
+STRUCTS_DEF int map_init(map_t *const map, const size_t key_size,
                          const size_t val_size, bool ordered,
                          int (*cmp)(const void *, const void *, size_t),
                          const unsigned long initial_capacity);
@@ -56,7 +58,7 @@ STRUCTS_DEF int map_init(map_t *map, const size_t key_size,
  *  \param[in] map The map to destruct
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_deinit(map_t *map);
+STRUCTS_DEF int map_deinit(map_t *const map);
 
 /*! \brief Map set function
  *  \details Sets the value associated with the given key
@@ -67,7 +69,8 @@ STRUCTS_DEF int map_deinit(map_t *map);
  *  \param[in] val The value to be set in the map
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_set(map_t *map, const void *key, const void *val);
+STRUCTS_DEF int map_set(map_t *const map, const void *const key,
+                        const void *restrict val);
 
 /*! \brief Map contains function
  *  \details Find whether the key exists in the map
@@ -75,7 +78,7 @@ STRUCTS_DEF int map_set(map_t *map, const void *key, const void *val);
  *  \param[in] key The key to find
  *  \return True if found, false otherwise
  */
-STRUCTS_DEF bool map_contains(const map_t *map, const void *key);
+STRUCTS_DEF bool map_contains(const map_t *const map, const void *const key);
 
 /*! \brief Map get function
  *  \details Gets the value associated with the given key in the map
@@ -84,7 +87,8 @@ STRUCTS_DEF bool map_contains(const map_t *map, const void *key);
  *  \param[out] val The value if found
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_get(const map_t *map, const void *key, void *val);
+STRUCTS_DEF int map_get(const map_t *const map, const void *const key,
+                        void *restrict val);
 
 /*! \brief Map get pointer function
  *  \details Gets a pointer to the value associated with the
@@ -94,7 +98,8 @@ STRUCTS_DEF int map_get(const map_t *map, const void *key, void *val);
  *  \param[out] val The value if found
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_getp(const map_t *map, const void *key, void **val);
+STRUCTS_DEF int map_getp(const map_t *const map, const void *const key,
+                         void **const val);
 
 /*! \brief Map delete function
  *  \details Deletes a given key-value pair from the map
@@ -102,22 +107,22 @@ STRUCTS_DEF int map_getp(const map_t *map, const void *key, void **val);
  *  \param[in] key The given key
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_del(map_t *map, const void *key);
+STRUCTS_DEF int map_del(map_t *const map, const void *const key);
 
 /*! \brief Map clear function
  *  \details Clears the map
  *  \param[in] map The respective map
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_clear(map_t *map);
+STRUCTS_DEF int map_clear(map_t *const map);
 
 /*! \brief Map size getter
  *  \param[in] map The respective map
  *  \return The current size of the map
  */
-STRUCTS_DEF long map_size(const map_t *map);
+STRUCTS_DEF long map_size(const map_t *const map);
 
-STRUCTS_DEF long map_capacity(const map_t *map);
+STRUCTS_DEF long map_capacity(const map_t *const map);
 
 /*! \brief Map keys function
  *  \details Gets a VLA of all the keys in the map
@@ -125,7 +130,7 @@ STRUCTS_DEF long map_capacity(const map_t *map);
  *  \param[out] keys An initialized VLA for key elements
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_keys(const map_t *map, vla_t *keys);
+STRUCTS_DEF int map_keys(const map_t *const map, vla_t *restrict keys);
 
 /*! \brief Map values function
  *  \details Gets a VLA of all the values in the map
@@ -133,7 +138,7 @@ STRUCTS_DEF int map_keys(const map_t *map, vla_t *keys);
  *  \param[out] vals An initialized VLA for value elements
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_vals(const map_t *map, vla_t *vals);
+STRUCTS_DEF int map_vals(const map_t *const map, vla_t *restrict vals);
 
 /*! \brief Map pairs function
  *  \details Gets a VLA of all the key-value pairs in the map
@@ -141,7 +146,11 @@ STRUCTS_DEF int map_vals(const map_t *map, vla_t *vals);
  *  \param[out] pairs An initialized VLA for pair elements
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int map_pairs(const map_t *map, vla_t *pairs);
+STRUCTS_DEF int map_pairs(const map_t *const map, vla_t *restrict pairs);
+
+STRUCTS_DEF long umap_search(const map_t *const map, const void *const key);
+
+STRUCTS_DEF long omap_search(const map_t *const map, const void *const key);
 
 #ifdef STRUCTS_MAP_IMPL
 
@@ -150,7 +159,9 @@ STRUCTS_DEF int map_pairs(const map_t *map, vla_t *pairs);
 
 #include "structs/error.h"
 
-static pair_t map_create_pair(map_t *map, const void *key, const void *val) {
+static inline pair_t map_create_pair(const map_t *const map,
+                                     const void *const key,
+                                     const void *const val) {
   pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
 
   ASSERT(memcpy(p.key, key, map->key_size) != NULL);
@@ -159,7 +170,7 @@ static pair_t map_create_pair(map_t *map, const void *key, const void *val) {
   return p;
 }
 
-static int map_destroy_pair(pair_t *p) {
+static inline int map_destroy_pair(pair_t *const p) {
   if (!p || !p->key || !p->val) return ERR_NULL;
 
   free(p->key);
@@ -167,7 +178,7 @@ static int map_destroy_pair(pair_t *p) {
   return ERR_NONE;
 }
 
-long umap_search(const struct map *map, const void *key) {
+long umap_search(const map_t *const map, const void *const key) {
   if (!map || !map->vla.elements | !key) return ERR_NULL;
 
   int ret;
@@ -183,7 +194,8 @@ long umap_search(const struct map *map, const void *key) {
   return map_size(map) + 1;
 }
 
-long omap_search(const struct map *map, const void *key) {
+// FIXME: This is broken
+long omap_search(const map_t *const map, const void *const key) {
   int ret, compare;
   long l, r, m;
   const pair_t *p;
@@ -212,7 +224,7 @@ long omap_search(const struct map *map, const void *key) {
   return map_size(map) + 1;
 }
 
-int map_init(map_t *map, const size_t key_size, const size_t val_size,
+int map_init(map_t *const map, const size_t key_size, const size_t val_size,
              bool ordered, int (*cmp)(const void *, const void *, size_t),
              const unsigned long initial_capacity) {
   int ret;
@@ -228,15 +240,12 @@ int map_init(map_t *map, const size_t key_size, const size_t val_size,
   map->val_size = val_size;
   map->cmp = cmp;
 
-  if (ordered)
-    map->search = omap_search;
-  else
-    map->search = umap_search;
+  map->search = ordered ? omap_search : umap_search;
 
   return ERR_NONE;
 }
 
-int map_deinit(map_t *map) {
+int map_deinit(map_t *const map) {
   if (!map) return ERR_NULL;
 
   int i, ret;
@@ -255,7 +264,7 @@ int map_deinit(map_t *map) {
   return ERR_NONE;
 }
 
-int map_set(map_t *map, const void *key, const void *val) {
+int map_set(map_t *const map, const void *key, const void *val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
@@ -264,23 +273,26 @@ int map_set(map_t *map, const void *key, const void *val) {
   // Got an error
   if (i < 0) return i;
 
-  const pair_t p = map_create_pair(map, key, val);
-
   if (i >= map_size(map)) {
     // Key not found
+    const pair_t p = map_create_pair(map, key, val);
     if ((ret = vla_enq(&map->vla, (void *)&p)) < 0) return ret;
   } else {
     // Key found
-    if ((ret = vla_set(&map->vla, i, (void *)&p)) < 0) return ret;
+    pair_t *const p;
+    if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
+    ASSERT(memcpy(p->val, val, map->val_size) != NULL);
   }
 
   return ERR_NONE;
 }
 
 // TODO: map_contains
-bool map_contains(const map_t *map, const void *key) { return false; }
+bool map_contains(const map_t *const map, const void *const key) {
+  return false;
+}
 
-int map_get(const map_t *map, const void *key, void *restrict val) {
+int map_get(const map_t *const map, const void *const key, void *val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   if (map_size(map) < 1) return ERR_EMPTY;
@@ -305,7 +317,7 @@ int map_get(const map_t *map, const void *key, void *restrict val) {
   return ERR_NONE;
 }
 
-int map_getp(const map_t *map, const void *key, void **restrict val) {
+int map_getp(const map_t *const map, const void *const key, void **const val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   if (map_size(map) < 1) return ERR_EMPTY;
@@ -330,7 +342,7 @@ int map_getp(const map_t *map, const void *key, void **restrict val) {
   return ERR_NONE;
 }
 
-int map_del(map_t *map, const void *key) {
+int map_del(map_t *const map, const void *const key) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   if (map_size(map) < 1) return ERR_EMPTY;
@@ -355,7 +367,7 @@ int map_del(map_t *map, const void *key) {
   return ERR_NONE;
 }
 
-int map_clear(map_t *map) {
+int map_clear(map_t *const map) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
@@ -364,11 +376,11 @@ int map_clear(map_t *map) {
   return ERR_NONE;
 }
 
-long map_size(const map_t *map) { return vla_size(&map->vla); }
+long map_size(const map_t *const map) { return vla_size(&map->vla); }
 
-long map_capacity(const map_t *map) { return vla_capacity(&map->vla); }
+long map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
 
-int map_keys(const map_t *map, vla_t *keys) {
+int map_keys(const map_t *const map, vla_t *keys) {
   if (!map || !map->vla.elements || !keys || !keys->elements) return ERR_NULL;
 
   int ret;
@@ -385,7 +397,7 @@ int map_keys(const map_t *map, vla_t *keys) {
   return ERR_NONE;
 }
 
-int map_vals(const map_t *map, vla_t *vals) {
+int map_vals(const map_t *const map, vla_t *vals) {
   if (!map || !map->vla.elements || !vals || !vals->elements) return ERR_NULL;
 
   int ret;
@@ -401,7 +413,7 @@ int map_vals(const map_t *map, vla_t *vals) {
   return ERR_NONE;
 }
 
-int map_pairs(const map_t *map, vla_t *pairs) {
+int map_pairs(const map_t *const map, vla_t *pairs) {
   if (!map || !map->vla.elements || !pairs || !pairs->elements) return ERR_NULL;
 
   int ret;
