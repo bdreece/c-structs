@@ -31,7 +31,7 @@ typedef struct cbuf {
  *  \param[in] size The size of the buffer.
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_init(cbuf_t *cbuf, const size_t element_size,
+STRUCTS_DEF int cbuf_init(cbuf_t *const cbuf, const size_t element_size,
                           const size_t capacity);
 
 /*! \brief The circular buffer destructor function
@@ -39,7 +39,7 @@ STRUCTS_DEF int cbuf_init(cbuf_t *cbuf, const size_t element_size,
  *  \param[in] cbuf The circular buffer to be released.
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_deinit(cbuf_t *cbuf);
+STRUCTS_DEF int cbuf_deinit(cbuf_t *const cbuf);
 
 /*! \brief The circular buffer writer function
  *  \details This function writes the element to the circular buffer.
@@ -47,7 +47,7 @@ STRUCTS_DEF int cbuf_deinit(cbuf_t *cbuf);
  *  \param[in] element The element to be written.
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_read(cbuf_t *cbuf, void *element);
+STRUCTS_DEF int cbuf_read(cbuf_t *const cbuf, void *restrict element);
 
 /*! \brief The circular buffer reader function
  *  \details This function reads the element from the circular buffer.
@@ -55,7 +55,7 @@ STRUCTS_DEF int cbuf_read(cbuf_t *cbuf, void *element);
  *  \param[out] element The element to be read.
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_write(cbuf_t *cbuf, const void *element);
+STRUCTS_DEF int cbuf_write(cbuf_t *const cbuf, const void *restrict element);
 
 /*! \brief The circular buffer get function
  *  \details This function retrieves an element from the circular buffer
@@ -64,7 +64,7 @@ STRUCTS_DEF int cbuf_write(cbuf_t *cbuf, const void *element);
  *  \param[out] element The element to be read.
  *  \return Zero if successful, non-zero otherwise
  */
-STRUCTS_DEF int cbuf_get(const cbuf_t *cbuf, void *element);
+STRUCTS_DEF int cbuf_get(const cbuf_t *const cbuf, void *restrict element);
 
 /*! \brief The circular buffer get pointer function
  *  \details This function retrieves a pointer to an element from the
@@ -73,18 +73,18 @@ STRUCTS_DEF int cbuf_get(const cbuf_t *cbuf, void *element);
  *  \param[out] element The element to be read
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_getp(const cbuf_t *cbuf, void **element);
+STRUCTS_DEF int cbuf_getp(const cbuf_t *const cbuf, void **const element);
 
 /*! \brief The circular buffer clear function
  *  \details This function zeroes all elements in the circular buffer.
  *  \param[in] cbuf The circular buffer.
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int cbuf_clear(cbuf_t *cbuf);
+STRUCTS_DEF int cbuf_clear(cbuf_t *const cbuf);
 
-STRUCTS_DEF long cbuf_size(const cbuf_t *cbuf);
+STRUCTS_DEF long cbuf_size(const cbuf_t *const cbuf);
 
-STRUCTS_DEF long cbuf_capacity(const cbuf_t *cbuf);
+STRUCTS_DEF long cbuf_capacity(const cbuf_t *const cbuf);
 
 #ifdef STRUCTS_CBUF_IMPL
 
@@ -93,7 +93,8 @@ STRUCTS_DEF long cbuf_capacity(const cbuf_t *cbuf);
 
 #include "structs/error.h"
 
-int cbuf_init(cbuf_t *cbuf, const size_t element_size, const size_t capacity) {
+int cbuf_init(cbuf_t *const cbuf, const size_t element_size,
+              const size_t capacity) {
   if (!cbuf) return ERR_NULL;
 
   if (capacity < 1 || element_size < 1) return ERR_INVALID_ARGUMENT;
@@ -109,7 +110,7 @@ int cbuf_init(cbuf_t *cbuf, const size_t element_size, const size_t capacity) {
   return ERR_NONE;
 }
 
-int cbuf_deinit(cbuf_t *cbuf) {
+int cbuf_deinit(cbuf_t *const cbuf) {
   if (!cbuf) return ERR_NULL;
 
   if (cbuf->elements != NULL) free(cbuf->elements);
@@ -123,7 +124,7 @@ int cbuf_deinit(cbuf_t *cbuf) {
   return ERR_NONE;
 }
 
-int cbuf_read(cbuf_t *cbuf, void *element) {
+int cbuf_read(cbuf_t *const cbuf, void *element) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
   if (cbuf->capacity == 0 || cbuf->size == 0) return ERR_EMPTY;
@@ -140,7 +141,7 @@ int cbuf_read(cbuf_t *cbuf, void *element) {
   }
 }
 
-int cbuf_write(cbuf_t *cbuf, const void *element) {
+int cbuf_write(cbuf_t *const cbuf, const void *element) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
   if (cbuf->capacity == 0) return ERR_EMPTY;
@@ -157,7 +158,7 @@ int cbuf_write(cbuf_t *cbuf, const void *element) {
   }
 }
 
-int cbuf_get(const cbuf_t *cbuf, void *element) {
+int cbuf_get(const cbuf_t *const cbuf, void *element) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
   if (cbuf->size == 0) return ERR_EMPTY;
@@ -176,7 +177,7 @@ int cbuf_get(const cbuf_t *cbuf, void *element) {
   }
 }
 
-int cbuf_getp(const cbuf_t *cbuf, void **element) {
+int cbuf_getp(const cbuf_t *const cbuf, void **const element) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
   if (cbuf->size == 0) return ERR_EMPTY;
@@ -190,7 +191,7 @@ int cbuf_getp(const cbuf_t *cbuf, void **element) {
   }
 }
 
-int cbuf_clear(cbuf_t *cbuf) {
+int cbuf_clear(cbuf_t *const cbuf) {
   if (!cbuf || !cbuf->elements) return ERR_NULL;
 
   if (memset(cbuf->elements, 0, cbuf->element_size * cbuf->capacity) ==
@@ -202,11 +203,11 @@ int cbuf_clear(cbuf_t *cbuf) {
   return ERR_NONE;
 }
 
-long cbuf_size(const cbuf_t *cbuf) {
+long cbuf_size(const cbuf_t *const cbuf) {
   return (!cbuf || !cbuf->elements) ? ERR_NULL : cbuf->size;
 }
 
-long cbuf_capacity(const cbuf_t *cbuf) {
+long cbuf_capacity(const cbuf_t *const cbuf) {
   return (!cbuf || !cbuf->elements) ? ERR_NULL : cbuf->capacity;
 }
 

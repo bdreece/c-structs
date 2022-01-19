@@ -10,6 +10,13 @@
 
 #include <stddef.h>
 
-int cmp(const void *a, const void *b, size_t size);
+int cmp(const void *a, const void *b, size_t size) {
+  if (*(char *)a < *(char *)b)
+    return -1;
+  else if (*(char *)a > *(char *)b)
+    return 1;
+  else
+    return 0;
+}
 
 #endif  // UTIL_HPP

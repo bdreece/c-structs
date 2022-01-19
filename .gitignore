@@ -6,3 +6,4 @@ build/*
 Testing/
 .cache/
 sandbox/
+perf.data*
