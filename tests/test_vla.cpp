@@ -9,7 +9,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 extern "C" {
-#define restrict /** nothing **/
+#define restrict __restrict__
 #define STRUCTS_DEF /** nothing **/
 #include "structs/error.h"
 #include "structs/vla.h"
