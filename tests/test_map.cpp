@@ -32,8 +32,6 @@ struct umap_empty_fixture {
   map_t map;
 };
 
-/**
- * TODO: Fix ordered map tests
 struct omap_empty_fixture {
   omap_empty_fixture() {
     BOOST_TEST_REQUIRE(
@@ -48,7 +46,6 @@ struct omap_empty_fixture {
 
   map_t map;
 };
-*/
 
 struct umap_populated_fixture {
   umap_populated_fixture() {
@@ -70,8 +67,6 @@ struct umap_populated_fixture {
   map_t map;
 };
 
-/**
- * TODO: Fix ordered map tests
 struct omap_populated_fixture {
   omap_populated_fixture() {
     BOOST_TEST_REQUIRE(
@@ -91,7 +86,6 @@ struct omap_populated_fixture {
   int vals[5] = {1, 2, 3, 4, 5};
   map_t map;
 };
-*/
 
 /*! \test       test_map/invalid_init
  *  \brief      Map invalid initialization testing suite
@@ -175,6 +169,7 @@ BOOST_AUTO_TEST_SUITE_END()
  *  \brief      Ordered map empty operations testing suite
  *  \details    Asserts proper behavior in error throwing upon
  *              get operations on an empty ordered map
+ */
 BOOST_FIXTURE_TEST_SUITE(omap_empty_ops, omap_empty_fixture)
 
 BOOST_AUTO_TEST_CASE(empty_get) { test_empty_get(&map); }
@@ -184,7 +179,6 @@ BOOST_AUTO_TEST_CASE(empty_getp) { test_empty_get(&map); }
 BOOST_AUTO_TEST_CASE(empty_clear) { test_empty_clear(&map); }
 
 BOOST_AUTO_TEST_SUITE_END()
-*/
 
 /*! \test       test_map/addition_ops
  *  \brief      Map addition operations testing suite
@@ -209,11 +203,9 @@ BOOST_FIXTURE_TEST_CASE(umap_set_five_elements, umap_empty_fixture) {
   test_set_five_elements(&map);
 }
 
-/**
 BOOST_FIXTURE_TEST_CASE(omap_set_five_elements, omap_empty_fixture) {
   test_set_five_elements(&map);
 }
-*/
 
 BOOST_AUTO_TEST_SUITE_END()
 
@@ -276,7 +268,6 @@ BOOST_FIXTURE_TEST_CASE(umap_clear_five_elements, umap_populated_fixture) {
   test_clear_five_elements(&map);
 }
 
-/**
 BOOST_FIXTURE_TEST_CASE(omap_get_five_elements, omap_populated_fixture) {
   test_get_five_elements(&map);
 }
@@ -292,7 +283,7 @@ BOOST_FIXTURE_TEST_CASE(omap_del_five_elements, omap_populated_fixture) {
 BOOST_FIXTURE_TEST_CASE(omap_clear_five_elements, omap_populated_fixture) {
   test_clear_five_elements(&map);
 }
-*/
+
 BOOST_AUTO_TEST_SUITE_END()
 
 static void test_keys_five_elements(map_t *map) {
@@ -361,7 +352,6 @@ BOOST_AUTO_TEST_SUITE_END()
  *              pairs aggregations on ordered map.
  */
 
-/**
 BOOST_FIXTURE_TEST_SUITE(omap_aggregation_ops, omap_populated_fixture)
 
 BOOST_AUTO_TEST_CASE(keys_five_elements) { test_keys_five_elements(&map); }
@@ -371,4 +361,3 @@ BOOST_AUTO_TEST_CASE(vals_five_elements) { test_vals_five_elements(&map); }
 BOOST_AUTO_TEST_CASE(pairs_five_elements) { test_pairs_five_elements(&map); }
 
 BOOST_AUTO_TEST_SUITE_END()
-*/

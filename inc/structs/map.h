@@ -33,8 +33,8 @@ typedef struct map {
   size_t val_size;  //!< Size of values
   int (*cmp)(const void *, const void *,
              const size_t);  //!< Key comparison function
-  long (*search)(const struct map *const,
-                 const void *const);  //!< Map search function
+  size_t (*search)(const struct map *const,
+                   const void *const);  //!< Map search function
 } map_t;
 
 /*! \brief Map construction function
@@ -50,7 +50,7 @@ typedef struct map {
 STRUCTS_DEF int map_init(map_t *const map, const size_t key_size,
                          const size_t val_size, bool ordered,
                          int (*cmp)(const void *, const void *, size_t),
-                         const unsigned long initial_capacity);
+                         const size_t initial_capacity);
 
 /*! \brief Map destruction function
  *  \details Calls the VLA destruction function and deinitializes
@@ -120,9 +120,9 @@ STRUCTS_DEF int map_clear(map_t *const map);
  *  \param[in] map The respective map
  *  \return The current size of the map
  */
-STRUCTS_DEF long map_size(const map_t *const map);
+STRUCTS_DEF size_t map_size(const map_t *const map);
 
-STRUCTS_DEF long map_capacity(const map_t *const map);
+STRUCTS_DEF size_t map_capacity(const map_t *const map);
 
 /*! \brief Map keys function
  *  \details Gets a VLA of all the keys in the map
@@ -148,9 +148,9 @@ STRUCTS_DEF int map_vals(const map_t *const map, vla_t *restrict vals);
  */
 STRUCTS_DEF int map_pairs(const map_t *const map, vla_t *restrict pairs);
 
-STRUCTS_DEF long umap_search(const map_t *const map, const void *const key);
+STRUCTS_DEF size_t umap_search(const map_t *const map, const void *const key);
 
-STRUCTS_DEF long omap_search(const map_t *const map, const void *const key);
+STRUCTS_DEF size_t omap_search(const map_t *const map, const void *const key);
 
 #ifdef STRUCTS_MAP_IMPL
 
@@ -178,11 +178,11 @@ static inline int map_destroy_pair(pair_t *const p) {
   return ERR_NONE;
 }
 
-long umap_search(const map_t *const map, const void *const key) {
+size_t umap_search(const map_t *const map, const void *const key) {
   if (!map || !map->vla.elements | !key) return ERR_NULL;
 
   int ret;
-  long i;
+  size_t i;
   const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
@@ -195,9 +195,9 @@ long umap_search(const map_t *const map, const void *const key) {
 }
 
 // FIXME: This is broken
-long omap_search(const map_t *const map, const void *const key) {
+size_t omap_search(const map_t *const map, const void *const key) {
   int ret, compare;
-  long l, r, m;
+  size_t l, r, m;
   const pair_t *p;
 
   l = 0;
@@ -205,8 +205,8 @@ long omap_search(const map_t *const map, const void *const key) {
 
   if (r == 0) return r;
 
-  while (l <= r) {
-    m = (long)((r - l) / 2);
+  while (l < r) {
+    m = (size_t)((r - l) / 2);
 
     // Not copying p here
     if ((ret = vla_getp(&map->vla, m, (void **)&p)) < 0) return ret;
@@ -226,7 +226,7 @@ long omap_search(const map_t *const map, const void *const key) {
 
 int map_init(map_t *const map, const size_t key_size, const size_t val_size,
              bool ordered, int (*cmp)(const void *, const void *, size_t),
-             const unsigned long initial_capacity) {
+             const size_t initial_capacity) {
   int ret;
   if (!map || !cmp) return ERR_NULL;
 
@@ -268,7 +268,7 @@ int map_set(map_t *const map, const void *key, const void *val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
-  const long i = map->search(map, key);
+  const size_t i = map->search(map, key);
 
   // Got an error
   if (i < 0) return i;
@@ -297,7 +297,7 @@ int map_get(const map_t *const map, const void *const key, void *val) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  const long i = map->search(map, key);
+  const size_t i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -322,7 +322,7 @@ int map_getp(const map_t *const map, const void *const key, void **const val) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  const long i = map->search(map, key);
+  const size_t i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -347,7 +347,7 @@ int map_del(map_t *const map, const void *const key) {
 
   if (map_size(map) < 1) return ERR_EMPTY;
 
-  const long i = map->search(map, key);
+  const size_t i = map->search(map, key);
 
   // Got error
   if (i < 0) return i;
@@ -376,15 +376,15 @@ int map_clear(map_t *const map) {
   return ERR_NONE;
 }
 
-long map_size(const map_t *const map) { return vla_size(&map->vla); }
+size_t map_size(const map_t *const map) { return vla_size(&map->vla); }
 
-long map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
+size_t map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
 
 int map_keys(const map_t *const map, vla_t *keys) {
   if (!map || !map->vla.elements || !keys || !keys->elements) return ERR_NULL;
 
   int ret;
-  long i;
+  size_t i;
   const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
@@ -401,7 +401,7 @@ int map_vals(const map_t *const map, vla_t *vals) {
   if (!map || !map->vla.elements || !vals || !vals->elements) return ERR_NULL;
 
   int ret;
-  long i;
+  size_t i;
   const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {
@@ -417,7 +417,7 @@ int map_pairs(const map_t *const map, vla_t *pairs) {
   if (!map || !map->vla.elements || !pairs || !pairs->elements) return ERR_NULL;
 
   int ret;
-  long i;
+  size_t i;
   const pair_t *p;
 
   for (i = 0; i < map_size(map); i++) {

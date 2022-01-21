@@ -18,10 +18,10 @@
 
 #ifdef STRUCTS_HASHMAP_IMPL
 #define STRUCTS_MAP_IMPL
-#include "structs/map.h"
 #define STRUCTS_VLA_IMPL
-#include "structs/vla.h"
 #endif  // STRUCTS_HASHMAP_IMPL
+
+#include "structs/map.h"
 
 //! \brief Hashmap data structure
 typedef struct hashmap {
@@ -29,7 +29,7 @@ typedef struct hashmap {
   size_t key_size;                                 //!< Size of keys
   size_t val_size;                                 //!< Size of values
   int (*cmp)(const void *, const void *, size_t);  //!< Key comparison function
-  long (*hash)(long, const void *);                //!< Key hashing function
+  size_t (*hash)(size_t, const void *);            //!< Key hashing function
 } hashmap_t;
 
 /*! \brief Hashmap construction function
@@ -47,8 +47,8 @@ typedef struct hashmap {
 STRUCTS_DEF int hashmap_init(hashmap_t *map, const size_t key_size,
                              const size_t val_size,
                              int (*cmp)(const void *, const void *, size_t),
-                             long (*hash)(long, const void *),
-                             long initial_breadth, long depth);
+                             size_t (*hash)(size_t, const void *),
+                             size_t initial_breadth, size_t depth);
 
 /*! \brief Hashmap destruction function
  *  \details Deinitializes and frees memory associated
@@ -85,7 +85,7 @@ STRUCTS_DEF int hashmap_del(hashmap_t *map, const void *key);
 
 STRUCTS_DEF int hashmap_clear(hashmap_t *map);
 
-STRUCTS_DEF long hashmap_size(const hashmap_t *map);
+STRUCTS_DEF size_t hashmap_size(const hashmap_t *map);
 
 STRUCTS_DEF int hashmap_keys(const hashmap_t *map, vla_t *keys);
 
@@ -114,8 +114,8 @@ static int hashmap_rehash(hashmap_t *map) {
 
 int hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size,
                  int (*cmp)(const void *, const void *, size_t),
-                 long (*hash)(long, const void *), long initial_breadth,
-                 long depth) {
+                 size_t (*hash)(size_t, const void *), size_t initial_breadth,
+                 size_t depth) {
   if (!map) return ERR_NULL;
 
   if (!cmp || key_size < 1 || val_size < 1 || initial_breadth < 1 || depth < 1)
@@ -146,7 +146,7 @@ int hashmap_deinit(hashmap_t *map) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
-  long i, n = vla_size(&map->vla);
+  size_t i, n = vla_size(&map->vla);
   map_t *m;
 
   for (i = 0; i < n; i++) {
@@ -165,7 +165,7 @@ int hashmap_deinit(hashmap_t *map) {
 
   map->key_size = map->val_size = 0;
   map->cmp = (int (*)(const void *, const void *, size_t))NULL;
-  map->hash = (long (*)(long, const void *))NULL;
+  map->hash = (size_t(*)(size_t, const void *))NULL;
 
   return ERR_NONE;
 }
@@ -182,7 +182,7 @@ int hashmap_get(const hashmap_t *map, const void *key, void *val) {
   map_t *m;
 
   // Compute key hash
-  long index = map->hash(hashmap_size(map), key);
+  size_t index = map->hash(hashmap_size(map), key);
 
   // Fetch corresponding map
   if ((ret = vla_get(&map->vla, index, (void *)&m)) < 0) return ret;
@@ -202,7 +202,7 @@ int hashmap_getp(const hashmap_t *map, const void *key, void **val) {
   map_t *m;
 
   // Compute key hash
-  long index = map->hash(hashmap_size(map), key);
+  size_t index = map->hash(hashmap_size(map), key);
 
   // Fetch corresponding map
   if ((ret = vla_get(&map->vla, index, (void *)&m)) < 0) return ret;
@@ -219,7 +219,7 @@ int hashmap_set(hashmap_t *map, const void *key, const void *val) {
 
   int ret;
   map_t *m;
-  long index = map->hash(hashmap_size(map), key);
+  size_t index = map->hash(hashmap_size(map), key);
 
   if ((ret = vla_get(&map->vla, index, (void *)&m)) < 0) return ret;
 
@@ -235,7 +235,7 @@ int hashmap_del(hashmap_t *map, const void *key) {
 
   int ret;
   map_t *m;
-  long index = map->hash(hashmap_size(map), key);
+  size_t index = map->hash(hashmap_size(map), key);
 
   if ((ret = vla_get(&map->vla, index, (void *)&m)) < 0) return ret;
 
@@ -248,7 +248,7 @@ int hashmap_clear(hashmap_t *map) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int i, ret;
-  long n = hashmap_size(map);
+  size_t n = hashmap_size(map);
   map_t *m;
 
   for (i = 0; i < n; i++) {
@@ -260,11 +260,11 @@ int hashmap_clear(hashmap_t *map) {
   return ERR_NONE;
 }
 
-long hashmap_size(const hashmap_t *map) {
+size_t hashmap_size(const hashmap_t *map) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
-  int i, ret;
-  long total = 0;
+  int ret;
+  size_t i, total = 0;
   map_t *m;
 
   for (i = 0; i < vla_size(&map->vla); i++) {

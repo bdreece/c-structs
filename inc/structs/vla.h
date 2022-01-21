@@ -11,14 +11,20 @@
 #define STRUCTS_DEF static inline
 #endif  // STRUCTS_DEF
 
+#if defined(STRUCTS_NO_STRING_H) || defined(STRUCTS_NO_STDLIB_H)
+#include "structs/util.h"
+#endif
+
+// TODO: VLA printf macros
+
 #include <stddef.h>
 
 //! \brief VLA struct definition.
 typedef struct vla {
-  unsigned long size;      //!< VLA size.
-  unsigned long capacity;  //!< VLA capacity.
-  size_t element_size;     //!< VLA element size.
-  void *elements;          //!< VLA elements.
+  size_t size;          //!< VLA size.
+  size_t capacity;      //!< VLA capacity.
+  size_t element_size;  //!< VLA element size.
+  void *elements;       //!< VLA elements.
 } vla_t;
 
 /*! \brief VLA construction function.
@@ -30,7 +36,7 @@ typedef struct vla {
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_init(vla_t *const vla, const size_t element_size,
-                         const long initial_capacity);
+                         const size_t initial_capacity);
 
 /*! \brief VLA destruction function.
  *  \details This function destroys a VLA.
@@ -74,7 +80,7 @@ STRUCTS_DEF int vla_enq(vla_t *const vla, const void *restrict element);
  *  \param[out] element Element to get.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_get(const vla_t *const vla, const long index,
+STRUCTS_DEF int vla_get(const vla_t *const vla, const size_t index,
                         void *restrict element);
 
 /*! \brief VLA get pointer function
@@ -84,7 +90,7 @@ STRUCTS_DEF int vla_get(const vla_t *const vla, const long index,
  *  \param[out] element Element to get
  *  \return Zero on success, non-zero on failure
  */
-STRUCTS_DEF int vla_getp(const vla_t *const vla, const long index,
+STRUCTS_DEF int vla_getp(const vla_t *const vla, const size_t index,
                          void **const element);
 
 /*! \brief VLA set function.
@@ -94,7 +100,7 @@ STRUCTS_DEF int vla_getp(const vla_t *const vla, const long index,
  *  \param[in] element Element to set.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_set(vla_t *const vla, const long index,
+STRUCTS_DEF int vla_set(vla_t *const vla, const size_t index,
                         const void *restrict element);
 
 /*! \brief VLA insert function.
@@ -105,7 +111,7 @@ STRUCTS_DEF int vla_set(vla_t *const vla, const long index,
  *  \param[in] element Element to insert.
  *  \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_ins(vla_t *const vla, const long index,
+STRUCTS_DEF int vla_ins(vla_t *const vla, const size_t index,
                         const void *restrict element);
 
 /*! \brief VLA delete function.
@@ -115,7 +121,7 @@ STRUCTS_DEF int vla_ins(vla_t *const vla, const long index,
  * \param[in] index Index
  * of element to delete. \return Zero on success, non-zero on failure.
  */
-STRUCTS_DEF int vla_del(vla_t *const vla, const long index);
+STRUCTS_DEF int vla_del(vla_t *const vla, const size_t index);
 
 /*! \brief VLA clear function.
  *  \details This function clears the VLA.
@@ -137,19 +143,45 @@ STRUCTS_DEF int vla_ext(vla_t *const dest, const vla_t *restrict src);
  *  \param[in] vla VLA to get size of.
  *  \return VLA size.
  */
-STRUCTS_DEF long vla_size(const vla_t *const vla);
+STRUCTS_DEF size_t vla_size(const vla_t *const vla);
 
 /*! \brief VLA capacity function.
  *  \details This function returns the VLA capacity.
  *  \param[in] vla VLA to get capacity of.
  *  \return VLA capacity.
  */
-STRUCTS_DEF long vla_capacity(const vla_t *const vla);
+STRUCTS_DEF size_t vla_capacity(const vla_t *const vla);
 
 #ifdef STRUCTS_VLA_IMPL
 
+#ifndef STRUCTS_NO_STDLIB_H
+
+#ifndef STRUCTS_STDLIB_H
+#define STRUCTS_STDLIH_H
+
 #include <stdlib.h>
+#define STRUCTS_MALLOC(s) malloc((s))
+#define STRUCTS_CALLOC(n, s) calloc((n), (s))
+#define STRUCTS_REALLOCARRAY(p, n, s) reallocarray((p), (n), (s))
+#define STRUCTS_FREE(p) free((p))
+
+#endif  // STRUCTS_STDLIB_H
+
+#endif  // STRUCTS_NO_STDLIB_H
+
+#ifndef STRUCTS_NO_STRING_H
+
+#ifndef STRUCTS_STRING_H
+#define STRUCTS_STRING_H
+
 #include <string.h>
+#define STRUCTS_MEMCPY(d, s, n) memcpy((d), (s), (n))
+#define STRUCTS_MEMMOVE(d, s, n) memmove((d), (s), (n))
+#define STRUCTS_MEMSET(d, c, n) memset((d), (c), (n))
+
+#endif  // STRUCTS_STRING_H
+
+#endif  // STRUCTS_NO_STRING_H
 
 #include "structs/error.h"
 
@@ -159,10 +191,10 @@ STRUCTS_DEF long vla_capacity(const vla_t *const vla);
  * capacity The new capacity of the array. \returns Zero on success, non-zero on
  * failure.
  */
-static int vla_resize(vla_t *const vla, const unsigned long capacity) {
+static int vla_resize(vla_t *const vla, const unsigned size_t capacity) {
   if (!vla) return ERR_NULL;
 
-  void *p = reallocarray(vla->elements, capacity, vla->element_size);
+  void *p = STRUCTS_REALLOCARRAY(vla->elements, capacity, vla->element_size);
 
   if (p == NULL) return ERR_FAILURE;
 
@@ -173,7 +205,7 @@ static int vla_resize(vla_t *const vla, const unsigned long capacity) {
 }
 
 int vla_init(vla_t *const vla, const size_t element_size,
-             const long initial_capacity) {
+             const size_t initial_capacity) {
   if (!vla) return ERR_NULL;
 
   if (element_size <= 0 || initial_capacity <= 0) return ERR_INVALID_ARGUMENT;
@@ -182,11 +214,12 @@ int vla_init(vla_t *const vla, const size_t element_size,
   vla->size = 0;
   vla->capacity = initial_capacity;
 
-  vla->elements = calloc(initial_capacity, element_size);
+  vla->elements = STRUCTS_CALLOC(initial_capacity, element_size);
 
   if (vla->elements == NULL) return ERR_FAILURE;
 
-  ASSERT(memset(vla->elements, 0, element_size * initial_capacity) != NULL);
+  ASSERT(STRUCTS_MEMSET(vla->elements, 0, element_size * initial_capacity) !=
+         NULL);
 
   return ERR_NONE;
 }
@@ -194,7 +227,7 @@ int vla_init(vla_t *const vla, const size_t element_size,
 int vla_deinit(vla_t *const vla) {
   if (!vla) return ERR_NULL;
 
-  if (vla->elements != NULL) free(vla->elements);
+  if (vla->elements != NULL) STRUCTS_FREE(vla->elements);
 
   vla->elements = NULL;
   vla->element_size = 0;
@@ -211,9 +244,9 @@ int vla_push(vla_t *const vla, const void *element) {
     if (vla_resize(vla, vla->capacity * 2) == ERR_FAILURE) return ERR_FAILURE;
   }
 
-  memmove(vla->elements + vla->element_size, vla->elements,
-          vla->element_size * vla->size);
-  memcpy(vla->elements, element, vla->element_size);
+  STRUCTS_MEMMOVE(vla->elements + vla->element_size, vla->elements,
+                  vla->element_size * vla->size);
+  STRUCTS_MEMCPY(vla->elements, element, vla->element_size);
 
   vla->size++;
 
@@ -227,11 +260,11 @@ int vla_pop(vla_t *const vla, void *element) {
   if (vla->size == 0) return ERR_EMPTY;
 
   // Get first element
-  memcpy(element, vla->elements, vla->element_size);
+  STRUCTS_MEMCPY(element, vla->elements, vla->element_size);
 
   // Shift memory block "left" by size of one element
-  memmove(vla->elements, vla->elements + vla->element_size,
-          vla->element_size * vla->size);
+  STRUCTS_MEMMOVE(vla->elements, vla->elements + vla->element_size,
+                  vla->element_size * vla->size);
 
   vla->size--;
 
@@ -247,26 +280,26 @@ int vla_enq(vla_t *const vla, const void *element) {
   }
 
   // Append element to list
-  memcpy(vla->elements + (vla->size * vla->element_size), element,
-         vla->element_size);
+  STRUCTS_MEMCPY(vla->elements + (vla->size * vla->element_size), element,
+                 vla->element_size);
   vla->size++;
 
   return ERR_NONE;
 }
 
-int vla_get(const vla_t *const vla, const long index, void *element) {
+int vla_get(const vla_t *const vla, const size_t index, void *element) {
   if (!vla) return ERR_NULL;
 
   if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   if ((char *)(vla->elements + (index * vla->element_size)) != NULL)
-    memcpy(element, vla->elements + (index * vla->element_size),
-           vla->element_size);
+    STRUCTS_MEMCPY(element, vla->elements + (index * vla->element_size),
+                   vla->element_size);
 
   return ERR_NONE;
 }
 
-int vla_getp(const vla_t *const vla, const long index, void **const element) {
+int vla_getp(const vla_t *const vla, const size_t index, void **const element) {
   if (!vla) return ERR_NULL;
 
   if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
@@ -275,18 +308,18 @@ int vla_getp(const vla_t *const vla, const long index, void **const element) {
   return ERR_NONE;
 }
 
-int vla_set(vla_t *const vla, const long index, const void *element) {
+int vla_set(vla_t *const vla, const size_t index, const void *element) {
   if (!vla)
 
     if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
-  memcpy(vla->elements + (index * vla->element_size), element,
-         vla->element_size);
+  STRUCTS_MEMCPY(vla->elements + (index * vla->element_size), element,
+                 vla->element_size);
 
   return ERR_NONE;
 }
 
-int vla_ins(vla_t *const vla, const long index, const void *element) {
+int vla_ins(vla_t *const vla, const size_t index, const void *element) {
   if (!vla) return ERR_NULL;
 
   if (index > vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
@@ -296,27 +329,27 @@ int vla_ins(vla_t *const vla, const long index, const void *element) {
   }
 
   // Make an empty slot at index by shifting index + 1 block right
-  memmove(vla->elements + (index * vla->element_size) + vla->element_size,
-          vla->elements + (index * vla->element_size),
-          (vla->size - index) * vla->element_size);
+  STRUCTS_MEMMOVE(
+      vla->elements + (index * vla->element_size) + vla->element_size,
+      vla->elements + (index * vla->element_size),
+      (vla->size - index) * vla->element_size);
 
-  memcpy(vla->elements + (index * vla->element_size), element,
-         vla->element_size);
+  STRUCTS_MEMCPY(vla->elements + (index * vla->element_size), element,
+                 vla->element_size);
   vla->size++;
 
   return ERR_NONE;
 }
 
-int vla_del(vla_t *const vla, const long index) {
+int vla_del(vla_t *const vla, const size_t index) {
   if (!vla) return ERR_NULL;
 
   if (index >= vla->size) return ERR_INDEX_OUT_OF_BOUNDS;
 
   // Move block at index + 1 to index
-  if (memmove(vla->elements + (index * vla->element_size),
-              vla->elements + ((index + 1) * vla->element_size),
-              (vla->size - index - 1) * vla->element_size) == NULL)
-    return ERR_FAILURE;
+  STRUCTS_MEMMOVE(vla->elements + (index * vla->element_size),
+                  vla->elements + ((index + 1) * vla->element_size),
+                  (vla->size - index - 1) * vla->element_size);
 
   vla->size--;
 
@@ -326,7 +359,7 @@ int vla_del(vla_t *const vla, const long index) {
 int vla_clear(vla_t *const vla) {
   if (!vla) return ERR_NULL;
 
-  memset(vla->elements, 0, vla->element_size * vla->capacity);
+  STRUCTS_MEMSET(vla->elements, 0, vla->element_size * vla->capacity);
 
   vla->size = 0;
   return ERR_NONE;
@@ -337,12 +370,12 @@ int vla_ext(vla_t *const dest, const vla_t *restrict src) {
 
   if (dest->element_size != src->element_size) return ERR_INVALID_ARGUMENT;
 
-  size_t new_size = dest->element_size * (dest->size + src->size);
-  dest->elements = realloc(dest->elements, new_size);
+  dest->elements = STRUCTS_REALLOCARRAY(dest->elements, dest->size + src->size,
+                                        dest->element_size);
 
   // Copy src into dest
-  if (memcpy(dest->elements + (dest->element_size * dest->size), src->elements,
-             src->element_size * src->size) == NULL)
+  if (STRUCTS_MEMCPY(dest->elements + (dest->element_size * dest->size),
+                     src->elements, src->element_size * src->size) == NULL)
     return ERR_FAILURE;
 
   dest->size += src->size;
@@ -351,9 +384,11 @@ int vla_ext(vla_t *const dest, const vla_t *restrict src) {
   return ERR_NONE;
 }
 
-long vla_size(const vla_t *const vla) { return (!vla) ? ERR_NULL : vla->size; }
+size_t vla_size(const vla_t *const vla) {
+  return (!vla) ? ERR_NULL : vla->size;
+}
 
-long vla_capacity(const vla_t *const vla) {
+size_t vla_capacity(const vla_t *const vla) {
   return (!vla) ? ERR_NONE : vla->capacity;
 }
 
