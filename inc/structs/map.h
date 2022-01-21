@@ -155,7 +155,20 @@ STRUCTS_DEF size_t omap_search(const map_t *const map, const void *const key);
 #ifdef STRUCTS_MAP_IMPL
 
 #include <stdlib.h>
+
+#ifndef STRUCTS_NO_STRING_H
+
+#ifndef STRUCTS_STRING_H
+#define STRUCTS_STRING_H
+
 #include <string.h>
+#define STRUCTS_MEMCPY(d, s, n) memcpy((d), (s), (n))
+#define STRUCTS_MEMMOVE(d, s, n) memmove((d), (s), (n))
+#define STRUCTS_MEMSET(d, c, n) memset((d), (c), (n))
+
+#endif  // STRUCTS_STRING_H
+
+#endif  // STRUCTS_NO_STRING_H
 
 #include "structs/error.h"
 
@@ -164,8 +177,8 @@ static inline pair_t map_create_pair(const map_t *const map,
                                      const void *const val) {
   pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
 
-  ASSERT(memcpy(p.key, key, map->key_size) != NULL);
-  ASSERT(memcpy(p.val, val, map->val_size) != NULL);
+  ASSERT(STRUCTS_MEMCPY(p.key, key, map->key_size) != NULL);
+  ASSERT(STRUCTS_MEMCPY(p.val, val, map->val_size) != NULL);
 
   return p;
 }
@@ -281,7 +294,7 @@ int map_set(map_t *const map, const void *key, const void *val) {
     // Key found
     pair_t *const p;
     if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
-    ASSERT(memcpy(p->val, val, map->val_size) != NULL);
+    ASSERT(STRUCTS_MEMCPY(p->val, val, map->val_size) != NULL);
   }
 
   return ERR_NONE;
@@ -312,7 +325,7 @@ int map_get(const map_t *const map, const void *const key, void *val) {
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
 
   // Copy val from pair
-  ASSERT(memcpy(val, p->val, map->val_size) != NULL);
+  ASSERT(STRUCTS_MEMCPY(val, p->val, map->val_size) != NULL);
 
   return ERR_NONE;
 }

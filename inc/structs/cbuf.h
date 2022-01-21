@@ -12,7 +12,7 @@
 #define STRUCTS_DEF static inline
 #endif  // STRUCTS_DEF
 
-#if defined(STRUCTS_NO_STRING_H) || defined(STRUCTS_NO_STDLIB_H)
+#ifdef STRUCTS_NO_STRING_H
 #include "structs/util.h"
 #endif
 
@@ -92,20 +92,7 @@ STRUCTS_DEF size_t cbuf_capacity(const cbuf_t *const cbuf);
 
 #ifdef STRUCTS_CBUF_IMPL
 
-#ifndef STRUCTS_NO_STDLIB_H
-
-#ifndef STRUCTS_STDLIB_H
-#define STRUCTS_STDLIB_H
-
 #include <stdlib.h>
-#define STRUCTS_MALLOC(s) malloc((s))
-#define STRUCTS_CALLOC(n, s) calloc((n), (s))
-#define STRUCTS_REALLOCARRAY(p, n, s) reallocarray((p), (n), (s))
-#define STRUCTS_FREE(p) free((p))
-
-#endif  // STRUCTS_STDLIB_H
-
-#endif  // STRUCTS_NO_STDLIB_H
 
 #ifndef STRUCTS_NO_STRING_H
 
@@ -134,7 +121,7 @@ int cbuf_init(cbuf_t *const cbuf, const size_t element_size,
   cbuf->size = 0;
   cbuf->head = 0;
   cbuf->tail = 0;
-  cbuf->elements = STRUCTS_CALLOC(capacity, element_size);
+  cbuf->elements = calloc(capacity, element_size);
   if (!cbuf->elements) return ERR_FAILURE;
 
   return ERR_NONE;
@@ -143,7 +130,7 @@ int cbuf_init(cbuf_t *const cbuf, const size_t element_size,
 int cbuf_deinit(cbuf_t *const cbuf) {
   if (!cbuf) return ERR_NULL;
 
-  if (cbuf->elements != NULL) STRUCTS_FREE(cbuf->elements);
+  if (cbuf->elements != NULL) free(cbuf->elements);
 
   cbuf->elements = NULL;
   cbuf->element_size = 0;

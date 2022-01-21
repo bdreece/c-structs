@@ -14,20 +14,21 @@
 #endif  // STRUCTS_DEF
 
 #include <stddef.h>
-
+/**
+ * TODO: Implement alternative heap
 #ifdef STRUCTS_NO_STDLIB_H
 
 STRUCTS_DEF void *structs_malloc(size_t size);
 
 STRUCTS_DEF void *structs_calloc(size_t nmemb, size_t size);
 
-STRUCTS_DEF void *structs_reallocarray(void *ptr, size_t nmemb, size_t size);
+STRUCTS_DEF void *structs_realloc(void *ptr, size_t size);
 
 STRUCTS_DEF void structs_free(void *ptr);
 
 #define STRUCTS_MALLOC(s) structs_malloc((s))
 #define STRUCTS_CALLOC(n, s) structs_calloc((n), (s))
-#define STRUCTS_REALLOCARRAY(p, n, s) structs_reallocarray((p), (n), (s))
+#define STRUCTS_REALLOC(p, s) structs_realloc((p), (s))
 #define STRUCTS_FREE(p) structs_free((p))
 
 #ifdef STRUCTS_UTIL_IMPL
@@ -49,10 +50,8 @@ void *structs_malloc(size_t size) { return NULL; }
 // TODO: Implement calloc
 void *structs_calloc(size_t nmemb, size_t size) { return NULL; }
 
-// TODO: Implement reallocarray
-void *structs_reallocarray(void *ptr, size_t nmemb, size_t size) {
-  return NULL;
-}
+// TODO: Implement realloc
+void *structs_realloc(void *ptr, size_t size) { return NULL; }
 
 // TODO: Implement free
 void structs_free(void *ptr) { return; }
@@ -60,6 +59,7 @@ void structs_free(void *ptr) { return; }
 #endif  // STRUCTS_UTIL_IMPL
 
 #endif  // STRUCTS_NO_STDLIB_H
+*/
 
 #ifdef STRUCTS_NO_STRING_H
 

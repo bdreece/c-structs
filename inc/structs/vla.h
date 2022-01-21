@@ -11,7 +11,7 @@
 #define STRUCTS_DEF static inline
 #endif  // STRUCTS_DEF
 
-#if defined(STRUCTS_NO_STRING_H) || defined(STRUCTS_NO_STDLIB_H)
+#ifdef STRUCTS_NO_STRING_H
 #include "structs/util.h"
 #endif
 
@@ -154,20 +154,7 @@ STRUCTS_DEF size_t vla_capacity(const vla_t *const vla);
 
 #ifdef STRUCTS_VLA_IMPL
 
-#ifndef STRUCTS_NO_STDLIB_H
-
-#ifndef STRUCTS_STDLIB_H
-#define STRUCTS_STDLIH_H
-
 #include <stdlib.h>
-#define STRUCTS_MALLOC(s) malloc((s))
-#define STRUCTS_CALLOC(n, s) calloc((n), (s))
-#define STRUCTS_REALLOCARRAY(p, n, s) reallocarray((p), (n), (s))
-#define STRUCTS_FREE(p) free((p))
-
-#endif  // STRUCTS_STDLIB_H
-
-#endif  // STRUCTS_NO_STDLIB_H
 
 #ifndef STRUCTS_NO_STRING_H
 
@@ -191,10 +178,10 @@ STRUCTS_DEF size_t vla_capacity(const vla_t *const vla);
  * capacity The new capacity of the array. \returns Zero on success, non-zero on
  * failure.
  */
-static int vla_resize(vla_t *const vla, const unsigned size_t capacity) {
+static int vla_resize(vla_t *const vla, const size_t capacity) {
   if (!vla) return ERR_NULL;
 
-  void *p = STRUCTS_REALLOCARRAY(vla->elements, capacity, vla->element_size);
+  void *p = realloc(vla->elements, capacity * vla->element_size);
 
   if (p == NULL) return ERR_FAILURE;
 
@@ -214,7 +201,7 @@ int vla_init(vla_t *const vla, const size_t element_size,
   vla->size = 0;
   vla->capacity = initial_capacity;
 
-  vla->elements = STRUCTS_CALLOC(initial_capacity, element_size);
+  vla->elements = calloc(initial_capacity, element_size);
 
   if (vla->elements == NULL) return ERR_FAILURE;
 
@@ -227,7 +214,7 @@ int vla_init(vla_t *const vla, const size_t element_size,
 int vla_deinit(vla_t *const vla) {
   if (!vla) return ERR_NULL;
 
-  if (vla->elements != NULL) STRUCTS_FREE(vla->elements);
+  if (vla->elements != NULL) free(vla->elements);
 
   vla->elements = NULL;
   vla->element_size = 0;
@@ -370,16 +357,13 @@ int vla_ext(vla_t *const dest, const vla_t *restrict src) {
 
   if (dest->element_size != src->element_size) return ERR_INVALID_ARGUMENT;
 
-  dest->elements = STRUCTS_REALLOCARRAY(dest->elements, dest->size + src->size,
-                                        dest->element_size);
-
-  // Copy src into dest
-  if (STRUCTS_MEMCPY(dest->elements + (dest->element_size * dest->size),
-                     src->elements, src->element_size * src->size) == NULL)
-    return ERR_FAILURE;
-
-  dest->size += src->size;
-  dest->capacity = dest->size;
+  int ret;
+  size_t i;
+  void *p;
+  for (i = 0; i < src->size; i++) {
+    if ((ret = vla_getp(src, i, (void **)&p)) < 0) return ret;
+    if ((ret = vla_enq(dest, p)) < 0) return ret;
+  }
 
   return ERR_NONE;
 }
