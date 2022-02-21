@@ -12,8 +12,14 @@
 #endif  // STRUCTS_DEF
 
 #ifdef STRUCTS_NO_STRING_H
+
+#ifdef STRUCTS_VLA_IMPL
+#define STRUCTS_UTIL_IMPL
+#endif  // STRUCTS_VLA_IMPL
+
 #include "structs/util.h"
-#endif
+
+#endif  // STRUCTS_NO_STRING_H
 
 // TODO: VLA printf macros
 
@@ -138,19 +144,28 @@ STRUCTS_DEF int vla_clear(vla_t *const vla);
  */
 STRUCTS_DEF int vla_ext(vla_t *const dest, const vla_t *restrict src);
 
+/*! \brief VLA for each function
+ *  \details This function performs an operation for each element
+ *           in the VLA.
+ *  \param[in] vla VLA to modify
+ *  \param[in] func Pointer to function modifying an element
+ *  \return Zero on success, non-zero on failure
+ */
+STRUCTS_DEF int vla_foreach(vla_t *const vla, void (*func)(void *));
+
 /*! \brief VLA size function.
  *  \details This function returns the VLA size.
  *  \param[in] vla VLA to get size of.
  *  \return VLA size.
  */
-STRUCTS_DEF size_t vla_size(const vla_t *const vla);
+STRUCTS_DEF long vla_size(const vla_t *const vla);
 
 /*! \brief VLA capacity function.
  *  \details This function returns the VLA capacity.
  *  \param[in] vla VLA to get capacity of.
  *  \return VLA capacity.
  */
-STRUCTS_DEF size_t vla_capacity(const vla_t *const vla);
+STRUCTS_DEF long vla_capacity(const vla_t *const vla);
 
 #ifdef STRUCTS_VLA_IMPL
 
@@ -368,11 +383,23 @@ int vla_ext(vla_t *const dest, const vla_t *restrict src) {
   return ERR_NONE;
 }
 
-size_t vla_size(const vla_t *const vla) {
-  return (!vla) ? ERR_NULL : vla->size;
+int vla_foreach(vla_t *const vla, void (*func)(void *)) {
+  if (!vla || !func) return ERR_NULL;
+
+  int ret;
+  size_t i;
+  void *p;
+  for (i = 0; i < vla_size(vla); i++) {
+    if ((ret = vla_getp(vla, i, (void **)&p)) < 0) return ret;
+    func(p);
+  }
+
+  return ERR_NONE;
 }
 
-size_t vla_capacity(const vla_t *const vla) {
+long vla_size(const vla_t *const vla) { return (!vla) ? ERR_NULL : vla->size; }
+
+long vla_capacity(const vla_t *const vla) {
   return (!vla) ? ERR_NONE : vla->capacity;
 }
 

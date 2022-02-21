@@ -13,7 +13,6 @@
 #define STRUCTS_CBUF_IMPL
 #define STRUCTS_MAP_IMPL
 #define STRUCTS_HASHMAP_IMPL
-#define STRUCTS_UTIL_IMPL
 #endif  // STRUCTS_ALL_IMPL
 
 #include "structs/cbuf.h"

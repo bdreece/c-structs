@@ -33,8 +33,9 @@ typedef struct map {
   size_t val_size;  //!< Size of values
   int (*cmp)(const void *, const void *,
              const size_t);  //!< Key comparison function
-  size_t (*search)(const struct map *const,
-                   const void *const);  //!< Map search function
+  long (*search)(const struct map *const,
+                 const void *const);  //!< Map search function
+  bool ord;
 } map_t;
 
 /*! \brief Map construction function
@@ -62,8 +63,8 @@ STRUCTS_DEF int map_deinit(map_t *const map);
 
 /*! \brief Map set function
  *  \details Sets the value associated with the given key
- *           If the key does not exist, a new pair will be
- *           created.
+ *           If the key-value pair does not exist, an ERR_NOT_FOUND
+ *           will be returned.
  *  \param[in] map The respective map
  *  \param[in] key The key to be associated with the new value
  *  \param[in] val The value to be set in the map
@@ -71,14 +72,6 @@ STRUCTS_DEF int map_deinit(map_t *const map);
  */
 STRUCTS_DEF int map_set(map_t *const map, const void *const key,
                         const void *restrict val);
-
-/*! \brief Map contains function
- *  \details Find whether the key exists in the map
- *  \param[in] map The respective map
- *  \param[in] key The key to find
- *  \return True if found, false otherwise
- */
-STRUCTS_DEF bool map_contains(const map_t *const map, const void *const key);
 
 /*! \brief Map get function
  *  \details Gets the value associated with the given key in the map
@@ -101,6 +94,16 @@ STRUCTS_DEF int map_get(const map_t *const map, const void *const key,
 STRUCTS_DEF int map_getp(const map_t *const map, const void *const key,
                          void **const val);
 
+/*! \brief Map insert function
+ *  \details Inserts a given key-value pair into the map
+ *  \param[in] map The respective map
+ *  \param[in] key The given key
+ *  \param[in] val The given value
+ *  \return Zero if successful, non-zero otherwise
+ */
+STRUCTS_DEF int map_ins(map_t *const map, const void *const key,
+                        const void *const val);
+
 /*! \brief Map delete function
  *  \details Deletes a given key-value pair from the map
  *  \param[in] map The respective map
@@ -120,9 +123,13 @@ STRUCTS_DEF int map_clear(map_t *const map);
  *  \param[in] map The respective map
  *  \return The current size of the map
  */
-STRUCTS_DEF size_t map_size(const map_t *const map);
+STRUCTS_DEF long map_size(const map_t *const map);
 
-STRUCTS_DEF size_t map_capacity(const map_t *const map);
+/*! \brief Map capacity getter
+ *  \param[in] map The respective map
+ *  \return The current capacity of the map
+ */
+STRUCTS_DEF long map_capacity(const map_t *const map);
 
 /*! \brief Map keys function
  *  \details Gets a VLA of all the keys in the map
@@ -148,9 +155,9 @@ STRUCTS_DEF int map_vals(const map_t *const map, vla_t *restrict vals);
  */
 STRUCTS_DEF int map_pairs(const map_t *const map, vla_t *restrict pairs);
 
-STRUCTS_DEF size_t umap_search(const map_t *const map, const void *const key);
+STRUCTS_DEF long umap_search(const map_t *const map, const void *const key);
 
-STRUCTS_DEF size_t omap_search(const map_t *const map, const void *const key);
+STRUCTS_DEF long omap_search(const map_t *const map, const void *const key);
 
 #ifdef STRUCTS_MAP_IMPL
 
@@ -191,24 +198,29 @@ static inline int map_destroy_pair(pair_t *const p) {
   return ERR_NONE;
 }
 
-size_t umap_search(const map_t *const map, const void *const key) {
+long umap_search(const map_t *const map, const void *const key) {
+  // Null guard
   if (!map || !map->vla.elements | !key) return ERR_NULL;
 
   int ret;
   size_t i;
   const pair_t *p;
 
+  // Linear search
   for (i = 0; i < map_size(map); i++) {
     // we don't take ownership of p here
     if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
     if (map->cmp(key, p->key, map->key_size) == 0) return i;
   }
 
-  return map_size(map) + 1;
+  // key not found
+  return ERR_NOT_FOUND;
 }
 
-// FIXME: This is broken
-size_t omap_search(const map_t *const map, const void *const key) {
+long omap_search(const map_t *const map, const void *const key) {
+  // Null guard
+  if (!map || !map->vla.elements | !key) return ERR_NULL;
+
   int ret, compare;
   size_t l, r, m;
   const pair_t *p;
@@ -216,10 +228,21 @@ size_t omap_search(const map_t *const map, const void *const key) {
   l = 0;
   r = map_size(map);
 
-  if (r == 0) return r;
+  // Base case guards (size [0,1])
+  if (r == 0)
+    return ERR_EMPTY;
+  else if (r == 1) {
+    if ((ret = vla_getp(&map->vla, 0, (void **)&p)) < 0) return ret;
+    compare = map->cmp(key, p->key, map->key_size);
 
-  while (l < r) {
-    m = (size_t)((r - l) / 2);
+    if (compare != 0)
+      return ERR_NOT_FOUND;
+    else
+      return 0;
+  }
+
+  while (r - l > 1) {
+    m = l + (size_t)((r - l) / 2);
 
     // Not copying p here
     if ((ret = vla_getp(&map->vla, m, (void **)&p)) < 0) return ret;
@@ -234,7 +257,14 @@ size_t omap_search(const map_t *const map, const void *const key) {
       return m;
   }
 
-  return map_size(map) + 1;
+  if ((ret = vla_getp(&map->vla, l, (void **)&p)) < 0) return ret;
+  if (map->cmp(key, p->key, map->key_size) == 0) return l;
+  if (l < r) {
+    if ((ret = vla_getp(&map->vla, r, (void **)&p)) < 0) return ret;
+    if (map->cmp(key, p->key, map->key_size) == 0) return r;
+  }
+
+  return ERR_NOT_FOUND;
 }
 
 int map_init(map_t *const map, const size_t key_size, const size_t val_size,
@@ -277,50 +307,34 @@ int map_deinit(map_t *const map) {
   return ERR_NONE;
 }
 
-int map_set(map_t *const map, const void *key, const void *val) {
+int map_set(map_t *const map, const void *const key, const void *val) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
   int ret;
-  const size_t i = map->search(map, key);
+  pair_t *const p;
+  size_t i = map->search(map, key);
 
-  // Got an error
+  // Key not found
   if (i < 0) return i;
 
-  if (i >= map_size(map)) {
-    // Key not found
-    const pair_t p = map_create_pair(map, key, val);
-    if ((ret = vla_enq(&map->vla, (void *)&p)) < 0) return ret;
-  } else {
-    // Key found
-    pair_t *const p;
-    if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
-    ASSERT(STRUCTS_MEMCPY(p->val, val, map->val_size) != NULL);
-  }
+  // Key found
+  if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
+  ASSERT(STRUCTS_MEMCPY(p->val, val, map->val_size) != NULL);
 
   return ERR_NONE;
 }
 
-// TODO: map_contains
-bool map_contains(const map_t *const map, const void *const key) {
-  return false;
-}
-
 int map_get(const map_t *const map, const void *const key, void *val) {
-  if (!map || !map->vla.elements) return ERR_NULL;
-
-  if (map_size(map) < 1) return ERR_EMPTY;
-
-  const size_t i = map->search(map, key);
-
-  // Got error
-  if (i < 0) return i;
-
-  // Key not found
-  if (i == map_size(map)) return ERR_NOT_FOUND;
+  if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
 
   int ret;
   const pair_t *p;
+  const size_t i = map->search(map, key);
 
+  // Key not found
+  if (i < 0) return i;
+
+  // Key found
   // vla_getp to avoid double copy
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
 
@@ -331,21 +345,16 @@ int map_get(const map_t *const map, const void *const key, void *val) {
 }
 
 int map_getp(const map_t *const map, const void *const key, void **const val) {
-  if (!map || !map->vla.elements) return ERR_NULL;
-
-  if (map_size(map) < 1) return ERR_EMPTY;
-
-  const size_t i = map->search(map, key);
-
-  // Got error
-  if (i < 0) return i;
-
-  // Key not found
-  if (i == map_size(map)) return ERR_NOT_FOUND;
+  if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
 
   int ret;
   const pair_t *p;
+  const size_t i = map->search(map, key);
 
+  // Key not found
+  if (i < 0) return i;
+
+  // Key found
   // vla_getp to avoid double copy
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
 
@@ -355,26 +364,92 @@ int map_getp(const map_t *const map, const void *const key, void **const val) {
   return ERR_NONE;
 }
 
+int map_ins(map_t *const map, const void *const key, const void *const val) {
+  if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
+
+  int ret;
+  pair_t p;
+  const size_t i = map->search(map, key);
+
+  if (i == ERR_EMPTY) {
+    // Empty map, just enq
+    p = map_create_pair(map, key, val);
+    if ((ret = vla_enq(&map->vla, (void *)&p)) < 0) return ret;
+  } else if (i == ERR_NOT_FOUND) {
+    // Need to search for insertion spot
+    const pair_t *pair;
+    size_t m, l = 0, r = map_size(map);
+    int cmp;
+
+    p = map_create_pair(map, key, val);
+
+    // TODO: shortcut binary search for in-order insertions
+    if ((ret = vla_getp(&map->vla, 0, (void **)&pair)) < 0) return ret;
+    if ((cmp = map->cmp(key, pair->key, map->key_size)) < 0) {
+      if ((ret = vla_ins(&map->vla, 0, (void *)&p)) < 0) return ret;
+      return ERR_NONE;
+    } else {
+      if ((ret = vla_getp(&map->vla, vla_size(&map->vla), (void **)&pair)) < 0)
+        return ret;
+      if ((cmp = map->cmp(key, pair->key, map->key_size)) > 0) {
+        if ((ret = vla_enq(&map->vla, (void *)&p)) < 0) return ret;
+        return ERR_NONE;
+      }
+    }
+
+    while (r - l > 1) {
+      m = l + ((r - l) / 2);
+      if ((ret = vla_getp(&map->vla, m, (void **)&pair)) < 0) return ret;
+      cmp = map->cmp(key, pair->key, map->key_size);
+      if (cmp > 0)
+        l = m;
+      else
+        r = m;
+    }
+
+    // key goes either before l, before r, or after r
+    if ((ret = vla_getp(&map->vla, l, (void **)&pair)) < 0) return ret;
+    cmp = map->cmp(key, pair->key, map->key_size);
+    if (cmp < 0) {
+      // Insert before l
+      if ((ret = vla_ins(&map->vla, l, (void *)&p)) < 0) return ret;
+    } else {
+      if ((ret = vla_getp(&map->vla, r, (void **)&pair)) < 0) return ret;
+      cmp = map->cmp(key, pair->key, map->key_size);
+      if (cmp < 0) {
+        // Insert before r
+        if ((ret = vla_ins(&map->vla, r, (void *)&p)) < 0) return ret;
+      } else {
+        // Insert after r
+        if ((ret = vla_ins(&map->vla, r + 1, (void *)&p)) < 0) return ret;
+      }
+    }
+  } else {
+    // Return error? map_set?
+    if ((ret = map_set(map, key, val)) < 0) return ret;
+  }
+
+  return ERR_NONE;
+}
+
 int map_del(map_t *const map, const void *const key) {
   if (!map || !map->vla.elements) return ERR_NULL;
 
-  if (map_size(map) < 1) return ERR_EMPTY;
-
-  const size_t i = map->search(map, key);
-
-  // Got error
-  if (i < 0) return i;
-
-  // Key not found
-  if (i == map_size(map)) return ERR_NOT_FOUND;
-
   int ret;
   pair_t *p;
+  const size_t i = map->search(map, key);
+
+  // Key not found
+  if (i < 0) return i;
+
+  // Key found
   // vla_getp to access heap pointer, instead of copying
   if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
 
+  // Free key and value
   if ((ret = map_destroy_pair(p)) < 0) return ret;
 
+  // Remove from vla
   if ((ret = vla_del(&map->vla, i)) < 0) return ret;
 
   return ERR_NONE;
@@ -389,9 +464,9 @@ int map_clear(map_t *const map) {
   return ERR_NONE;
 }
 
-size_t map_size(const map_t *const map) { return vla_size(&map->vla); }
+long map_size(const map_t *const map) { return vla_size(&map->vla); }
 
-size_t map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
+long map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
 
 int map_keys(const map_t *const map, vla_t *keys) {
   if (!map || !map->vla.elements || !keys || !keys->elements) return ERR_NULL;

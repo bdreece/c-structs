@@ -77,12 +77,33 @@ STRUCTS_DEF void *structs_memset(void *s, int c, size_t n);
 #ifdef STRUCTS_UTIL_IMPL
 
 // TODO: Implement memcpy
-void *structs_memcpy(void *dest, const void *src, size_t n) { return NULL; }
+void *structs_memcpy(void *dest, const void *src, size_t n) {
+  size_t i;
+  for (i = 0; i < n; i++) {
+    *((char *)(dest)++) = *((char *)(src)++);
+  }
+
+  return dest;
+}
 
 // TODO: Implement memmove
-void *structs_memmove(void *dest, const void *src, size_t n) { return NULL; }
+void *structs_memmove(void *dest, const void *src, size_t n) {
+  size_t i;
+  for (i = 0; i < n; i++) {
+    *((char *)(dest)++) = *((char *)(src)++);
+  }
 
-void *structs_memset(void *s, int c, size_t n) { return NULL; }
+  return dest;
+}
+
+void *structs_memset(void *s, int c, size_t n) {
+  size_t i;
+  for (i = 0; i < n; i++) {
+    *((int *)(s)++) = c;
+  }
+
+  return s;
+}
 
 #endif  // STRUCTS_UTIL_IMPL
 

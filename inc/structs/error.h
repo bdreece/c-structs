@@ -11,10 +11,6 @@
 #include <errno.h>
 #include <error.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 //! \brief Assertion macro
 #define ASSERT(x)                                                       \
   do {                                                                  \
@@ -29,9 +25,5 @@ extern "C" {
 #define ERR_EMPTY -4                //!< Empty structure
 #define ERR_INDEX_OUT_OF_BOUNDS -5  //!< Index out of bounds
 #define ERR_NOT_FOUND -6            //!< Element not found
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif  // ERROR_H

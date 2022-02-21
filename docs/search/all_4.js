@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['hash_0',['hash',['../structhashmap__t.html#a58fea00595bfbef41f66f741cf495be7',1,'hashmap_t']]],
-  ['hashmap_2ec_1',['hashmap.c',['../hashmap_8c.html',1,'']]],
-  ['hashmap_2eh_2',['hashmap.h',['../hashmap_8h.html',1,'']]],
-  ['hashmap_5fcontains_3',['hashmap_contains',['../hashmap_8h.html#a9f1f6a70a5eeb227e3e2e63c88d088f1',1,'hashmap_contains(const hashmap_t *map, const void *key):&#160;hashmap.c'],['../hashmap_8c.html#a9f1f6a70a5eeb227e3e2e63c88d088f1',1,'hashmap_contains(const hashmap_t *map, const void *key):&#160;hashmap.c']]],
-  ['hashmap_5fdeinit_4',['hashmap_deinit',['../hashmap_8h.html#a339af1965ea040b65ace092935146c2d',1,'hashmap_deinit(hashmap_t *map):&#160;hashmap.c'],['../hashmap_8c.html#a339af1965ea040b65ace092935146c2d',1,'hashmap_deinit(hashmap_t *map):&#160;hashmap.c']]],
-  ['hashmap_5fget_5',['hashmap_get',['../hashmap_8h.html#adbe920d4e8ac9e6076511b15588d32dc',1,'hashmap_get(const hashmap_t *map, const void *key, void *val):&#160;hashmap.c'],['../hashmap_8c.html#adbe920d4e8ac9e6076511b15588d32dc',1,'hashmap_get(const hashmap_t *map, const void *key, void *val):&#160;hashmap.c']]],
-  ['hashmap_5finit_6',['hashmap_init',['../hashmap_8h.html#ad48861bd8fba06e4d083fe50c11d9722',1,'hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth):&#160;hashmap.c'],['../hashmap_8c.html#ad48861bd8fba06e4d083fe50c11d9722',1,'hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth):&#160;hashmap.c']]],
-  ['hashmap_5ft_7',['hashmap_t',['../structhashmap__t.html',1,'']]],
-  ['head_8',['head',['../structcbuf__t.html#a462461bc0c88722963075ebeb2cba491',1,'cbuf_t']]]
+  ['hash_0',['hash',['../structhashmap__t.html#aa617b6ae6a1d158b75eea360f9c67dae',1,'hashmap_t']]],
+  ['hashmap_2eh_1',['hashmap.h',['../hashmap_8h.html',1,'']]],
+  ['hashmap_5fcontains_2',['hashmap_contains',['../hashmap_8h.html#aa1ba35eb18aaa260ddbf6051f21a31fc',1,'hashmap.h']]],
+  ['hashmap_5fdeinit_3',['hashmap_deinit',['../hashmap_8h.html#a29a3021a9971bd2eb76b89994de849ec',1,'hashmap.h']]],
+  ['hashmap_5fget_4',['hashmap_get',['../hashmap_8h.html#ae460d2e4d87f7df7d6c1a32ac06bb095',1,'hashmap.h']]],
+  ['hashmap_5finit_5',['hashmap_init',['../hashmap_8h.html#a5bdbb94accf9b992159464b5024b766e',1,'hashmap.h']]],
+  ['hashmap_5ft_6',['hashmap_t',['../structhashmap__t.html',1,'']]],
+  ['head_7',['head',['../structcbuf__t.html#a651e2468080a1be73e7efdc8a340e777',1,'cbuf_t']]]
 ];

@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['map_5fclear_0',['map_clear',['../map_8c.html#ac6b2b37571d973151f8fb9070f02a549',1,'map_clear(map_t *map):&#160;map.c'],['../map_8h.html#ac6b2b37571d973151f8fb9070f02a549',1,'map_clear(map_t *map):&#160;map.c']]],
-  ['map_5fcontains_1',['map_contains',['../map_8h.html#a60976acde4b85db1cdc680fe92d9d492',1,'map_contains(const map_t *map, const void *key):&#160;map.c'],['../map_8c.html#a60976acde4b85db1cdc680fe92d9d492',1,'map_contains(const map_t *map, const void *key):&#160;map.c']]],
-  ['map_5fdeinit_2',['map_deinit',['../map_8h.html#aa26f8ca7390fdaa7f67b180e025c41a7',1,'map_deinit(map_t *map):&#160;map.c'],['../map_8c.html#aa26f8ca7390fdaa7f67b180e025c41a7',1,'map_deinit(map_t *map):&#160;map.c']]],
-  ['map_5fdel_3',['map_del',['../map_8h.html#a8444524bc7ffffa2b95990083c8355cd',1,'map_del(map_t *map, const void *key):&#160;map.c'],['../map_8c.html#a8444524bc7ffffa2b95990083c8355cd',1,'map_del(map_t *map, const void *key):&#160;map.c']]],
-  ['map_5fget_4',['map_get',['../map_8h.html#a844a7d34461887469e894c153634dbff',1,'map.h']]],
-  ['map_5fgetp_5',['map_getp',['../map_8h.html#aedb4421e98902401be687f8bcaed7944',1,'map.h']]],
-  ['map_5finit_6',['map_init',['../map_8c.html#aaa722b17aa26d0f81088755669aa527c',1,'map_init(map_t *map, const size_t key_size, const size_t val_size, bool ordered, int(*cmp)(const void *, const void *, size_t), const unsigned long initial_capacity):&#160;map.c'],['../map_8h.html#aaa722b17aa26d0f81088755669aa527c',1,'map_init(map_t *map, const size_t key_size, const size_t val_size, bool ordered, int(*cmp)(const void *, const void *, size_t), const unsigned long initial_capacity):&#160;map.c']]],
-  ['map_5fkeys_7',['map_keys',['../map_8h.html#a3f44b2d355c8c72b24dbb5e299859205',1,'map_keys(const map_t *map, vla_t *keys):&#160;map.c'],['../map_8c.html#a3f44b2d355c8c72b24dbb5e299859205',1,'map_keys(const map_t *map, vla_t *keys):&#160;map.c']]],
-  ['map_5fpairs_8',['map_pairs',['../map_8h.html#ae6c1726a9563161d1a7158686b1116c4',1,'map_pairs(const map_t *map, vla_t *pairs):&#160;map.c'],['../map_8c.html#ae6c1726a9563161d1a7158686b1116c4',1,'map_pairs(const map_t *map, vla_t *pairs):&#160;map.c']]],
-  ['map_5fset_9',['map_set',['../map_8h.html#a8925627af1667f7bcb854c412876dd9e',1,'map_set(map_t *map, const void *key, const void *val):&#160;map.c'],['../map_8c.html#a8925627af1667f7bcb854c412876dd9e',1,'map_set(map_t *map, const void *key, const void *val):&#160;map.c']]],
-  ['map_5fsize_10',['map_size',['../map_8h.html#af4f508703a1c25b0387daf3edb5022f4',1,'map_size(const map_t *map):&#160;map.c'],['../map_8c.html#af4f508703a1c25b0387daf3edb5022f4',1,'map_size(const map_t *map):&#160;map.c']]],
-  ['map_5fvals_11',['map_vals',['../map_8h.html#a37cdd1ef00f18f16ccb8147383ed6cfe',1,'map_vals(const map_t *map, vla_t *vals):&#160;map.c'],['../map_8c.html#a37cdd1ef00f18f16ccb8147383ed6cfe',1,'map_vals(const map_t *map, vla_t *vals):&#160;map.c']]]
+  ['map_5fcapacity_0',['map_capacity',['../map_8h.html#a14102e33ab024ba8be06dec10762e1d7',1,'map.h']]],
+  ['map_5fclear_1',['map_clear',['../map_8h.html#a318675f734d405b8eb7c67f859d80b37',1,'map.h']]],
+  ['map_5fdeinit_2',['map_deinit',['../map_8h.html#a51bdca83ad793f80b9b20d0c01b9cb92',1,'map.h']]],
+  ['map_5fdel_3',['map_del',['../map_8h.html#aa1b6c47cb4b982d2655f6d1720a2d9c1',1,'map.h']]],
+  ['map_5fget_4',['map_get',['../map_8h.html#a59674b63da3bfb46c1c00933dfc7c67b',1,'map.h']]],
+  ['map_5fgetp_5',['map_getp',['../map_8h.html#a62d98e46997df613387cf14bd05f70f1',1,'map.h']]],
+  ['map_5finit_6',['map_init',['../map_8h.html#a77cb6b6ef76bf9be6458e7727824ca30',1,'map.h']]],
+  ['map_5fins_7',['map_ins',['../map_8h.html#a26a33f2ad47e662ec5853c0a13d1f092',1,'map.h']]],
+  ['map_5fkeys_8',['map_keys',['../map_8h.html#a5cfcb974e4614fd62008386921b59f7d',1,'map.h']]],
+  ['map_5fpairs_9',['map_pairs',['../map_8h.html#a1d8509cb5a1bf65735d9fa266d03963a',1,'map.h']]],
+  ['map_5fset_10',['map_set',['../map_8h.html#ac547e872d9f72fd2cfb1813397c1d3a0',1,'map.h']]],
+  ['map_5fsize_11',['map_size',['../map_8h.html#aab7dbb22eeb2fe5475468f5d8d2b2d9e',1,'map.h']]],
+  ['map_5fvals_12',['map_vals',['../map_8h.html#ad0add1b875fa61c92a5b7a42e7c31326',1,'map.h']]]
 ];

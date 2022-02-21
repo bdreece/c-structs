@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['hashmap_5fcontains_0',['hashmap_contains',['../hashmap_8h.html#a9f1f6a70a5eeb227e3e2e63c88d088f1',1,'hashmap_contains(const hashmap_t *map, const void *key):&#160;hashmap.c'],['../hashmap_8c.html#a9f1f6a70a5eeb227e3e2e63c88d088f1',1,'hashmap_contains(const hashmap_t *map, const void *key):&#160;hashmap.c']]],
-  ['hashmap_5fdeinit_1',['hashmap_deinit',['../hashmap_8h.html#a339af1965ea040b65ace092935146c2d',1,'hashmap_deinit(hashmap_t *map):&#160;hashmap.c'],['../hashmap_8c.html#a339af1965ea040b65ace092935146c2d',1,'hashmap_deinit(hashmap_t *map):&#160;hashmap.c']]],
-  ['hashmap_5fget_2',['hashmap_get',['../hashmap_8h.html#adbe920d4e8ac9e6076511b15588d32dc',1,'hashmap_get(const hashmap_t *map, const void *key, void *val):&#160;hashmap.c'],['../hashmap_8c.html#adbe920d4e8ac9e6076511b15588d32dc',1,'hashmap_get(const hashmap_t *map, const void *key, void *val):&#160;hashmap.c']]],
-  ['hashmap_5finit_3',['hashmap_init',['../hashmap_8h.html#ad48861bd8fba06e4d083fe50c11d9722',1,'hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth):&#160;hashmap.c'],['../hashmap_8c.html#ad48861bd8fba06e4d083fe50c11d9722',1,'hashmap_init(hashmap_t *map, const size_t key_size, const size_t val_size, int(*cmp)(const void *, const void *, size_t), long(*hash)(long, const void *), long initial_breadth, long depth):&#160;hashmap.c']]]
+  ['hashmap_5fcontains_0',['hashmap_contains',['../hashmap_8h.html#aa1ba35eb18aaa260ddbf6051f21a31fc',1,'hashmap.h']]],
+  ['hashmap_5fdeinit_1',['hashmap_deinit',['../hashmap_8h.html#a29a3021a9971bd2eb76b89994de849ec',1,'hashmap.h']]],
+  ['hashmap_5fget_2',['hashmap_get',['../hashmap_8h.html#ae460d2e4d87f7df7d6c1a32ac06bb095',1,'hashmap.h']]],
+  ['hashmap_5finit_3',['hashmap_init',['../hashmap_8h.html#a5bdbb94accf9b992159464b5024b766e',1,'hashmap.h']]]
 ];
