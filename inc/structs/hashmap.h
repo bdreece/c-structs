@@ -75,13 +75,15 @@ STRUCTS_DEF bool hashmap_contains(const hashmap_t *map, const void *key);
  *  \param[out] val The value, if found
  *  \return Zero if successful, non-zero otherwise.
  */
-STRUCTS_DEF int hashmap_get(const hashmap_t *map, const void *key, void *val);
+STRUCTS_DEF int hashmap_get(const hashmap_t *const map, const void *key, void *val);
 
-STRUCTS_DEF int hashmap_getp(const hashmap_t *map, const void *key, void **val);
+STRUCTS_DEF int hashmap_getp(const hashmap_t *const map, const void *key, void **val);
 
-STRUCTS_DEF int hashmap_set(hashmap_t *map, const void *key, const void *val);
+STRUCTS_DEF int hashmap_set(hashmap_t *const map, const void *key, const void *val);
 
-STRUCTS_DEF int hashmap_del(hashmap_t *map, const void *key);
+STRUCTS_DEF int hashmap_ins(hashmap_t *const map, const void *key, const void *val);
+
+STRUCTS_DEF int hashmap_del(hashmap_t *const map, const void *key);
 
 STRUCTS_DEF int hashmap_clear(hashmap_t *map);
 
@@ -92,6 +94,9 @@ STRUCTS_DEF int hashmap_keys(const hashmap_t *map, vla_t *keys);
 STRUCTS_DEF int hashmap_vals(const hashmap_t *map, vla_t *vals);
 
 STRUCTS_DEF int hashmap_pairs(const hashmap_t *map, vla_t *pairs);
+
+// TODO
+STRUCTS_DEF int hashmap_foreach(hashmap_t *const map, void (*func)(pair_t *));
 
 #ifdef STRUCTS_HASHMAP_IMPL
 
@@ -360,6 +365,25 @@ int hashmap_pairs(const hashmap_t *map, vla_t *pairs) {
 
     // Clear temp VLA
     if ((ret = vla_clear(&tmp)) < 0) return ret;
+  }
+
+  return ERR_NONE;
+}
+
+int hashmap_foreach(hashmap_t *const map, void (*func)(pair_t *)) {
+  if (!map || !func) return ERR_NULL;
+
+  int ret;
+  size_t i, j;
+  map_t *m;
+  pair_t *p;
+
+  for (i = 0; i < vla_size(&map->vla); i++) {
+    if ((ret = vla_getp(&map->vla, i, (void **)&m)) < 0) return ret;
+    for (j = 0; j < vla_size(&m->vla); j++) {
+      if ((ret = vla_getp(&m->vla, j, (void **)&p)) < 0) return ret;
+      func(p);
+    }
   }
 
   return ERR_NONE;

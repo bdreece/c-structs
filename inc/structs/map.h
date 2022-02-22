@@ -155,6 +155,14 @@ STRUCTS_DEF int map_vals(const map_t *const map, vla_t *restrict vals);
  */
 STRUCTS_DEF int map_pairs(const map_t *const map, vla_t *restrict pairs);
 
+/*! \brief Map for each function
+ *  \details Modify each pair in the map
+ *  \param[in] map The respective map
+ *  \param[in] func The modifying function
+ *  \return Zero if successful, non-zero otherwise.
+ */
+STRUCTS_DEF int map_foreach(map_t *const map, void (*func)(pair_t *p));
+
 STRUCTS_DEF long umap_search(const map_t *const map, const void *const key);
 
 STRUCTS_DEF long omap_search(const map_t *const map, const void *const key);
@@ -512,6 +520,21 @@ int map_pairs(const map_t *const map, vla_t *pairs) {
     if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
 
     if ((ret = vla_enq(pairs, (const void *)p)) < 0) return ret;
+  }
+
+  return ERR_NONE;
+}
+
+int map_foreach(map_t *const map, void (*func)(pair_t *p)) {
+  if (!map || !func) return ERR_NULL;
+
+  int ret;
+  size_t i;
+  pair_t *p;
+
+  for (i = 0; i < map_size(map); i++) {
+    if ((ret = vla_getp(&map->vla, i, (void **)&p)) < 0) return ret;
+    func(p);
   }
 
   return ERR_NONE;
