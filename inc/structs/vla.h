@@ -312,7 +312,12 @@ int vla_getp(const vla_t *const vla, const size_t index, void **const element) {
 
 int vla_set(vla_t *const vla, const size_t index, const void *element) {
     if (!vla || !vla->elements) return ERR_NULL;
-    if (index >= vla->length) return ERR_INDEX_OUT_OF_BOUNDS;
+    if (index > vla->length) return ERR_INDEX_OUT_OF_BOUNDS;
+
+    if (vla->length == vla->capacity) {
+        int ret;
+        ERR_PROP(ret, vla_resize(vla, vla->capacity * 2));
+    }
 
     ASSERT(memcpy(vla->elements + (index * vla->size), element, vla->size));
 
@@ -387,6 +392,7 @@ int vla_shrink(vla_t *const vla) {
     if (vla->length == 0) return ERR_EMPTY;
 
     ASSERT(reallocarray(vla->elements, vla->length, vla->size));
+    vla->capacity = vla->length;
 
     return ERR_NONE;
 }
@@ -397,6 +403,7 @@ int vla_trunc(vla_t *const vla, size_t length) {
     if (vla->length < length) return ERR_INVALID_ARGUMENT;
 
     ASSERT(reallocarray(vla->elements, length, vla->size));
+    vla->length = vla->capacity = length;
 
     return ERR_NONE;
 }

@@ -44,8 +44,9 @@ struct vla_populated_fixture {
     vla_populated_fixture() {
         int vals[5] = {1, 2, 3, 4, 5};
         vla = vla_init(sizeof(int), 10);
-        memcpy(vla.elements, (const void *)vals, 5);
-        vla.size = 5;
+        for (int i = 0; i < 5; i++) {
+            BOOST_TEST_REQUIRE(vla_enq(&vla, (void *)&vals[i]) == ERR_NONE);
+        }
     }
 
     ~vla_populated_fixture() {
@@ -131,8 +132,8 @@ BOOST_FIXTURE_TEST_CASE(set_five_elements, vla_empty_fixture) {
     int values[5] = {0, 1, 2, 3, 4};
 
     for (long i = 0; i < 5; i++) {
-        BOOST_TEST(vla_set(&vla, i, (const void *)&values[i]) == ERR_NONE);
-        BOOST_TEST(*((int *)vla.elements + i) == values[i]);
+        BOOST_TEST(vla_set(&vla, 0, (const void *)&values[i]) == ERR_NONE);
+        BOOST_TEST(*(int *)vla.elements == values[i]);
     }
 }
 
@@ -167,14 +168,14 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE(subtraction_ops)
 
 BOOST_FIXTURE_TEST_CASE(pop_five_elements, vla_populated_fixture) {
-    int values[5];
+    int values[5] = {0, 0, 0, 0, 0};
 
     for (long i = 0; i < 5; i++) {
         BOOST_TEST(vla_pop(&vla, (void *)&values[i]) == ERR_NONE);
         BOOST_TEST(values[i] == i + 1);
     }
 
-    BOOST_TEST(vla_size(&vla) == 0);
+    BOOST_TEST(vla_length(&vla) == 0);
 }
 
 BOOST_FIXTURE_TEST_CASE(get_five_elements, vla_populated_fixture) {
@@ -184,7 +185,7 @@ BOOST_FIXTURE_TEST_CASE(get_five_elements, vla_populated_fixture) {
         BOOST_TEST(values[i] == i + 1);
     }
 
-    BOOST_TEST(vla_size(&vla) == 5);
+    BOOST_TEST(vla_length(&vla) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(getp_five_elements, vla_populated_fixture) {
@@ -195,32 +196,33 @@ BOOST_FIXTURE_TEST_CASE(getp_five_elements, vla_populated_fixture) {
         BOOST_TEST(*values[i] == i + 1);
     }
 
-    BOOST_TEST(vla_size(&vla) == 5);
+    BOOST_TEST(vla_length(&vla) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(del_five_elements, vla_populated_fixture) {
     for (long i = 0; i < 5; i++) {
         BOOST_TEST(vla_del(&vla, 0) == ERR_NONE);
-        BOOST_TEST(vla_size(&vla) == 4 - i);
+        BOOST_TEST(vla_length(&vla) == 4 - i);
     }
 }
 
 BOOST_FIXTURE_TEST_CASE(clear_five_elements, vla_populated_fixture) {
     BOOST_TEST(vla_clear(&vla) == ERR_NONE);
-    BOOST_TEST(vla_size(&vla) == 0);
+    BOOST_TEST(vla_length(&vla) == 0);
 }
 
 BOOST_FIXTURE_TEST_CASE(shrink_five_elements, vla_populated_fixture) {
     BOOST_TEST(vla_shrink(&vla) == ERR_NONE);
-    BOOST_TEST(vla.capacity == 5);
+    BOOST_TEST(vla_capacity(&vla) == 5);
+    BOOST_TEST(vla_length(&vla) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(trunc_five_elements, vla_populated_fixture) {
     int val = 6;
     vla_enq(&vla, (void *)&val);
     BOOST_TEST(vla_trunc(&vla, 5) == ERR_NONE);
-    BOOST_TEST(vla.length == 5);
-    BOOST_TEST(vla.capacity == 5);
+    BOOST_TEST(vla_length(&vla) == 5);
+    BOOST_TEST(vla_capacity(&vla) == 5);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
