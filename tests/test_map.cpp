@@ -5,6 +5,7 @@
  *  \date       01/01/2022
  */
 
+#include <cstddef>
 #define BOOST_TEST_MODULE test_map
 #include <boost/test/included/unit_test.hpp>
 
@@ -15,12 +16,19 @@ extern "C" {
 #include "structs/map.h"
 }
 
-#include "util.hpp"
+
+int cmp(const void *a, const void *b) {
+  if (*(char *)a < *(char *)b)
+    return -1;
+  else if (*(char *)a > *(char *)b)
+    return 1;
+  else
+    return 0;
+}
 
 struct umap_empty_fixture {
   umap_empty_fixture() {
-    BOOST_TEST_REQUIRE(
-        map_init(&map, sizeof(char), sizeof(int), false, cmp, 10) == ERR_NONE);
+    map = map_init(sizeof(char), sizeof(int), false, cmp, 10);
     BOOST_TEST(map.vla.elements);
     BOOST_TEST(map.key_size == sizeof(char));
     BOOST_TEST(map.val_size == sizeof(int));
@@ -34,8 +42,7 @@ struct umap_empty_fixture {
 
 struct omap_empty_fixture {
   omap_empty_fixture() {
-    BOOST_TEST_REQUIRE(
-        map_init(&map, sizeof(char), sizeof(int), true, cmp, 10) == ERR_NONE);
+    map = map_init(sizeof(char), sizeof(int), true, cmp, 10);
     BOOST_TEST(map.vla.elements);
     BOOST_TEST(map.key_size == sizeof(char));
     BOOST_TEST(map.val_size == sizeof(int));
@@ -49,8 +56,7 @@ struct omap_empty_fixture {
 
 struct umap_populated_fixture {
   umap_populated_fixture() {
-    BOOST_TEST_REQUIRE(
-        map_init(&map, sizeof(char), sizeof(int), false, cmp, 10) == ERR_NONE);
+    map = map_init(sizeof(char), sizeof(int), false, cmp, 10);
 
     for (int i = 0; i < 5; i++) {
       BOOST_TEST_REQUIRE(map_set(&map, (const void *)&keys[i],
@@ -69,8 +75,7 @@ struct umap_populated_fixture {
 
 struct omap_populated_fixture {
   omap_populated_fixture() {
-    BOOST_TEST_REQUIRE(
-        map_init(&map, sizeof(char), sizeof(int), true, cmp, 10) == ERR_NONE);
+    map = map_init(sizeof(char), sizeof(int), true, cmp, 10);
 
     for (int i = 0; i < 5; i++) {
       BOOST_TEST_REQUIRE(map_set(&map, (const void *)&keys[i],
@@ -86,51 +91,6 @@ struct omap_populated_fixture {
   int vals[5] = {1, 2, 3, 4, 5};
   map_t map;
 };
-
-/*! \test       test_map/invalid_init
- *  \brief      Map invalid initialization testing suite
- *  \details    Asserts proper behavior in error throwing
- *              upon invalid initialization.
- */
-BOOST_AUTO_TEST_SUITE(invalid_init)
-
-BOOST_AUTO_TEST_CASE(null_pointer) {
-  map_t *map = NULL;
-
-  BOOST_TEST(map_init(map, sizeof(char), sizeof(int), false, cmp, 10) ==
-             ERR_NULL);
-}
-
-BOOST_AUTO_TEST_CASE(empty_key_size) {
-  map_t map;
-
-  BOOST_TEST(map_init(&map, 0, sizeof(int), false, cmp, 10) ==
-             ERR_INVALID_ARGUMENT);
-}
-
-BOOST_AUTO_TEST_CASE(empty_val_size) {
-  map_t map;
-
-  BOOST_TEST(map_init(&map, sizeof(char), 0, false, cmp, 10) ==
-             ERR_INVALID_ARGUMENT);
-}
-
-BOOST_AUTO_TEST_CASE(null_cmp_function) {
-  map_t map;
-
-  BOOST_TEST(map_init(&map, sizeof(char), sizeof(int), false,
-                      (int (*)(const void *, const void *, const size_t))NULL,
-                      10) == ERR_NULL);
-}
-
-BOOST_AUTO_TEST_CASE(empty_capacity) {
-  map_t map;
-
-  BOOST_TEST(map_init(&map, sizeof(char), sizeof(int), false, cmp, 0) ==
-             ERR_INVALID_ARGUMENT);
-}
-
-BOOST_AUTO_TEST_SUITE_END()
 
 static void test_empty_get(map_t *map) {
   char key = 'a';
@@ -196,7 +156,7 @@ static void test_set_five_elements(map_t *map) {
                ERR_NONE);
   }
 
-  BOOST_TEST(map_size(map) == 5);
+  BOOST_TEST(map_length(map) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(umap_set_five_elements, umap_empty_fixture) {
@@ -243,13 +203,13 @@ static void test_del_five_elements(map_t *map) {
 
   for (int i = 0; i < 5; i++) {
     BOOST_TEST(map_del(map, (const void *)&keys[i]) == ERR_NONE);
-    BOOST_TEST(map_size(map) == 4 - i);
+    BOOST_TEST(map_length(map) == 4 - i);
   }
 }
 
 static void test_clear_five_elements(map_t *map) {
   BOOST_TEST(map_clear(map) == ERR_NONE);
-  BOOST_TEST(map_size(map) == 0);
+  BOOST_TEST(map_length(map) == 0);
 }
 
 BOOST_FIXTURE_TEST_CASE(umap_get_five_elements, umap_populated_fixture) {
@@ -287,10 +247,9 @@ BOOST_FIXTURE_TEST_CASE(omap_clear_five_elements, omap_populated_fixture) {
 BOOST_AUTO_TEST_SUITE_END()
 
 static void test_keys_five_elements(map_t *map) {
-  vla_t vla;
   char keys[5] = {'a', 'b', 'c', 'd', 'e'};
 
-  BOOST_TEST(vla_init(&vla, sizeof(char), 5) == ERR_NONE);
+  vla_t vla = vla_init(sizeof(char), 5);
   BOOST_TEST(map_keys(map, &vla) == ERR_NONE);
 
   for (int i = 0; i < 5; i++) {
@@ -301,10 +260,9 @@ static void test_keys_five_elements(map_t *map) {
 }
 
 static void test_vals_five_elements(map_t *map) {
-  vla_t vla;
   int vals[5] = {1, 2, 3, 4, 5};
 
-  BOOST_TEST(vla_init(&vla, sizeof(int), 5) == ERR_NONE);
+  vla_t vla = vla_init(sizeof(int), 5);
   BOOST_TEST(map_vals(map, &vla) == ERR_NONE);
 
   for (int i = 0; i < 5; i++) {
@@ -315,16 +273,15 @@ static void test_vals_five_elements(map_t *map) {
 }
 
 static void test_pairs_five_elements(map_t *map) {
-  vla_t vla;
-  pair_t pairs[5];
+  map_pair_t pairs[5];
   char keys[5] = {'a', 'b', 'c', 'd', 'e'};
   int vals[5] = {1, 2, 3, 4, 5};
 
-  BOOST_TEST(vla_init(&vla, sizeof(pair_t), 5) == ERR_NONE);
+  vla_t vla = vla_init(sizeof(map_pair_t), 5);
   BOOST_TEST(map_pairs(map, &vla) == ERR_NONE);
 
   for (int i = 0; i < 5; i++) {
-    pair_t *pair;
+    map_pair_t *pair;
     BOOST_TEST(vla_getp(&vla, i, (void **)&pair) == ERR_NONE);
     BOOST_TEST(*(char *)pair->key == keys[i]);
     BOOST_TEST(*(int *)pair->val == vals[i]);
