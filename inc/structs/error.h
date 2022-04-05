@@ -33,15 +33,20 @@
 #define ERROR_H
 #include <stdio.h>
 
-#define ASSERT(x)                                                        \
-    do {                                                                 \
-        if (!(x)) {                                                      \
-            fprintf(stderr, "[STRUCTS_ERR] %m\n");                       \
-            fprintf(stderr, "[STRUCTS_ERR] Assertion failed at %s:%d\n", \
-                    __FILE__, __LINE__);                                 \
-            exit(1);                                                     \
-        }                                                                \
+#ifdef DEBUG
+#define ASSERT(x)                                                             \
+    do {                                                                      \
+        if (!(x)) {                                                           \
+            fprintf(stderr, "[STRUCTS_ERR] Assertion failure: \"%s\"\n", #x); \
+            fprintf(stderr, "[STRUCTS_ERR] errno: %m\n");                     \
+            fprintf(stderr, "[STRUCTS_ERR] Assertion failed at %s:%d\n",      \
+                    __FILE__, __LINE__);                                      \
+            exit(1);                                                          \
+        }                                                                     \
     } while (0)
+#else
+#define ASSERT(x) (void)(x)
+#endif  // DEBUG
 
 #define ERR_PROP(ret, expr) \
     if (((ret) = (expr)) < 0) return (ret)
