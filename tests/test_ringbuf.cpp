@@ -40,12 +40,8 @@ struct ringbuf_populated_fixture {
     ringbuf_populated_fixture() {
         ringbuf = ringbuf_init(sizeof(int), 5);
         for (int i = 0; i < 5; i++) {
-            BOOST_TEST_REQUIRE(memcpy((int *)ringbuf.elements + i,
-                                      (const void *)&i,
-                                      sizeof(int)) != (void *)NULL);
+            BOOST_TEST_REQUIRE(ringbuf_write(&ringbuf, (void *)&i) == ERR_NONE);
         }
-
-        ringbuf.size = 5;
     }
 
     ~ringbuf_populated_fixture() {
@@ -96,7 +92,7 @@ BOOST_FIXTURE_TEST_CASE(write_five_elements, ringbuf_empty_fixture) {
         BOOST_TEST(ringbuf_write(&ringbuf, (const void *)&values[i]) ==
                    ERR_NONE);
         BOOST_TEST(*((int *)ringbuf.elements + i) == i + 1);
-        BOOST_TEST(ringbuf.size == i + 1);
+        BOOST_TEST(ringbuf_length(&ringbuf) == i + 1);
     }
 
     BOOST_TEST(ringbuf.head == 0);
@@ -122,7 +118,7 @@ BOOST_FIXTURE_TEST_CASE(read_five_elements, ringbuf_populated_fixture) {
 
     BOOST_TEST(ringbuf.head == 0);
     BOOST_TEST(ringbuf.tail == 0);
-    BOOST_TEST(ringbuf.size == 0);
+    BOOST_TEST(ringbuf_length(&ringbuf) == 0);
 }
 
 BOOST_FIXTURE_TEST_CASE(get_five_elements, ringbuf_populated_fixture) {
@@ -135,7 +131,7 @@ BOOST_FIXTURE_TEST_CASE(get_five_elements, ringbuf_populated_fixture) {
 
     BOOST_TEST(ringbuf.head == 0);
     BOOST_TEST(ringbuf.tail == 0);
-    BOOST_TEST(ringbuf.size == 5);
+    BOOST_TEST(ringbuf_length(&ringbuf) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(getp_five_elements, ringbuf_populated_fixture) {
@@ -148,14 +144,14 @@ BOOST_FIXTURE_TEST_CASE(getp_five_elements, ringbuf_populated_fixture) {
 
     BOOST_TEST(ringbuf.head == 0);
     BOOST_TEST(ringbuf.tail == 0);
-    BOOST_TEST(ringbuf.size == 5);
+    BOOST_TEST(ringbuf_length(&ringbuf) == 5);
 }
 
 BOOST_FIXTURE_TEST_CASE(clear_five_elements, ringbuf_populated_fixture) {
     BOOST_TEST(ringbuf_clear(&ringbuf) == ERR_NONE);
     BOOST_TEST(ringbuf.head == 0);
     BOOST_TEST(ringbuf.tail == 0);
-    BOOST_TEST(ringbuf.size == 0);
+    BOOST_TEST(ringbuf_length(&ringbuf) == 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

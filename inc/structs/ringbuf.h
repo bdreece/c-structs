@@ -160,7 +160,7 @@ int ringbuf_deinit(ringbuf_t *const ringbuf) {
 
 int ringbuf_read(ringbuf_t *const ringbuf, void *element) {
     if (!ringbuf || !ringbuf->elements) return ERR_NULL;
-    if (ringbuf->capacity == 0 || ringbuf->size == 0) return ERR_EMPTY;
+    if (ringbuf->capacity == 0 || ringbuf->length == 0) return ERR_EMPTY;
 
     if (ringbuf->capacity == 1) {
         ASSERT(memcpy(element, ringbuf->elements, ringbuf->size));
@@ -169,7 +169,7 @@ int ringbuf_read(ringbuf_t *const ringbuf, void *element) {
                       ringbuf->elements + ringbuf->head * ringbuf->size,
                       ringbuf->size));
         ringbuf->head = (ringbuf->head + 1) % ringbuf->capacity;
-        ringbuf->size--;
+        ringbuf->length--;
     }
     return ERR_NONE;
 }
@@ -180,19 +180,19 @@ int ringbuf_write(ringbuf_t *const ringbuf, const void *element) {
 
     if (ringbuf->capacity == 1) {
         ASSERT(memcpy(ringbuf->elements, element, ringbuf->size));
-        ringbuf->size = 1;
+        ringbuf->length = 1;
     } else {
         ASSERT(memcpy(ringbuf->elements + ringbuf->tail * ringbuf->size,
                       element, ringbuf->size));
         ringbuf->tail = (ringbuf->tail + 1) % ringbuf->capacity;
-        ringbuf->size++;
+        ringbuf->length++;
     }
     return ERR_NONE;
 }
 
 int ringbuf_get(const ringbuf_t *const ringbuf, void *element) {
     if (!ringbuf || !ringbuf->elements) return ERR_NULL;
-    if (ringbuf->size == 0) return ERR_EMPTY;
+    if (ringbuf->length == 0) return ERR_EMPTY;
 
     if (ringbuf->capacity == 1) {
         ASSERT(memcpy(element, ringbuf->elements, ringbuf->size));
@@ -206,7 +206,7 @@ int ringbuf_get(const ringbuf_t *const ringbuf, void *element) {
 
 int ringbuf_getp(const ringbuf_t *const ringbuf, void **const element) {
     if (!ringbuf || !ringbuf->elements) return ERR_NULL;
-    if (ringbuf->size == 0) return ERR_EMPTY;
+    if (ringbuf->length == 0) return ERR_EMPTY;
 
     if (ringbuf->capacity == 1) {
         *element = ringbuf->elements;
@@ -223,7 +223,7 @@ int ringbuf_clear(ringbuf_t *const ringbuf) {
     ASSERT(memset(ringbuf->elements, 0, ringbuf->size * ringbuf->capacity));
     ringbuf->head = 0;
     ringbuf->tail = 0;
-    ringbuf->size = 0;
+    ringbuf->length = 0;
     return ERR_NONE;
 }
 
