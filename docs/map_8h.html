@@ -85,8 +85,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpair__t.html">pair_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value pair struct.  <a href="structpair__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmap__pair__t.html">map_pair_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key-value pair struct.  <a href="structmap__pair__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmap__search__result__t.html">map_search_result_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmap__t.html">map_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map data structure.  <a href="structmap__t.html#details">More...</a><br /></td></tr>
@@ -100,9 +102,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a77cb6b6ef76bf9be6458e7727824ca30"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a77cb6b6ef76bf9be6458e7727824ca30">map_init</a> (<a class="el" href="structmap__t.html">map_t</a> *const map, const size_t key_size, const size_t val_size, bool ordered, int(*cmp)(const void *, const void *, size_t), const size_t initial_capacity)</td></tr>
-<tr class="memdesc:a77cb6b6ef76bf9be6458e7727824ca30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map construction function.  <a href="map_8h.html#a77cb6b6ef76bf9be6458e7727824ca30">More...</a><br /></td></tr>
-<tr class="separator:a77cb6b6ef76bf9be6458e7727824ca30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af89807bb52271d061f13d8db099e2115"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF <a class="el" href="structmap__t.html">map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#af89807bb52271d061f13d8db099e2115">map_init</a> (const size_t key_size, const size_t val_size, bool ordered, int(*cmp)(const void *, const void *), const size_t capacity)</td></tr>
+<tr class="memdesc:af89807bb52271d061f13d8db099e2115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map construction function.  <a href="map_8h.html#af89807bb52271d061f13d8db099e2115">More...</a><br /></td></tr>
+<tr class="separator:af89807bb52271d061f13d8db099e2115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51bdca83ad793f80b9b20d0c01b9cb92"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a51bdca83ad793f80b9b20d0c01b9cb92">map_deinit</a> (<a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
 <tr class="memdesc:a51bdca83ad793f80b9b20d0c01b9cb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map destruction function.  <a href="map_8h.html#a51bdca83ad793f80b9b20d0c01b9cb92">More...</a><br /></td></tr>
 <tr class="separator:a51bdca83ad793f80b9b20d0c01b9cb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,9 +126,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a318675f734d405b8eb7c67f859d80b37"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a318675f734d405b8eb7c67f859d80b37">map_clear</a> (<a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
 <tr class="memdesc:a318675f734d405b8eb7c67f859d80b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map clear function.  <a href="map_8h.html#a318675f734d405b8eb7c67f859d80b37">More...</a><br /></td></tr>
 <tr class="separator:a318675f734d405b8eb7c67f859d80b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab7dbb22eeb2fe5475468f5d8d2b2d9e"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#aab7dbb22eeb2fe5475468f5d8d2b2d9e">map_size</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
-<tr class="memdesc:aab7dbb22eeb2fe5475468f5d8d2b2d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map size getter.  <a href="map_8h.html#aab7dbb22eeb2fe5475468f5d8d2b2d9e">More...</a><br /></td></tr>
-<tr class="separator:aab7dbb22eeb2fe5475468f5d8d2b2d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef3c4ceb2f46ee45dc956568eec9a2d"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a8ef3c4ceb2f46ee45dc956568eec9a2d">map_length</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
+<tr class="memdesc:a8ef3c4ceb2f46ee45dc956568eec9a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map length getter.  <a href="map_8h.html#a8ef3c4ceb2f46ee45dc956568eec9a2d">More...</a><br /></td></tr>
+<tr class="separator:a8ef3c4ceb2f46ee45dc956568eec9a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe708b6b73eea85303f035b0d8bd5eca"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#abe708b6b73eea85303f035b0d8bd5eca">map_val_size</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
+<tr class="memdesc:abe708b6b73eea85303f035b0d8bd5eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map val size getter.  <a href="map_8h.html#abe708b6b73eea85303f035b0d8bd5eca">More...</a><br /></td></tr>
+<tr class="separator:abe708b6b73eea85303f035b0d8bd5eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab219e8f969169b4f07458164f2fe0fce"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#ab219e8f969169b4f07458164f2fe0fce">map_key_size</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
+<tr class="memdesc:ab219e8f969169b4f07458164f2fe0fce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map key size getter.  <a href="map_8h.html#ab219e8f969169b4f07458164f2fe0fce">More...</a><br /></td></tr>
+<tr class="separator:ab219e8f969169b4f07458164f2fe0fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14102e33ab024ba8be06dec10762e1d7"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a14102e33ab024ba8be06dec10762e1d7">map_capacity</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map)</td></tr>
 <tr class="memdesc:a14102e33ab024ba8be06dec10762e1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map capacity getter.  <a href="map_8h.html#a14102e33ab024ba8be06dec10762e1d7">More...</a><br /></td></tr>
 <tr class="separator:a14102e33ab024ba8be06dec10762e1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,18 +147,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a1d8509cb5a1bf65735d9fa266d03963a"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a1d8509cb5a1bf65735d9fa266d03963a">map_pairs</a> (const <a class="el" href="structmap__t.html">map_t</a> *const map, <a class="el" href="structvla__t.html">vla_t</a> *restrict pairs)</td></tr>
 <tr class="memdesc:a1d8509cb5a1bf65735d9fa266d03963a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map pairs function.  <a href="map_8h.html#a1d8509cb5a1bf65735d9fa266d03963a">More...</a><br /></td></tr>
 <tr class="separator:a1d8509cb5a1bf65735d9fa266d03963a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6495935b557ea0adae6b764fc24c4396"><td class="memItemLeft" align="right" valign="top">STRUCTS_DEF int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8h.html#a6495935b557ea0adae6b764fc24c4396">map_foreach</a> (<a class="el" href="structmap__t.html">map_t</a> *const map, void(*func)(<a class="el" href="structpair__t.html">pair_t</a> *p))</td></tr>
-<tr class="memdesc:a6495935b557ea0adae6b764fc24c4396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map for each function.  <a href="map_8h.html#a6495935b557ea0adae6b764fc24c4396">More...</a><br /></td></tr>
-<tr class="separator:a6495935b557ea0adae6b764fc24c4396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0724c1b83933054f293e1b45319d729b"><td class="memItemLeft" align="right" valign="top"><a id="a0724c1b83933054f293e1b45319d729b" name="a0724c1b83933054f293e1b45319d729b"></a>
-STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>umap_search</b> (const <a class="el" href="structmap__t.html">map_t</a> *const map, const void *const key)</td></tr>
-<tr class="separator:a0724c1b83933054f293e1b45319d729b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc00e2bac0713c933ad57b16bf161358"><td class="memItemLeft" align="right" valign="top"><a id="abc00e2bac0713c933ad57b16bf161358" name="abc00e2bac0713c933ad57b16bf161358"></a>
-STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_search</b> (const <a class="el" href="structmap__t.html">map_t</a> *const map, const void *const key)</td></tr>
-<tr class="separator:abc00e2bac0713c933ad57b16bf161358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Map data structure. </p>
+<p >MIT License</p>
+<p >Copyright (c) 2022 Brian Reece</p>
+<p >Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p >The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p >THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <dl class="section author"><dt>Author</dt><dd>Brian Reece </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>v0.3-alpha </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>12/28/2021 </dd></dl>
@@ -274,44 +278,6 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
 
 </div>
 </div>
-<a id="a6495935b557ea0adae6b764fc24c4396" name="a6495935b557ea0adae6b764fc24c4396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6495935b557ea0adae6b764fc24c4396">&#9670;&nbsp;</a></span>map_foreach()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">STRUCTS_DEF int map_foreach </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structmap__t.html">map_t</a> *const&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void(*)(<a class="el" href="structpair__t.html">pair_t</a> *p)&#160;</td>
-          <td class="paramname"><em>func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Map for each function. </p>
-<p >Modify each pair in the map </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">map</td><td>The respective map </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">func</td><td>The modifying function </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if successful, non-zero otherwise. </dd></dl>
-
-</div>
-</div>
 <a id="a59674b63da3bfb46c1c00933dfc7c67b" name="a59674b63da3bfb46c1c00933dfc7c67b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59674b63da3bfb46c1c00933dfc7c67b">&#9670;&nbsp;</a></span>map_get()</h2>
 
@@ -402,21 +368,15 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
 
 </div>
 </div>
-<a id="a77cb6b6ef76bf9be6458e7727824ca30" name="a77cb6b6ef76bf9be6458e7727824ca30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77cb6b6ef76bf9be6458e7727824ca30">&#9670;&nbsp;</a></span>map_init()</h2>
+<a id="af89807bb52271d061f13d8db099e2115" name="af89807bb52271d061f13d8db099e2115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af89807bb52271d061f13d8db099e2115">&#9670;&nbsp;</a></span>map_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">STRUCTS_DEF int map_init </td>
+          <td class="memname">STRUCTS_DEF <a class="el" href="structmap__t.html">map_t</a> map_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmap__t.html">map_t</a> *const&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const size_t&#160;</td>
           <td class="paramname"><em>key_size</em>, </td>
         </tr>
@@ -435,14 +395,14 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int(*)(const void *, const void *, size_t)&#160;</td>
+          <td class="paramtype">int(*)(const void *, const void *)&#160;</td>
           <td class="paramname"><em>cmp</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const size_t&#160;</td>
-          <td class="paramname"><em>initial_capacity</em>&#160;</td>
+          <td class="paramname"><em>capacity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -455,7 +415,6 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
 <p>Map construction function. </p>
 <p >Constructs an ordered/unordered map of key-value pairs. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">map</td><td>A pointer to the initialized map </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">key_size</td><td>The size of keys </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">val_size</td><td>The size of values </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ordered</td><td>Whether the map is to be ordered </td></tr>
@@ -464,7 +423,7 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Zero if successful, non-zero otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The new map </dd></dl>
 
 </div>
 </div>
@@ -513,6 +472,33 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
 
 </div>
 </div>
+<a id="ab219e8f969169b4f07458164f2fe0fce" name="ab219e8f969169b4f07458164f2fe0fce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab219e8f969169b4f07458164f2fe0fce">&#9670;&nbsp;</a></span>map_key_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRUCTS_DEF long map_key_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmap__t.html">map_t</a> *const&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Map key size getter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">map</td><td>The respective map </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The key size of the map </dd></dl>
+
+</div>
+</div>
 <a id="a5cfcb974e4614fd62008386921b59f7d" name="a5cfcb974e4614fd62008386921b59f7d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5cfcb974e4614fd62008386921b59f7d">&#9670;&nbsp;</a></span>map_keys()</h2>
 
@@ -548,6 +534,33 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zero if successful, non-zero otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a8ef3c4ceb2f46ee45dc956568eec9a2d" name="a8ef3c4ceb2f46ee45dc956568eec9a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef3c4ceb2f46ee45dc956568eec9a2d">&#9670;&nbsp;</a></span>map_length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRUCTS_DEF long map_length </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmap__t.html">map_t</a> *const&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Map length getter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">map</td><td>The respective map </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the map </dd></dl>
 
 </div>
 </div>
@@ -634,14 +647,14 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
 
 </div>
 </div>
-<a id="aab7dbb22eeb2fe5475468f5d8d2b2d9e" name="aab7dbb22eeb2fe5475468f5d8d2b2d9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab7dbb22eeb2fe5475468f5d8d2b2d9e">&#9670;&nbsp;</a></span>map_size()</h2>
+<a id="abe708b6b73eea85303f035b0d8bd5eca" name="abe708b6b73eea85303f035b0d8bd5eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe708b6b73eea85303f035b0d8bd5eca">&#9670;&nbsp;</a></span>map_val_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">STRUCTS_DEF long map_size </td>
+          <td class="memname">STRUCTS_DEF long map_val_size </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structmap__t.html">map_t</a> *const&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
@@ -650,14 +663,14 @@ STRUCTS_DEF long&#160;</td><td class="memItemRight" valign="bottom"><b>omap_sear
       </table>
 </div><div class="memdoc">
 
-<p>Map size getter. </p>
+<p>Map val size getter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">map</td><td>The respective map </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The current size of the map </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The val size of the map </dd></dl>
 
 </div>
 </div>

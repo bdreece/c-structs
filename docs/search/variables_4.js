@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['search_0',['search',['../structmap__t.html#ab2d5627518412e6f7179ff0610403480',1,'map_t']]],
-  ['size_1',['size',['../structcbuf__t.html#a70a1119e17f7ac68a42b7614f7ec6c14',1,'cbuf_t::size()'],['../structvla__t.html#a16ca8bb718360171c2bde32dd928bff5',1,'vla_t::size()']]]
+  ['length_0',['length',['../structringbuf__t.html#a0ff59e6ab422b5d3f3f142da564a2ebd',1,'ringbuf_t::length()'],['../structvla__t.html#a327f37c9b7ffd3b2d71186b67e1e4e35',1,'vla_t::length()']]]
 ];
