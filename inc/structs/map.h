@@ -204,10 +204,8 @@ static inline map_pair_t map_create_pair(const map_t *const map,
                                          const void *const key,
                                          const void *const val) {
     map_pair_t p = {.key = malloc(map->key_size), .val = malloc(map->val_size)};
-
     ASSERT(memcpy(p.key, key, map->key_size));
     ASSERT(memcpy(p.val, val, map->val_size));
-
     return p;
 }
 
@@ -250,17 +248,26 @@ static map_search_result_t omap_search_helper(const map_t *const map,
         .found = false,
     };
 
-    if (r - l < 2) {
-        result.index = l;
+    int compare;
+    const map_pair_t *p;
+
+    if (map_length(map) == 0) return result;
+
+    if (l >= r) {
+        result.index = r;
+        if (r >= map_length(map)) return result;
+        ASSERT(vla_getp(&map->vla, result.index, (void **)&p) == ERR_NONE);
+        compare = map->cmp(key, p->key);
+        if (compare == 0) {
+            result.found = true;
+        }
         return result;
     }
 
-    int compare;
-    const map_pair_t *p;
-    result.index = (l + r) / 2;
-
+    result.index = l + (r - l) / 2;
     ASSERT(vla_getp(&map->vla, result.index, (void **)&p) == ERR_NONE);
     compare = map->cmp(key, p->key);
+
     switch (compare) {
         case -1:
             return omap_search_helper(map, key, l, result.index);
@@ -274,7 +281,7 @@ static map_search_result_t omap_search_helper(const map_t *const map,
 
 static map_search_result_t omap_search(const map_t *const map,
                                        const void *const key) {
-    return omap_search_helper(map, key, 0, map->vla.length);
+    return omap_search_helper(map, key, 0, map_length(map));
 }
 
 map_t map_init(const size_t key_size, const size_t val_size, bool ordered,
@@ -292,7 +299,7 @@ map_t map_init(const size_t key_size, const size_t val_size, bool ordered,
 }
 
 int map_deinit(map_t *const map) {
-    if (!map || !map->vla.elements) return ERR_NULL;
+    if (!map) return ERR_NULL;
 
     size_t i;
     int ret;
@@ -309,7 +316,7 @@ int map_deinit(map_t *const map) {
 }
 
 int map_set(map_t *const map, const void *const key, const void *val) {
-    if (!map || !map->vla.elements) return ERR_NULL;
+    if (!map) return ERR_NULL;
 
     int ret;
     map_pair_t *const p;
@@ -326,7 +333,7 @@ int map_set(map_t *const map, const void *const key, const void *val) {
 }
 
 int map_get(const map_t *const map, const void *const key, void *val) {
-    if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
+    if (!map || !key || !val) return ERR_NULL;
 
     int ret;
     const map_pair_t *p;
@@ -347,7 +354,7 @@ int map_get(const map_t *const map, const void *const key, void *val) {
 }
 
 int map_getp(const map_t *const map, const void *const key, void **const val) {
-    if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
+    if (!map || !key || !val) return ERR_NULL;
 
     int ret;
     const map_pair_t *p;
@@ -369,7 +376,7 @@ int map_getp(const map_t *const map, const void *const key, void **const val) {
 }
 
 int map_ins(map_t *const map, const void *const key, const void *const val) {
-    if (!map || !map->vla.elements || !key || !val) return ERR_NULL;
+    if (!map || !key || !val) return ERR_NULL;
 
     int ret;
     map_pair_t p;
@@ -386,7 +393,7 @@ int map_ins(map_t *const map, const void *const key, const void *const val) {
 }
 
 int map_del(map_t *const map, const void *const key) {
-    if (!map || !map->vla.elements) return ERR_NULL;
+    if (!map) return ERR_NULL;
 
     int ret;
     map_pair_t *p;
@@ -411,7 +418,7 @@ int map_del(map_t *const map, const void *const key) {
 }
 
 int map_clear(map_t *const map) {
-    if (!map || !map->vla.elements) return ERR_NULL;
+    if (!map) return ERR_NULL;
 
     int ret;
     ERR_PROP(ret, vla_clear(&map->vla));
@@ -422,17 +429,17 @@ int map_clear(map_t *const map) {
 long map_length(const map_t *const map) { return vla_length(&map->vla); }
 
 long map_key_size(const map_t *const map) {
-    return (!map || !map->vla.elements) ? ERR_NULL : map->key_size;
+    return (!map) ? ERR_NULL : map->key_size;
 }
 
 long map_val_size(const map_t *const map) {
-    return (!map || !map->vla.elements) ? ERR_NULL : map->val_size;
+    return (!map) ? ERR_NULL : map->val_size;
 }
 
 long map_capacity(const map_t *const map) { return vla_capacity(&map->vla); }
 
 int map_keys(const map_t *const map, vla_t *keys) {
-    if (!map || !map->vla.elements || !keys || !keys->elements) return ERR_NULL;
+    if (!map || !keys || !keys->elements) return ERR_NULL;
 
     int ret;
     size_t i;
@@ -448,7 +455,7 @@ int map_keys(const map_t *const map, vla_t *keys) {
 }
 
 int map_vals(const map_t *const map, vla_t *vals) {
-    if (!map || !map->vla.elements || !vals || !vals->elements) return ERR_NULL;
+    if (!map || !vals || !vals->elements) return ERR_NULL;
 
     int ret;
     size_t i;
@@ -463,8 +470,7 @@ int map_vals(const map_t *const map, vla_t *vals) {
 }
 
 int map_pairs(const map_t *const map, vla_t *pairs) {
-    if (!map || !map->vla.elements || !pairs || !pairs->elements)
-        return ERR_NULL;
+    if (!map || !pairs || !pairs->elements) return ERR_NULL;
 
     int ret;
     size_t i;
