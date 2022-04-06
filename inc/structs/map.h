@@ -26,7 +26,7 @@
  *  \brief      Map data structure
  *  \author     Brian Reece
  *  \version    v0.3-alpha
- *  \date       12/28/2021
+ *  \date       2022-04-06
  */
 
 #ifndef STRUCTS_MAP_H

@@ -26,6 +26,7 @@
  *  \brief      Variable-length array definition and manipulation functions.
  *  \author     Brian Reece
  *  \version    v0.3-alpha
+ *  \date		2022-04-06
  */
 #ifndef STRUCTS_VLA_H
 #define STRUCTS_VLA_H

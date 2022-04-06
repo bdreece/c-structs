@@ -27,7 +27,7 @@
  * \brief   libstructs meta-header
  * \author  Brian Reece
  * \version v0.3-alpha
- * \date    2022-01-17
+ * \date    2022-04-06
  */
 
 #ifndef STRUCTS_STRUCTS_H
@@ -36,10 +36,8 @@
 #define STRUCTS_VLA_IMPL
 #define STRUCTS_RINGBUF_IMPL
 #define STRUCTS_MAP_IMPL
-#define STRUCTS_HASHMAP_IMPL
 #endif  // STRUCTS_ALL_IMPL
 
-// #include "structs/hashmap.h"
 #include "structs/map.h"
 #include "structs/ringbuf.h"
 #include "structs/vla.h"

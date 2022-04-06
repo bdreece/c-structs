@@ -23,10 +23,10 @@
  */
 
 /*! \file       error.h
- *  \brief      List of error codes pertaining to the library.
+ *  \brief      Error codes and assertion macro.
  *  \author     Brian Reece
  *  \version    v0.3-alpha
- *  \date       12/28/2021
+ *  \date       2022-04-06
  */
 
 #ifndef ERROR_H

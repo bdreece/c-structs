@@ -23,10 +23,10 @@
  */
 
 /*! \file       ringbuf.h
- *  \brief      The ring buffer header file.
+ *  \brief      Ring buffer structure definition and manipulation functions.
  *  \author     Brian Reece
  *  \version    v0.3-alpha
- *  \date       12/28/2021
+ *  \date       2022-04-06
  */
 #ifndef RINGBUF_H
 #define RINGBUF_H
