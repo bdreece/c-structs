@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ringbuf_5ft_0',['ringbuf_t',['../structringbuf__t.html',1,'']]]
+  ['vla_5ft_0',['vla_t',['../structvla__t.html',1,'']]]
 ];
