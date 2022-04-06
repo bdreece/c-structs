@@ -380,15 +380,15 @@ int map_ins(map_t *const map, const void *const key, const void *const val) {
     if (!map || !key || !val) return ERR_NULL;
 
     int ret;
-    map_pair_t p;
     const struct map_search_result result = map->search(map, key);
 
     if (!result.found) {
-        p = map_create_pair(map, key, val);
+        map_pair_t p = map_create_pair(map, key, val);
         ERR_PROP(ret, vla_ins(&map->vla, result.index, (void *)&p));
     } else {
-        ERR_PROP(ret, vla_get(&map->vla, result.index, (void *)&p));
-        ASSERT(memcpy(p.val, val, map->val_size));
+        map_pair_t *p;
+        ERR_PROP(ret, vla_getp(&map->vla, result.index, (void **)&p));
+        ASSERT(memcpy(p->val, val, map->val_size));
     }
     return ERR_NONE;
 }
