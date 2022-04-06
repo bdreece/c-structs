@@ -16,9 +16,6 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   target_compile_definitions(map PUBLIC DEBUG)
 endif()
 
-# add_library(hashmap STATIC hashmap.c) target_include_directories(hashmap
-# PUBLIC ../inc)
-
 add_library(structs STATIC structs.c)
 target_include_directories(structs PUBLIC ../inc)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
