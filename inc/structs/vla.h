@@ -391,8 +391,8 @@ int vla_shrink(vla_t *const vla) {
     if (!vla || !vla->elements) return ERR_NULL;
     if (vla->length == 0) return ERR_EMPTY;
 
-    ASSERT(reallocarray(vla->elements, vla->length, vla->size));
-    vla->capacity = vla->length;
+    int ret;
+    ERR_PROP(ret, vla_resize(vla, vla->length));
 
     return ERR_NONE;
 }
@@ -402,8 +402,9 @@ int vla_trunc(vla_t *const vla, size_t length) {
     if (vla->length == 0) return ERR_EMPTY;
     if (vla->length < length) return ERR_INVALID_ARGUMENT;
 
-    ASSERT(reallocarray(vla->elements, length, vla->size));
-    vla->length = vla->capacity = length;
+    int ret;
+    ERR_PROP(ret, vla_resize(vla, length));
+    vla->length = length;
 
     return ERR_NONE;
 }
