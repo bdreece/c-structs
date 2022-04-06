@@ -51,10 +51,10 @@ typedef struct map_pair {
     void *val;  //!< Value
 } map_pair_t;
 
-typedef struct map_search_result {
+struct map_search_result {
     size_t index;
     bool found;
-} map_search_result_t;
+};
 
 //! \brief Map data structure
 typedef struct map {
@@ -62,8 +62,9 @@ typedef struct map {
     size_t key_size;                         //!< Size of keys
     size_t val_size;                         //!< Size of values
     int (*cmp)(const void *, const void *);  //!< Key comparison function
-    map_search_result_t (*search)(const struct map *const,
-                                  const void *const);  //!< Map search function
+    struct map_search_result (*search)(
+        const struct map *const,
+        const void *const);  //!< Map search function
 } map_t;
 
 /*! \brief Map construction function
@@ -217,9 +218,9 @@ static inline int map_destroy_pair(map_pair_t *const p) {
     return ERR_NONE;
 }
 
-static map_search_result_t umap_search(const map_t *const map,
-                                       const void *const key) {
-    map_search_result_t result = {
+static struct map_search_result umap_search(const map_t *const map,
+                                            const void *const key) {
+    struct map_search_result result = {
         .index = 0,
         .found = false,
     };
@@ -240,10 +241,10 @@ static map_search_result_t umap_search(const map_t *const map,
     return result;
 }
 
-static map_search_result_t omap_search_helper(const map_t *const map,
-                                              const void *const key, size_t l,
-                                              size_t r) {
-    map_search_result_t result = {
+static struct map_search_result omap_search_helper(const map_t *const map,
+                                                   const void *const key,
+                                                   size_t l, size_t r) {
+    struct map_search_result result = {
         .index = 0,
         .found = false,
     };
@@ -279,8 +280,8 @@ static map_search_result_t omap_search_helper(const map_t *const map,
     }
 }
 
-static map_search_result_t omap_search(const map_t *const map,
-                                       const void *const key) {
+static struct map_search_result omap_search(const map_t *const map,
+                                            const void *const key) {
     return omap_search_helper(map, key, 0, map_length(map));
 }
 
@@ -320,7 +321,7 @@ int map_set(map_t *const map, const void *const key, const void *val) {
 
     int ret;
     map_pair_t *const p;
-    const map_search_result_t result = map->search(map, key);
+    const struct map_search_result result = map->search(map, key);
 
     if (!result.found) {
         return ERR_NOT_FOUND;
@@ -337,7 +338,7 @@ int map_get(const map_t *const map, const void *const key, void *val) {
 
     int ret;
     const map_pair_t *p;
-    const map_search_result_t result = map->search(map, key);
+    const struct map_search_result result = map->search(map, key);
 
     if (!result.found) {
         return ERR_NOT_FOUND;
@@ -358,7 +359,7 @@ int map_getp(const map_t *const map, const void *const key, void **const val) {
 
     int ret;
     const map_pair_t *p;
-    const map_search_result_t result = map->search(map, key);
+    const struct map_search_result result = map->search(map, key);
 
     // Key not found
     if (!result.found) {
@@ -380,7 +381,7 @@ int map_ins(map_t *const map, const void *const key, const void *const val) {
 
     int ret;
     map_pair_t p;
-    const map_search_result_t result = map->search(map, key);
+    const struct map_search_result result = map->search(map, key);
 
     if (!result.found) {
         p = map_create_pair(map, key, val);
@@ -397,7 +398,7 @@ int map_del(map_t *const map, const void *const key) {
 
     int ret;
     map_pair_t *p;
-    const map_search_result_t result = map->search(map, key);
+    const struct map_search_result result = map->search(map, key);
 
     // Key not found
     if (!result.found) {

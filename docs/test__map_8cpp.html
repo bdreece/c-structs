@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.2-alpha</span>
+   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.3-alpha</span>
    </div>
    <div id="projectbrief">Implementation of classic data structures in C99</div>
   </td>
@@ -77,10 +77,10 @@ $(function() {
 
 <p>Map data structure testing suite.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;boost/test/included/unit_test.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;boost/test/included/unit_test.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">structs/error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="map_8h_source.html">structs/map.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="util_8hpp_source.html">util.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
@@ -107,21 +107,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab350dcd8db787a8ad405eb6ff8523cf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__map_8cpp.html#ab350dcd8db787a8ad405eb6ff8523cf9">BOOST_AUTO_TEST_CASE</a> (null_pointer)</td></tr>
-<tr class="memdesc:ab350dcd8db787a8ad405eb6ff8523cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map invalid initialization testing suite.  <a href="test__map_8cpp.html#ab350dcd8db787a8ad405eb6ff8523cf9">More...</a><br /></td></tr>
-<tr class="separator:ab350dcd8db787a8ad405eb6ff8523cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71dfe9dd0d25dff871b1aaf65dff5dca"><td class="memItemLeft" align="right" valign="top"><a id="a71dfe9dd0d25dff871b1aaf65dff5dca" name="a71dfe9dd0d25dff871b1aaf65dff5dca"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (empty_key_size)</td></tr>
-<tr class="separator:a71dfe9dd0d25dff871b1aaf65dff5dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a265e81ddee9452de64a9b1679a94d613"><td class="memItemLeft" align="right" valign="top"><a id="a265e81ddee9452de64a9b1679a94d613" name="a265e81ddee9452de64a9b1679a94d613"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (empty_val_size)</td></tr>
-<tr class="separator:a265e81ddee9452de64a9b1679a94d613"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a947a5867c8e9ac13233e438308035c76"><td class="memItemLeft" align="right" valign="top"><a id="a947a5867c8e9ac13233e438308035c76" name="a947a5867c8e9ac13233e438308035c76"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (null_cmp_function)</td></tr>
-<tr class="separator:a947a5867c8e9ac13233e438308035c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac677669dc0c115ac06e8bc1b530c5b65"><td class="memItemLeft" align="right" valign="top"><a id="ac677669dc0c115ac06e8bc1b530c5b65" name="ac677669dc0c115ac06e8bc1b530c5b65"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (empty_capacity)</td></tr>
-<tr class="separator:ac677669dc0c115ac06e8bc1b530c5b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e84714d9bda277b7b7d49481189107c"><td class="memItemLeft" align="right" valign="top"><a id="a2e84714d9bda277b7b7d49481189107c" name="a2e84714d9bda277b7b7d49481189107c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>cmp</b> (const void *a, const void *b)</td></tr>
+<tr class="separator:a2e84714d9bda277b7b7d49481189107c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f6bd0ad76e8d6df35c9c8bc30107f19"><td class="memItemLeft" align="right" valign="top"><a id="a0f6bd0ad76e8d6df35c9c8bc30107f19" name="a0f6bd0ad76e8d6df35c9c8bc30107f19"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_empty_get</b> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
 <tr class="separator:a0f6bd0ad76e8d6df35c9c8bc30107f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +119,9 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_empty_get
 <tr class="memitem:ad7018b151d785a08f9e38deade43c89d"><td class="memItemLeft" align="right" valign="top"><a id="ad7018b151d785a08f9e38deade43c89d" name="ad7018b151d785a08f9e38deade43c89d"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_empty_clear</b> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
 <tr class="separator:ad7018b151d785a08f9e38deade43c89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a136940faf456a330122b86f98c5be8f5"><td class="memItemLeft" align="right" valign="top"><a id="a136940faf456a330122b86f98c5be8f5" name="a136940faf456a330122b86f98c5be8f5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_empty_set</b> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
+<tr class="separator:a136940faf456a330122b86f98c5be8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a779a0859cedb0da752144dad50bcdccd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__map_8cpp.html#a779a0859cedb0da752144dad50bcdccd">BOOST_AUTO_TEST_CASE</a> (empty_get)</td></tr>
 <tr class="memdesc:a779a0859cedb0da752144dad50bcdccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unordered map empty operations testing suite.  <a href="test__map_8cpp.html#a779a0859cedb0da752144dad50bcdccd">More...</a><br /></td></tr>
 <tr class="separator:a779a0859cedb0da752144dad50bcdccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,15 +131,18 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_empty_cle
 <tr class="memitem:aa18241935864fd463fafd9ea906e90c1"><td class="memItemLeft" align="right" valign="top"><a id="aa18241935864fd463fafd9ea906e90c1" name="aa18241935864fd463fafd9ea906e90c1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (empty_clear)</td></tr>
 <tr class="separator:aa18241935864fd463fafd9ea906e90c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad38b0a431ae4347ee248458c25643fe9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__map_8cpp.html#ad38b0a431ae4347ee248458c25643fe9">test_set_five_elements</a> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
-<tr class="memdesc:ad38b0a431ae4347ee248458c25643fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map addition operations testing suite.  <a href="test__map_8cpp.html#ad38b0a431ae4347ee248458c25643fe9">More...</a><br /></td></tr>
-<tr class="separator:ad38b0a431ae4347ee248458c25643fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4c1066abf2854bd7c6593ef5e6c2270"><td class="memItemLeft" align="right" valign="top"><a id="ac4c1066abf2854bd7c6593ef5e6c2270" name="ac4c1066abf2854bd7c6593ef5e6c2270"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_FIXTURE_TEST_CASE</b> (umap_set_five_elements, <a class="el" href="structumap__empty__fixture.html">umap_empty_fixture</a>)</td></tr>
-<tr class="separator:ac4c1066abf2854bd7c6593ef5e6c2270"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa03aa2ce874e955d56b2c6e12785554c"><td class="memItemLeft" align="right" valign="top"><a id="aa03aa2ce874e955d56b2c6e12785554c" name="aa03aa2ce874e955d56b2c6e12785554c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_FIXTURE_TEST_CASE</b> (omap_set_five_elements, <a class="el" href="structomap__empty__fixture.html">omap_empty_fixture</a>)</td></tr>
-<tr class="separator:aa03aa2ce874e955d56b2c6e12785554c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace7b33cf216bec868abe1872ca49107b"><td class="memItemLeft" align="right" valign="top"><a id="ace7b33cf216bec868abe1872ca49107b" name="ace7b33cf216bec868abe1872ca49107b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_AUTO_TEST_CASE</b> (empty_set)</td></tr>
+<tr class="separator:ace7b33cf216bec868abe1872ca49107b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5947aeeaae5ad616f1c499ca2b270f30"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__map_8cpp.html#a5947aeeaae5ad616f1c499ca2b270f30">test_ins_five_elements</a> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
+<tr class="memdesc:a5947aeeaae5ad616f1c499ca2b270f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map addition operations testing suite.  <a href="test__map_8cpp.html#a5947aeeaae5ad616f1c499ca2b270f30">More...</a><br /></td></tr>
+<tr class="separator:a5947aeeaae5ad616f1c499ca2b270f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577322f761db3789ed65a43af2b09be6"><td class="memItemLeft" align="right" valign="top"><a id="a577322f761db3789ed65a43af2b09be6" name="a577322f761db3789ed65a43af2b09be6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_FIXTURE_TEST_CASE</b> (umap_ins_five_elements, <a class="el" href="structumap__empty__fixture.html">umap_empty_fixture</a>)</td></tr>
+<tr class="separator:a577322f761db3789ed65a43af2b09be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2d050a0f84a919eaef2b032f0e342f8"><td class="memItemLeft" align="right" valign="top"><a id="aa2d050a0f84a919eaef2b032f0e342f8" name="aa2d050a0f84a919eaef2b032f0e342f8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BOOST_FIXTURE_TEST_CASE</b> (omap_ins_five_elements, <a class="el" href="structomap__empty__fixture.html">omap_empty_fixture</a>)</td></tr>
+<tr class="separator:aa2d050a0f84a919eaef2b032f0e342f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71e9835e6e6563eb0f27061d1b06b7c7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__map_8cpp.html#a71e9835e6e6563eb0f27061d1b06b7c7">test_get_five_elements</a> (<a class="el" href="structmap__t.html">map_t</a> *map)</td></tr>
 <tr class="memdesc:a71e9835e6e6563eb0f27061d1b06b7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map subtraction operations testing suite.  <a href="test__map_8cpp.html#a71e9835e6e6563eb0f27061d1b06b7c7">More...</a><br /></td></tr>
 <tr class="separator:a71e9835e6e6563eb0f27061d1b06b7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,7 +205,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
 <dl class="section date"><dt>Date</dt><dd>01/01/2022 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a779a0859cedb0da752144dad50bcdccd" name="a779a0859cedb0da752144dad50bcdccd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a779a0859cedb0da752144dad50bcdccd">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a779a0859cedb0da752144dad50bcdccd">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,15 +222,15 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
 
 <p>Unordered map empty operations testing suite. </p>
 <p >Ordered map empty operations testing suite.</p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000002">Test:</a></b></dt><dd>test_map/umap_empty_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd>test_map/umap_empty_ops </dd></dl>
 <p >Asserts proper behavior in error throwing upon get operations on an empty unordered map.</p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>test_map/omap_empty_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000002">Test:</a></b></dt><dd>test_map/omap_empty_ops </dd></dl>
 <p >Asserts proper behavior in error throwing upon get operations on an empty ordered map </p>
 
 </div>
 </div>
 <a id="a02c86ef946e8037f016a40734c2f4155" name="a02c86ef946e8037f016a40734c2f4155"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02c86ef946e8037f016a40734c2f4155">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c86ef946e8037f016a40734c2f4155">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,32 +247,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
 
 <p>Unordered map aggregation operations testing suite. </p>
 <p >Ordered map aggregation operations testing suite.</p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd>test_map/umap_aggregation_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000005">Test:</a></b></dt><dd>test_map/umap_aggregation_ops </dd></dl>
 <p >Asserts proper behavior in executing keys, vals, and pairs aggregations on unordered map.</p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>test_map/omap_aggregation_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000006">Test:</a></b></dt><dd>test_map/omap_aggregation_ops </dd></dl>
 <p >Asserts proper behavior in executing keys, vals, and pairs aggregations on ordered map. </p>
-
-</div>
-</div>
-<a id="ab350dcd8db787a8ad405eb6ff8523cf9" name="ab350dcd8db787a8ad405eb6ff8523cf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab350dcd8db787a8ad405eb6ff8523cf9">&#9670;&nbsp;</a></span>BOOST_AUTO_TEST_CASE() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BOOST_AUTO_TEST_CASE </td>
-          <td>(</td>
-          <td class="paramtype">null_pointer&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Map invalid initialization testing suite. </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd>test_map/invalid_init </dd></dl>
-<p >Asserts proper behavior in error throwing upon invalid initialization. </p>
 
 </div>
 </div>
@@ -307,13 +279,13 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
 </div><div class="memdoc">
 
 <p>Map subtraction operations testing suite. </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000006">Test:</a></b></dt><dd>test_map/subtraction_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>test_map/subtraction_ops </dd></dl>
 <p >Asserts proper behavior in executing get, delete, and clear operations. </p>
 
 </div>
 </div>
-<a id="ad38b0a431ae4347ee248458c25643fe9" name="ad38b0a431ae4347ee248458c25643fe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad38b0a431ae4347ee248458c25643fe9">&#9670;&nbsp;</a></span>test_set_five_elements()</h2>
+<a id="a5947aeeaae5ad616f1c499ca2b270f30" name="a5947aeeaae5ad616f1c499ca2b270f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5947aeeaae5ad616f1c499ca2b270f30">&#9670;&nbsp;</a></span>test_ins_five_elements()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -322,7 +294,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void test_set_five_elements </td>
+          <td class="memname">static void test_ins_five_elements </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structmap__t.html">map_t</a> *&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
@@ -337,7 +309,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>test_pairs_fiv
 </div><div class="memdoc">
 
 <p>Map addition operations testing suite. </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>test_map/addition_ops </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>test_map/addition_ops </dd></dl>
 <p >Asserts proper behavior in executing set operations. </p>
 
 </div>

@@ -50,7 +50,7 @@ typedef struct ringbuf {
 /*! \brief Ring buffer constructor function
  *  \details This function initializes a ring buffer.
  *  \param[in] size The size of the element.
- *  \param[in] size The size of the buffer.
+ *  \param[in] capacity The capacity of the buffer.
  *  \return The new ringbuf.
  */
 STRUCTS_DEF ringbuf_t ringbuf_init(const size_t size, const size_t capacity);

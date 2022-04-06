@@ -36,7 +36,7 @@
 
 #include <stddef.h>
 
-//! \brief VLA struct definition.
+//! \brief Variable length array structure.
 typedef struct vla {
     size_t length;    //!< VLA length.
     size_t capacity;  //!< VLA capacity.
@@ -62,7 +62,6 @@ STRUCTS_DEF int vla_deinit(vla_t *const vla);
 
 /*! \brief VLA push function.
  *  \details This function pushes an element onto the VLA.
- *           Time complexity on the order of O(n).
  *  \param[in] vla VLA to push to.
  *  \param[in] element Element to push.
  *  \return Zero on success, non-zero on failure.
@@ -71,19 +70,16 @@ STRUCTS_DEF int vla_push(vla_t *const vla, const void *restrict element);
 
 /*! \brief VLA pop function.
  *  \details This function pops an element from the VLA.
- *           Time complexity on the order of O(n).
  *  \param[in] vla VLA to pop from.
  *  \param[out] element Element to pop.
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_pop(vla_t *const vla, void *restrict element);
 
-/*! \func vla_enq
- *  \brief VLA enqueue function.
+/*! \brief VLA enqueue function.
  *  \details This function enqueues an element onto the VLA.
- *           Time complexity on the order of O(1).
- *  \param[in] vla VLA to resize.
- *  \param[in] size New VLA size.
+ *  \param[in] vla VLA to enqueue onto.
+ *  \param[in] element Element to enqueue
  *  \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_enq(vla_t *const vla, const void *restrict element);
@@ -130,11 +126,10 @@ STRUCTS_DEF int vla_ins(vla_t *const vla, const size_t index,
                         const void *restrict element);
 
 /*! \brief VLA delete function.
- *  \details This function deletes an element from the VLA. Time complexity on
- * the order of O(n).
+ *  \details This function deletes an element from the VLA.
  * \param[in] vla VLA to delete from.
- * \param[in] index Index
- * of element to delete. \return Zero on success, non-zero on failure.
+ * \param[in] index Index of element to delete.
+ * \return Zero on success, non-zero on failure.
  */
 STRUCTS_DEF int vla_del(vla_t *const vla, const size_t index);
 
@@ -196,20 +191,10 @@ STRUCTS_DEF long vla_capacity(const vla_t *const vla);
 
 #include "structs/error.h"
 
-/*! \brief Resize a variable length array.
- *  \details The new size is calculated by multiplying the element size by the
- * 			 new capacity
- * 	\param[in] vla Pointer to the variable length array.
- * 	\param[in] capacity The new capacity of the array.
- * 	\returns Zero on success, non-zero on failure.
- */
-static int vla_resize(vla_t *const vla, const size_t capacity) {
+static inline int vla_resize(vla_t *const vla, const size_t capacity) {
     if (!vla || !vla->elements) return ERR_NULL;
 
-    void *p;
-    ASSERT(p = reallocarray(vla->elements, capacity, vla->size));
-
-    vla->elements = p;
+    ASSERT(vla->elements = reallocarray(vla->elements, capacity, vla->size));
     vla->capacity = capacity;
 
     return ERR_NONE;
@@ -232,6 +217,7 @@ int vla_deinit(vla_t *const vla) {
     if (!vla || !vla->elements) return ERR_NULL;
 
     free(vla->elements);
+    // Clear structure
     ASSERT(memset((void *)vla, 0, sizeof(vla_t)));
 
     return ERR_NONE;

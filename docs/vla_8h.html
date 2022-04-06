@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.2-alpha</span>
+   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.3-alpha</span>
    </div>
    <div id="projectbrief">Implementation of classic data structures in C99</div>
   </td>
@@ -84,7 +84,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvla__t.html">vla_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VLA struct definition.  <a href="structvla__t.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable length array structure.  <a href="structvla__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -265,7 +265,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>VLA delete function. </p>
-<p >This function deletes an element from the VLA. Time complexity on the order of O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This function deletes an element from the VLA. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to delete from. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of element to delete. </td></tr>
@@ -303,11 +303,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>VLA enqueue function. </p>
-<p >\func vla_enq</p>
-<p >This function enqueues an element onto the VLA. Time complexity on the order of O(1). </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This function enqueues an element onto the VLA. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to resize. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>New VLA size. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to enqueue onto. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>Element to enqueue </td></tr>
   </table>
   </dd>
 </dl>
@@ -581,7 +580,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>VLA pop function. </p>
-<p >This function pops an element from the VLA. Time complexity on the order of O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This function pops an element from the VLA. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to pop from. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">element</td><td>Element to pop. </td></tr>
@@ -619,7 +618,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>VLA push function. </p>
-<p >This function pushes an element onto the VLA. Time complexity on the order of O(n). </p><dl class="params"><dt>Parameters</dt><dd>
+<p >This function pushes an element onto the VLA. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vla</td><td>VLA to push to. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>Element to push. </td></tr>

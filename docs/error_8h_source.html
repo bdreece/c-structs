@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.2-alpha</span>
+   <div id="projectname">bdreece/libstructs<span id="projectnumber">&#160;v0.3-alpha</span>
    </div>
    <div id="projectbrief">Implementation of classic data structures in C99</div>
   </td>
@@ -75,28 +75,33 @@ $(function() {
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define ERROR_H</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define ASSERT(x)                                                        \</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    do {                                                                 \</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">        if (!(x)) {                                                      \</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">            fprintf(stderr, &quot;[STRUCTS_ERR] %m\n&quot;</span>);                       \</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            fprintf(stderr, &quot;[STRUCTS_ERR] Assertion failed at %s:%d\n&quot;, \</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                    __FILE__, __LINE__);                                 \</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            exit(1);                                                     \</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }                                                                \</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    } while (0)</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define ERR_PROP(ret, expr) \</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    if (((ret) = (expr)) &lt; 0) return (ret)</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="error_8h.html#aff0d3fb76f11f6e8ea4002d826bbd23c">   49</a></span><span class="preprocessor">#define ERR_NONE 0                  </span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="error_8h.html#aa26fc6554da458bd012638a7020b00b6">   50</a></span><span class="preprocessor">#define ERR_FAILURE -1              </span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="error_8h.html#a1c443c3953fd819755a211bcc945f46b">   51</a></span><span class="preprocessor">#define ERR_INVALID_ARGUMENT -2     </span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="error_8h.html#a377ec0a62a8d11ba62abd5d57dff2026">   52</a></span><span class="preprocessor">#define ERR_NULL -3                 </span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="error_8h.html#a5bca617ab5b79831176af3ad980fc3ba">   53</a></span><span class="preprocessor">#define ERR_EMPTY -4                </span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="error_8h.html#a0c5594b6ceb056b0d8e037deb10968d4">   54</a></span><span class="preprocessor">#define ERR_INDEX_OUT_OF_BOUNDS -5  </span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="error_8h.html#a47744541258a26adfce215564d8d05f4">   55</a></span><span class="preprocessor">#define ERR_NOT_FOUND -6            </span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif  </span><span class="comment">// ERROR_H</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define ASSERT(x)                                                             \</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">    do {                                                                      \</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">        if (!(x)) {                                                           \</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">            fprintf(stderr, &quot;[STRUCTS_ERR] Assertion failure: \&quot;%s\&quot;\n&quot;</span>, #x); \</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            fprintf(stderr, &quot;[STRUCTS_ERR] errno: %m\n&quot;);                     \</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            fprintf(stderr, &quot;[STRUCTS_ERR] Assertion failed at %s:%d\n&quot;,      \</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                    __FILE__, __LINE__);                                      \</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            exit(1);                                                          \</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }                                                                     \</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    } while (0)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define ASSERT(x) (void)(x)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif  </span><span class="comment">// DEBUG</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define ERR_PROP(ret, expr) \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">    if (((ret) = (expr)) &lt; 0) return (ret)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="error_8h.html#aff0d3fb76f11f6e8ea4002d826bbd23c">   54</a></span><span class="preprocessor">#define ERR_NONE 0                  </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="error_8h.html#aa26fc6554da458bd012638a7020b00b6">   55</a></span><span class="preprocessor">#define ERR_FAILURE -1              </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="error_8h.html#a1c443c3953fd819755a211bcc945f46b">   56</a></span><span class="preprocessor">#define ERR_INVALID_ARGUMENT -2     </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="error_8h.html#a377ec0a62a8d11ba62abd5d57dff2026">   57</a></span><span class="preprocessor">#define ERR_NULL -3                 </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="error_8h.html#a5bca617ab5b79831176af3ad980fc3ba">   58</a></span><span class="preprocessor">#define ERR_EMPTY -4                </span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="error_8h.html#a0c5594b6ceb056b0d8e037deb10968d4">   59</a></span><span class="preprocessor">#define ERR_INDEX_OUT_OF_BOUNDS -5  </span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="error_8h.html#a47744541258a26adfce215564d8d05f4">   60</a></span><span class="preprocessor">#define ERR_NOT_FOUND -6            </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif  </span><span class="comment">// ERROR_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
