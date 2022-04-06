@@ -1,8 +1,8 @@
 # libstructs
 
-![GitHub License](https://img.shields.io/github/license/bdreece/libstructs)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bdreece/libstructs/CMake)
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/bdreece/libstructs?include_prereleases)
+[![GitHub License](https://img.shields.io/github/license/bdreece/libstructs)](https://github.com/bdreece/libstructs/blob/master/LICENSE.md)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bdreece/libstructs/CMake)](https://github.com/bdreece/libstructs/actions/workflows/cmake.yml)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/bdreece/libstructs?include_prereleases)](https://github.com/bdreece/libstructs/releases)
 
 Cross-platform C99 implementation of classic data structures.
 
