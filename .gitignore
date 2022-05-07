@@ -1,7 +1,7 @@
 prog.*
 .vscode/
 vgcore*
-build/*
+build/
 *.o
 Testing/
 .cache/
